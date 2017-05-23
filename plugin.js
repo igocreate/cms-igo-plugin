@@ -22,7 +22,6 @@ class CmsIgoPlugin {
     const CMS = require('./src/services/CMS');
     return function(req, res, next) {
       CMS.loadMenu(menu_id, function(err, menu) {
-        console.dir(menu);
         res.locals['menu_' + menu_id] = menu;
         next();
       });
