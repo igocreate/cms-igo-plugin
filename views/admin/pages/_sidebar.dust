@@ -1,0 +1,74 @@
+<div class="form-page-sidebar">
+
+  <input type="submit" class="btn btn-primary btn-wide" value="Enregistrer" />
+
+  <div class="form-group">
+    <label for="status">Statut</label>
+    <select class="form-control" id="status" name="status" data-value="{page.status}" >
+      <option value="published">Publié</option>
+      <option value="draft">Brouillon</option>
+      <option value="trashed">Supprimé</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="slug">URL</label>
+    <input type="text" class="form-control" id="slug" name="slug" placeholder="URL" value="{page.slug}" />
+  </div>
+
+  <div class="form-group">
+    <label for="meta_description">SEO description</label>
+    <textarea class="form-control" id="meta_description" name="meta_description" placeholder="Meta Description" rows="5" >
+      {page.meta_description}
+    </textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="subtitle">Sous-titre</label>
+    <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Sous titre" value="{page.subtitle}" />
+  </div>
+
+  <div class="form-group">
+    <label>Image</label>
+    <div>
+      <img {?page.image}src="/medias/{page.image.uuid}/small/{page.image.filename|u}"{/page.image} class="img-fluid" id="page-image" {^page.image}style="display: none;"{/page.image} />
+    </div>
+    <div>
+      <a href="#" class="btn btn-secondary select-image" data-toggle="modal" data-target="#select-image-modal">Choisir</a>
+    </div>
+    <input type="hidden" id="image_id" name="image_id" value="{page.image_id}" />
+  </div>
+
+  <div class="form-group">
+    <label for="excerpt">Extrait</label>
+    <textarea class="form-control" id="excerpt" name="excerpt" placeholder="Extrait" rows="5">
+      {page.excerpt}
+    </textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="category">Catégorie</label>
+    <input type="text" class="form-control" id="category" name="category" placeholder="Catégorie" value="{page.category}" />
+  </div>
+
+  <div class="form-group">
+    <label for="published_at">Date de publication</label>
+    <input type="text" class="form-control datetimepicker" id="published_at" name="published_at" placeholder="Date de publication" value="{@dateformat date=page.published_at format="YYYY-MM-DD HH:mm" /}" />
+  </div>
+
+  <div class="form-group">
+    <label for="menu_id">Menu</label>
+    <input type="text" class="form-control" id="menu_id" name="menu_id" placeholder="Menu" value="{page.menu_id}" />
+  </div>
+
+  <div class="form-group">
+    <label for="menu_order">Ordre dans le menu</label>
+    <input type="text" class="form-control" id="menu_order" name="menu_order" placeholder="Ordre dans le menu" value="{page.menu_order}" />
+  </div>
+
+  <div class="form-group">
+    <label for="tags">Tags</label>
+    <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags" value="{page.tags}" />
+  </div>
+
+</div>

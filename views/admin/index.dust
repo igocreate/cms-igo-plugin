@@ -1,0 +1,17 @@
+
+{> "admin/layouts/main" /}
+
+{<content}
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms">Admin</a></li>
+    <li class="breadcrumb-item active"> CMS</li>
+  </ol>
+
+  <h1>CMS plugin</h1>
+  <ul>
+    
+    <li><a href="{options.adminpath}/cms/pages">Pages</a></li>
+    <li><a href="{options.adminpath}/cms/medias">Medias</a></li>
+  </ul>
+{/content}

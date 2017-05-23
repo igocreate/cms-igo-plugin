@@ -1,0 +1,22 @@
+
+{> "layouts/main" /}
+
+{<title}{page.title}{/title}
+
+{<content}
+
+  <div class="row cms-pages-show">
+    <div class="col-md-8 offset-md-2">
+      {#page}
+        <div class="header">
+          <h1>{.title}</h1>
+          <small>Publié le {@dateformat date=.published_at format="MM/DD" /}</small>
+        </div>
+        <div class="body">
+          {.body|s}
+        </div>
+      {/page}
+    </div>
+  </div>
+
+{/content}

@@ -1,0 +1,26 @@
+
+{> "admin/layouts/main" /}
+
+{<content}
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms/pages">Pages</a></li>
+    <li class="breadcrumb-item active">Nouvelle page</li>
+  </ol>
+
+  <form action="{options.adminpath}/cms/pages" id="form-page" method="POST">
+    <div class="row">
+      <div class="col-sm-4 push-sm-8">
+        {> "{dirname}/views/admin/pages/_sidebar.dust" /}
+      </div>
+      <div class="col-sm-8 pull-sm-4">
+        {> "{dirname}/views/admin/pages/_form.dust" /}
+      </div>
+    </div>
+  </form>
+
+  {> "{dirname}/views/admin/pages/_modal.dust" /}
+
+{/content}

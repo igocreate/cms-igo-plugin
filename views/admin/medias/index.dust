@@ -1,0 +1,53 @@
+
+{> "admin/layouts/main" /}
+
+{<content}
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
+    <li class="breadcrumb-item active">Media</li>
+  </ol>
+
+  <div class="float-left admin-actions">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link {?is_published}active{/is_published}" href="?status=published">Publiés</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {?is_offers}active{/is_offers}" href="?status=offers">Photos offres</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {?is_deleted}active{/is_deleted}" href="?status=deleted">Supprimés</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="table-responsive">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th class="th-media-title">Media</th>
+          <th class="">User</th>
+          <th class="">Offre</th>
+          <th class="th-media-created-at">Date de création</th>
+          <th class="th-page-actions"></th>
+        </tr>
+      </thead>
+      {#medias}
+        <tr>
+          <td class="td-page-title">{.filename} <a href="/medias/{.uuid}/{.filename|u}" target="_blank"><i class="icon-link"></i></a></td>
+          <td>{.user_id}</td>
+          <td>{?.offer_id}<a href="/admin/offers/{.offer_id}">#{.offer_id}</a>{/.offer_id}</td>
+          <td>{@dateformat date=.created_at /}</td>
+          <td>
+            <a href="/admin/medias/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>
+          </td>
+        </tr>
+      {/medias}
+    </table>
+  </div>
+
+
+{/content}

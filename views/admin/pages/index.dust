@@ -1,0 +1,58 @@
+
+{> "admin/layouts/main" /}
+
+{<content}
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms">Admin</a></li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
+    <li class="breadcrumb-item active"> Pages</li>
+  </ol>
+
+  <div class="float-right admin-actions">
+    <a href="{options.adminpath}/cms/pages/new" class="btn btn-primary ml-1" ><i class="icon-pencil" ></i> Nouvelle Page</a>
+  </div>
+  <div class="float-left admin-actions">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link {@eq key=status value="published"}active{/eq}" href="?status=published">Publiées</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {@eq key=status value="draft"}active{/eq}" href="?status=draft">Brouillons</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {@eq key=status value="trashed"}active{/eq}" href="?status=trashed">Supprimées</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="table-responsive">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th class="th-page-status"></th>
+          <th class="th-page-lang">Langue</th>
+          <th class="th-page-title" width="50%">Titre</th>
+          <th class="th-page-updated-at">Dernière modification</th>
+          <th class="th-page-actions"></th>
+        </tr>
+      </thead>
+      {#pages}
+        <tr>
+          <td>#{.id}</td>
+          <td class="td-page-lang">{.lang}</td>
+          <td class="td-page-title">{.title}</td>
+          <td>{@dateformat date=.updated_at /}</td>
+          <td class="actions">
+            <a href="{options.adminpath}/cms/pages/{.id}/edit" >Modifier</a>
+            {@ne key=.status value="trashed"}&nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>{/ne}
+          </td>
+        </tr>
+      {/pages}
+    </table>
+  </div>
+
+
+{/content}

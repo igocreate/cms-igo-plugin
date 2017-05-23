@@ -1,0 +1,9 @@
+<div class="form-group">
+  <input type="text" class="form-control" id="title" name="title" placeholder="Titre" value="{page.title}" />
+</div>
+
+<div class="form-group">
+  <textarea class="htmleditor" id="body" name="body" >
+    {page.body}
+  </textarea>
+</div>
