@@ -6,9 +6,9 @@
 const igo           = require('../../plugin').igo;
 const router        = igo.express.Router();
 
-const CMSController = require('../controllers/CMSController');
+const CmsController = require('../controllers/CmsController');
 
-router.get('/:page',          CMSController.show);
-router.get('/*/:page',        CMSController.show);
+router.get('/:page',          CmsController.show);
+router.get('/*/:page',        CmsController.show);
 
 module.exports = router;
