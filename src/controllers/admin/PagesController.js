@@ -10,7 +10,7 @@ const igo       = plugin.igo;
 
 //
 module.exports.index = function(req, res) {
-  Page.list(function(err, pages) {
+  Page.order('`updated_at` DESC').list(function(err, pages) {
     res.locals.pages = pages;
     res.render(plugin.dirname + '/views/admin/pages/index.dust');
   });
@@ -25,7 +25,7 @@ module.exports.new = function(req, res) {
 module.exports.create = function(req, res) {
   igo.Admin.AdminUtils.handleParams(Page, req.body);
   Page.create(req.body, function(err, page) {
-    res.redirect(plugin.options.adminpath + '/cms/pages');
+    res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
   });
 };
 
@@ -50,7 +50,7 @@ module.exports.update = function(req, res) {
   igo.Admin.AdminUtils.handleParams(Page, req.body);
   Page.find(req.params.id, function(err, page) {
     page.update(req.body, function(err, page) {
-      res.redirect(plugin.options.adminpath + '/cms/pages');
+      res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
     });
   });
 };

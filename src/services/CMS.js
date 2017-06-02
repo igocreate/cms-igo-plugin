@@ -6,7 +6,22 @@ const Page = require('../models/Page');
 //
 module.exports.loadMenu = function(menu_id, callback) {
   Page
-    .where({ menu_id: menu_id })
+    .where({
+      menu_id:  menu_id,
+      status:   'published'
+    })
     .order('`menu_order`')
     .list(callback);
+};
+
+
+//
+module.exports.loadPage = function(filter, callback) {
+  Page
+    .where(filter)
+    .where({
+      status:   'published'
+    })
+    .order('`updated_at` DESC')
+    .first(callback);
 };

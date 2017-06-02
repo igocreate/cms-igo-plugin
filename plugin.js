@@ -30,10 +30,19 @@ plugin.loadMenu = function(menu_id) {
   const CMS = require('./src/services/CMS');
   return function(req, res, next) {
     CMS.loadMenu(menu_id, function(err, menu) {
+      _.each(menu, function(page) {
+        page.active = req.path.endsWith(page.url);
+      });
       res.locals['menu_' + menu_id] = menu;
       next();
     });
   };
+};
+
+//
+plugin.loadPage = function(filter, callback) {
+  const CMS = require('./src/services/CMS');
+  CMS.loadPage(filter, callback);
 };
 
 module.exports = plugin;

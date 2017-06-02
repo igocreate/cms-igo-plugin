@@ -10,7 +10,6 @@
       {#page}
         <div class="header">
           <h1>{.title}</h1>
-          <small>Publié le {@dateformat date=.published_at format="MM/DD" /}</small>
         </div>
         <div class="body">
           {.body|s}
