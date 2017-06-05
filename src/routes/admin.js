@@ -8,17 +8,24 @@ const router        = igo.express.Router();
 
 const IndexController = require('../controllers/admin/IndexController');
 const PagesController = require('../controllers/admin/PagesController');
+const MediasController = require('../controllers/admin/MediasController');
 
 
-router.all('/cms*',             IndexController.filter);
+router.all('/cms*',                 IndexController.filter);
 
-router.get ('/cms',             IndexController.index);
-router.get ('/cms/pages',       PagesController.index);
-router.get ('/cms/pages/new',   PagesController.new);
-router.post('/cms/pages',       PagesController.create);
-router.get ('/cms/pages/:id',   PagesController.show);
+router.get ('/cms',                 IndexController.index);
+
+// Pages
+router.get ('/cms/pages',           PagesController.index);
+router.get ('/cms/pages/new',       PagesController.new);
+router.post('/cms/pages',           PagesController.create);
+router.get ('/cms/pages/:id',       PagesController.show);
 router.get ('/cms/pages/:id/edit',  PagesController.edit);
-router.post('/cms/pages/:id',   PagesController.update);
+router.post('/cms/pages/:id',       PagesController.update);
 
+// Medias
+router.get ('/cms/medias',          MediasController.index);
+router.post('/medias/upload',       MediasController.upload);
+router.get ('/medias/:id/trash',    MediasController.trash);
 
 module.exports = router;
