@@ -60,6 +60,11 @@ class Page extends Model(schema) {
     return [this.slug, this.id].join('-');
   }
 
+  get parts() {
+    this._parts = this._parts || this.body.split('<hr>');
+    return this._parts;
+  }
+
 }
 
 module.exports = Page;
