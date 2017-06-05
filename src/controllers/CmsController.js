@@ -22,7 +22,7 @@ module.exports.show = function(req, res, next) {
       return res.redirect(page.url);
     }
     res.locals.page = page;
-    res.render(plugin.dirname + '/views/pages/show.dust');
+    res.render(plugin.options.templates.cms_show);
   });
 
 };
