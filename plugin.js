@@ -19,6 +19,7 @@ plugin.init = function(igo) {
   plugin.igo = igo;
   plugin.routes = {
     main:   require('./src/routes/main'),
+    medias: require('./src/routes/medias'),
     admin:  require('./src/routes/admin'),
   };
 };

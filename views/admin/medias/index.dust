@@ -4,7 +4,8 @@
 {<content}
 
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
     <li class="breadcrumb-item active">Media</li>
   </ol>
 
