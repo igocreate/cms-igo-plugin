@@ -10,7 +10,11 @@ const igo       = plugin.igo;
 
 //
 module.exports.index = function(req, res) {
-  Page.order('`updated_at` DESC').list(function(err, pages) {
+  req.query.status  = req.query.status || 'published';
+  res.locals.status = req.query.status;
+  Page.where({ status: req.query.status })
+      .order('`updated_at` DESC')
+      .list(function(err, pages) {
     res.locals.pages = pages;
     res.render(plugin.dirname + '/views/admin/pages/index.dust');
   });

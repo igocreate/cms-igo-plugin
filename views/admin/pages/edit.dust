@@ -14,11 +14,11 @@
   <form action="{options.adminpath}/cms/pages/{page.id}" id="form-page" method="POST">
     <input type="hidden" name="id" value="{page.id}" />
     <div class="row">
-      <div class="col-sm-4 push-sm-8">
-        {> "{dirname}/views/admin/pages/_sidebar.dust" /}
-      </div>
-      <div class="col-sm-8 pull-sm-4">
+      <div class="col-sm-8">
         {> "{dirname}/views/admin/pages/_form.dust" /}
+      </div>
+      <div class="col-sm-4">
+        {> "{dirname}/views/admin/pages/_sidebar.dust" /}
       </div>
     </div>
   </form>

@@ -17,11 +17,8 @@ module.exports.loadMenu = function(menu_id, callback) {
 
 //
 module.exports.loadPage = function(filter, callback) {
-  Page
-    .where(filter)
-    .where({
-      status:   'published'
-    })
-    .order('`updated_at` DESC')
-    .first(callback);
+  Page.where(filter)
+      .where({ status: 'published'})
+      .order('`updated_at` DESC')
+      .first(callback);
 };

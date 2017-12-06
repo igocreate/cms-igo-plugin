@@ -22,6 +22,12 @@ plugin.init = function(igo) {
     medias: require('./src/routes/medias'),
     admin:  require('./src/routes/admin'),
   };
+
+  plugin.CMS    = require('./src/services/CMS');
+  plugin.models = {
+    Media:  require('./src/models/Media'),
+    Page:   require('./src/models/Page')
+  };
 };
 
 //
@@ -31,9 +37,8 @@ plugin.configure = function(options) {
 
 //
 plugin.loadMenu = function(menu_id) {
-  const CMS = require('./src/services/CMS');
   return function(req, res, next) {
-    CMS.loadMenu(menu_id, function(err, menu) {
+    plugin.CMS.loadMenu(menu_id, function(err, menu) {
       _.each(menu, function(page) {
         page.active = req.path.endsWith(page.url);
       });
@@ -45,8 +50,8 @@ plugin.loadMenu = function(menu_id) {
 
 //
 plugin.loadPage = function(filter, callback) {
-  const CMS = require('./src/services/CMS');
-  CMS.loadPage(filter, callback);
+  plugin.CMS.loadPage(filter, callback);
 };
 
+//
 module.exports = plugin;
