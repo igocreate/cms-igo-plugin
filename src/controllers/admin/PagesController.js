@@ -51,7 +51,7 @@ module.exports.edit = function(req, res) {
 
 //
 module.exports.update = function(req, res) {
-  ['image_id', 'menu_id', 'menu_order'].forEach(function(attr) {
+  ['image_id', 'menu_id', 'menu_order', 'category'].forEach(function(attr) {
     req.body[attr] = req.body[attr] || null;
   });
   Page.find(req.params.id, function(err, page) {
