@@ -9,11 +9,13 @@
     <li class="breadcrumb-item active"> Pages</li>
   </ol>
 
-  <div class="float-right admin-actions">
+  <div class="admin-actions">
     <a href="{options.adminpath}/cms/pages/new" class="btn btn-primary ml-1" ><i class="icon-pencil" ></i> Nouvelle Page</a>
   </div>
-  <div class="float-left admin-actions">
-    <ul class="nav nav-pills">
+  <br/>
+
+  <div class="admin-actions">
+    <ul class="nav nav-tabs">
       <li class="nav-item {@eq key=status value="published"}active{/eq}">
         <a class="nav-link" href="?status=published">Publiées</a>
       </li>
@@ -25,8 +27,7 @@
       </li>
     </ul>
   </div>
-
-  <div class="clearfix"></div>
+  <br/>
 
   <div class="table-responsive">
     <table class="table table-condensed">

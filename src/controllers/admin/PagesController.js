@@ -51,10 +51,26 @@ module.exports.edit = function(req, res) {
 
 //
 module.exports.update = function(req, res) {
-  igo.Admin.AdminUtils.handleParams(Page, req.body);
+  ['image_id', 'menu_id', 'menu_order'].forEach(function(attr) {
+    req.body[attr] = req.body[attr] || null;
+  });
   Page.find(req.params.id, function(err, page) {
+    req.body.slug = req.body.slug || StringUtils.slugify(req.body.slug || req.body.title);
+    if (!page.published_at && req.body.status === 'published') {
+      req.body.published_at = new Date();
+    }
     page.update(req.body, function(err, page) {
       res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
+    });
+  });
+};
+
+//
+module.exports.trash = function(req, res, next) {
+  Page.find(req.params.id, function(err, page) {
+    page.update({ status: 'trashed' }, function() {
+      req.flash('success', 'Page supprimée');
+      return res.redirect(plugin.options.adminpath + '/cms/pages')
     });
   });
 };

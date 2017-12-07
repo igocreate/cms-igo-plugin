@@ -47,14 +47,16 @@ class Page extends Model(schema) {
     }
     callback();
   }
-
-  beforeUpdate(values, callback) {
-    values.slug = StringUtils.slugify(values.slug || values.title) || null;
-    if (!values.published_at && values.status === 'published') {
-      values.published_at = new Date();
-    }
-    callback();
-  }
+  // 
+  // beforeUpdate(values, callback) {
+  //   if (!this.slug) {
+  //     values.slug = StringUtils.slugify(values.slug || values.title || this.title) || null;
+  //   }
+  //   if (!this.published_at && this.status === 'published') {
+  //     values.published_at = new Date();
+  //   }
+  //   callback();
+  // }
 
   get url() {
     return [this.slug, this.id].join('-');
