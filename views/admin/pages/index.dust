@@ -35,8 +35,9 @@
         <tr>
           <th class="th-page-status"></th>
           <th class="th-page-lang">Langue</th>
-          <th class="th-page-lang">Catégorie</th>
+          <th class="th-page-lang">Site</th>
           <th class="th-page-title" width="50%">Titre</th>
+          <th class="th-page-lang">Catégorie</th>
           <th class="th-page-updated-at">Dernière modification</th>
           <th class="th-page-actions"></th>
         </tr>
@@ -45,11 +46,12 @@
         <tr>
           <td>#{.id}</td>
           <td class="td-page-lang">{.lang}</td>
-          <td class="td-page-title">{.category}</td>
-          <td class="td-page-title">
+          <td class="td-page-site">{.site}</td>
+          <td class="td-page-title td-level-{.level}">
             <strong>{.title}</strong><br/>
             <small>{.slug}</small>
           </td>
+          <td class="td-page-title">{.category}</td>
           <td>{@dateformat date=.updated_at /}</td>
           <td class="actions">
             <a href="{options.adminpath}/cms/pages/{.id}/edit" >Modifier</a>

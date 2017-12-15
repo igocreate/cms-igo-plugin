@@ -2,10 +2,10 @@
 
 'use strict';
 
+const _           = require('lodash');
+
 const Model       = require('../../plugin').igo.Model;
-
 const StringUtils = require('../utils/StringUtils');
-
 const Media       = require('./Media');
 
 
@@ -29,13 +29,19 @@ const schema = {
     'image_id',
     'menu_id',
     'menu_order',
+    'parent_id',
+    'level',
+    'site',
     'published_at',
     'updated_at',
     'created_at'
   ],
   associations: [
     ['belongs_to', 'image', Media, 'image_id', 'id'],
-  ]
+  ],
+  scopes: {
+    default: (query) => query.order('`menu_order`, `title`')
+  }
 };
 
 class Page extends Model(schema) {
@@ -47,7 +53,7 @@ class Page extends Model(schema) {
     }
     callback();
   }
-  // 
+  //
   // beforeUpdate(values, callback) {
   //   if (!this.slug) {
   //     values.slug = StringUtils.slugify(values.slug || values.title || this.title) || null;
@@ -67,6 +73,34 @@ class Page extends Model(schema) {
     return this._parts;
   }
 
+  get title_with_level() {
+    let ret = '';
+    for (let i = 0; i < this.level; i++) {
+      ret += '--';
+    }
+    if (ret.length > 0) {
+      ret += ' ';
+    }
+    return ret + (this.title || 'Sans titre');
+  }
+
 }
 
 module.exports = Page;
+
+//
+module.exports.showTree = function(callback) {
+  Page.where({ status: 'published' }).order('`menu_order`').list(function(err, pages) {
+    const tree = [];
+    for (let i = 0; i < pages.length; i++) {
+      // add page
+      if (tree.indexOf(pages[i]) < 0) {
+        tree.push(pages[i]);
+      }
+      // add children
+      const children = _.filter(pages, (p) => p.parent_id === pages[i].id)
+      Array.prototype.push.apply(tree, children);
+    }
+    callback(err, tree);
+  });
+};

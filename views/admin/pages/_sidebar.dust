@@ -34,6 +34,21 @@
   </div>
 
   <div class="form-group">
+    <label for="parent_id">Page parent</label>
+    <select class="form-control" id="parent_id" name="parent_id" data-value="{page.parent_id}" >
+      <option value="">Aucune (1er Niveau)</option>
+      {#pages}
+        <option value="{.id}">{.title_with_level}</option>
+      {/pages}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="menu_order">Ordre</label>
+    <input type="text" class="form-control" id="menu_order" name="menu_order" placeholder="Ordre" value="{page.menu_order}" />
+  </div>
+
+  <div class="form-group">
     <label>Image</label>
     <div>
       <img {?page.image}src="/medias/{page.image.uuid}/small/{page.image.filename|u}"{/page.image} class="img-fluid" id="page-image" {^page.image}style="display: none;"{/page.image} />
@@ -64,11 +79,6 @@
   <div class="form-group">
     <label for="menu_id">Menu</label>
     <input type="text" class="form-control" id="menu_id" name="menu_id" placeholder="Menu" value="{page.menu_id}" />
-  </div>
-
-  <div class="form-group">
-    <label for="menu_order">Ordre dans le menu</label>
-    <input type="text" class="form-control" id="menu_order" name="menu_order" placeholder="Ordre dans le menu" value="{page.menu_order}" />
   </div>
 
   <div class="form-group">
