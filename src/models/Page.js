@@ -90,7 +90,7 @@ module.exports = Page;
 
 //
 module.exports.showTree = function(callback) {
-  Page.where({ status: 'published' }).order('`menu_order`').list(function(err, pages) {
+  Page.where({ status: 'published' }).order('`level`, `menu_order`, `title`').list(function(err, pages) {
     const tree = [];
     for (let i = 0; i < pages.length; i++) {
       // add page
