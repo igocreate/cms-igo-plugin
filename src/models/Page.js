@@ -36,8 +36,9 @@ const schema = {
     'updated_at',
     'created_at'
   ],
-  associations: [
-    ['belongs_to', 'image', Media, 'image_id', 'id'],
+  associations: () => [
+    [ 'belongs_to', 'image',    Media,  'image_id', 'id' ],
+    [ 'has_many',   'children', Page,   'id',       'parent_id']
   ],
   scopes: {
     default: (query) => query.order('`menu_order`, `title`')
