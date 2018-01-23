@@ -14,7 +14,7 @@
       <div class="modal-body">
         <div class="images"></div>
 
-        <form action="/admin/medias/upload" class="dropzone" id="uploadPageMedia">
+        <form action="/fr/admin/cms/medias/upload" class="dropzone" id="uploadPageMedia">
           <div class="dz-message needsclick">
             Cliquez ici, ou glissez vos photos
           </div>

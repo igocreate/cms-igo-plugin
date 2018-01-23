@@ -35,13 +35,14 @@
       </thead>
       {#medias}
         <tr>
-          <td class="td-page-title">{.filename} <a href="/medias/{.uuid}/{.filename|u}" target="_blank"><i class="icon-link"></i></a></td>
+          <td class="td-page-title">{.filename}</td>
           <td>{.user_id}</td>
           <td>{.container}</td>
           <td>{@dateformat date=.created_at /}</td>
           <td>
             {^.is_deleted}
-            <a href="{options.adminpath}/medias/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>
+            <a href="/medias/{.uuid}/{.filename|u}" target="_blank">Voir</a>
+            &nbsp;<a href="{options.adminpath}/cms/medias/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>
             {/.is_deleted}
           </td>
         </tr>
