@@ -22,7 +22,9 @@ plugin.init = function(igo) {
     medias: require('./src/routes/medias'),
     admin:  require('./src/routes/admin'),
   };
-
+  plugin.services = {
+    MediaService: require('./src/services/MediaService'),
+  };
   plugin.CMS    = require('./src/services/CMS');
   plugin.models = {
     Media:  require('./src/models/Media'),
