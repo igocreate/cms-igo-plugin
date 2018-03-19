@@ -41,6 +41,13 @@ module.exports.index = function(model, req, res, callback) {
   res.locals.langs = plugin.options.langs;
   res.locals.sites = plugin.options.sites;
 
+  if (req.query.status === 'published' && model.showTree) {
+    return model.showTree(cmsfilter, function(err, pages) {
+      res.locals.pages = pages;
+      callback(err, pages);
+    });
+  }
+
   model.where(cmsfilter)
       .order('`updated_at` DESC')
       .list(function(err, pages) {

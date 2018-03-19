@@ -51,16 +51,14 @@
     <table class="table table-condensed">
       <thead>
         <tr>
-          <th class="th-page-status"></th>
           <th class="th-page-title" width="50%">Titre</th>
           <th class="th-page-lang">Catégorie</th>
-          <th class="th-page-updated-at">Dernière modification</th>
+          <th class="th-page-updated-at">Modifié le</th>
           <th class="th-page-actions"></th>
         </tr>
       </thead>
       {#pages}
         <tr>
-          <td>#{.id}</td>
           <td class="td-page-title td-level-{.level}">
             <a href="{options.adminpath}/cms/posts/{.id}/edit">{?.title}{.title}{:else}{#t key="plugins.cms.admin.notitle" /}{/.title}</a>
           </td>

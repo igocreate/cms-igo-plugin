@@ -14,15 +14,6 @@ const ControllerUtils = require('./ControllerUtils');
 module.exports.index = function(req, res) {
 
   ControllerUtils.index(Page, req, res, function(err, pages) {
-
-    // if (req.query.status === 'published') {
-    //   Page.showTree(cmsfilter, function(err, pages) {
-    //     res.locals.pages = pages;
-    //     res.render(plugin.dirname + '/views/admin/pages/index.dust');
-    //   });
-    //   return;
-    // }
-
     res.locals.pages = pages;
     res.render(plugin.dirname + '/views/admin/pages/index.dust');
   });
