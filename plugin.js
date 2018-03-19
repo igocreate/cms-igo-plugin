@@ -28,7 +28,8 @@ plugin.init = function(igo) {
   plugin.CMS    = require('./src/services/CMS');
   plugin.models = {
     Media:  require('./src/models/Media'),
-    Page:   require('./src/models/Page')
+    Page:   require('./src/models/Page'),
+    Post:   require('./src/models/Post')
   };
 };
 
