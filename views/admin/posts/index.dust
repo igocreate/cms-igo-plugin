@@ -25,7 +25,10 @@
         {#sites}<option value="{.}">{.}</option>{/sites}
       </select>
 
-      &nbsp;<button type="submit" class="btn btn-secondary">Filtrer</button>
+      <label for="category">Catégorie</label>
+      <input type="text" class="form-control" name="category" id="category" value="{cmsfilter.category}" />
+
+      <button type="submit" class="btn btn-secondary">Filtrer</button>
     </form>
   </p>
 

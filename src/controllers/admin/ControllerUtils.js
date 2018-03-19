@@ -12,21 +12,21 @@ const StringUtils     = require('../../utils/StringUtils');
 //
 const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   const cmsfilter = req.session.cmsfilter || {};
-  
+
   if (plugin.options.sites) {
     cmsfilter.site = req.query.site || cmsfilter.site || plugin.options.sites[0];
   }
   if (plugin.options.langs) {
     cmsfilter.lang = req.query.lang || cmsfilter.lang || plugin.options.langs[0];
   }
-  cmsfilter.status = req.query.status || cmsfilter.status || 'published';
   if (req.query.category !== undefined) {
     cmsfilter.category    = req.query.category;
   }
-
   if (!cmsfilter.category) {
     delete cmsfilter.category;
   }
+
+  cmsfilter.status = req.query.status || cmsfilter.status || 'published';
 
   res.locals.cmsfilter    = cmsfilter;
   req.session.cmsfilter   = cmsfilter;

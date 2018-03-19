@@ -9,11 +9,11 @@
     <li class="breadcrumb-item active">Site Pages</li>
   </ol>
 
-  <p class="admin-actions float-right pull-right" >
+  <div class="admin-actions float-right" >
     <a href="{options.adminpath}/cms/pages/new" class="btn btn-primary ml-1" ><i class="icon-pencil" ></i> Nouvelle Page</a>
-  </p>
+  </div>
 
-  <p class="admin-actions">
+  <div class="admin-actions">
     <form action="{options.adminpath}/cms/pages" method="get" class="form-inline">
       <label for="lang">Langue</label>
       <select class="form-control" name="lang" id="lang" data-value="{cmsfilter.lang}"  >
@@ -25,9 +25,12 @@
         {#sites}<option value="{.}">{.}</option>{/sites}
       </select>
 
-      &nbsp;<button type="submit" class="btn btn-secondary">Filtrer</button>
+      <label for="category">Catégorie</label>
+      <input type="text" class="form-control" name="category" id="category" value="{cmsfilter.category}" />
+
+      <button type="submit" class="btn btn-secondary">Filtrer</button>
     </form>
-  </p>
+  </div>
 
   <div class="admin-actions">
     <ul class="nav nav-tabs">
