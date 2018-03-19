@@ -1,0 +1,24 @@
+
+<form action="" method="get">
+
+  <div class="form-group">
+    <label for="site">Site</label>
+    <select class="form-control" name="site" id="site" data-value="{cmsfilter.site}">
+      {#sites}<option value="{.}">{.}</option>{/sites}
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="lang">Langue</label>
+    <select class="form-control" name="lang" id="lang" data-value="{cmsfilter.lang}"  >
+      {#langs}<option value="{.}">{.}</option>{/langs}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="category">Catégorie</label>
+    <input type="text" class="form-control" name="category" id="category" value="{cmsfilter.category}" />
+  </div>
+
+  <button type="submit" class="btn btn-secondary btn-block">Filtrer</button>
+</form>

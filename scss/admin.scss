@@ -1,25 +1,56 @@
 
-.form-page-sidebar {
-  padding: 15px;
-  background-color: #eceeef;
-  border-radius: .25rem;
-  .btn-primary {
-    margin-bottom: 2rem;
-  }
-}
+.cms-igo-plugin {
 
-.td-level-1 {
-  padding-left: 10px;
-}
-.td-level-2 {
-  padding-left: 20px;
-}
-.td-level-3 {
-  padding-left: 30px;
-}
-.td-level-4 {
-  padding-left: 40px;
-}
-.td-level-5 {
-  padding-left: 50px;
+  .form-page-sidebar {
+    padding: 15px;
+    margin-bottom: 2rem;
+    background-color: #eceeef;
+    border-radius: .25rem;
+    .btn-primary {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .pages-filter {
+    margin: 1rem auto;
+    padding: 1rem 0;
+    background-color: #e9ecef;
+    color: #6c757d;
+  }
+
+  .nav-tabs-body {
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-color: transparent  #dee2e6 #dee2e6;
+  }
+
+  .slug {
+    font-size: .8rem;
+    color: #999;
+  }
+
+  td.td-page-date {
+    font-size: .8rem;
+    min-width: 160px;
+    text-align: right;
+    color: #999;
+  }
+
+  .td-level-1 {
+    padding-left: 10px;
+  }
+  .td-level-2 {
+    padding-left: 20px;
+  }
+  .td-level-3 {
+    padding-left: 30px;
+  }
+  .td-level-4 {
+    padding-left: 40px;
+  }
+  .td-level-5 {
+    padding-left: 50px;
+  }
+
 }

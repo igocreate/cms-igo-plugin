@@ -1,15 +1,19 @@
 <div class="form-page-sidebar">
 
-  <input type="submit" class="btn btn-primary btn-wide" value="Enregistrer" />
-
-  <div class="form-group">
-    <label for="lang">Langue</label>
-    <input type="text" readonly class="form-control form-control-plaintext" value="{page.lang}">
-  </div>
+  <input type="submit" class="btn btn-primary btn-block" value="Enregistrer" />
 
   <div class="form-group">
     <label for="site">Site</label>
-    <input type="text" readonly class="form-control form-control-plaintext" value="{page.site}">
+    <select class="form-control" name="site" id="site" data-value="{page.site}">
+      {#sites}<option value="{.}">{.}</option>{/sites}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="lang">Langue</label>
+    <select class="form-control" name="lang" id="lang" data-value="{page.lang}"  >
+      {#langs}<option value="{.}">{.}</option>{/langs}
+    </select>
   </div>
 
   <div class="form-group">

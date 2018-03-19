@@ -15,6 +15,10 @@ const Media         = require('../../models/Media');
 module.exports.index = function(req, res) {
 
   const is_deleted = req.query.status === 'deleted';
+  res.locals.cmsfilter = {
+    status: is_deleted ? req.query.status : 'published'
+  };
+
   Media.unscoped()
       .where({is_deleted: is_deleted})
       .order('`created_at` DESC')

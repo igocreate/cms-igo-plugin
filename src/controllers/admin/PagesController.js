@@ -39,6 +39,10 @@ module.exports.create = function(req, res) {
 //
 module.exports.edit = function(req, res) {
   const cmsfilter = ControllerUtils.getCmsfilter(req, res);
+
+  res.locals.langs = plugin.options.langs;
+  res.locals.sites = plugin.options.sites;
+  
   Page.find(req.params.id, function(err, page) {
     if (!page) {
       return res.redirect(plugin.options.adminpath + '/cms/pages');

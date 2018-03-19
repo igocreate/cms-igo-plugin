@@ -6,47 +6,47 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
     <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
-    <li class="breadcrumb-item active">Media</li>
+    <li class="breadcrumb-item active">Medias</li>
   </ol>
 
-  <div class="admin-actions">
-    <ul class="nav nav-pills">
+  <div class="cms-igo-plugin">
+    <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link {?is_published}active{/is_published}" href="?status=published">Publiés</a>
+        <a class="nav-link {@eq key=cmsfilter.status value="published"}active{/eq}" href="?status=published">Publiés</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {?is_deleted}active{/is_deleted}" href="?status=deleted">Supprimés</a>
+        <a class="nav-link {@eq key=cmsfilter.status value="deleted"}active{/eq}" href="?status=deleted">Supprimés</a>
       </li>
     </ul>
+    <div class="nav-tabs-body">
+      <div class="table-responsive">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th class="th-media-title">Media</th>
+              <th class="">Utilisateur</th>
+              <th class="">Container</th>
+              <th class="th-media-created-at">Date de création</th>
+              <th class="th-page-actions"></th>
+            </tr>
+          </thead>
+          {#medias}
+            <tr>
+              <td class="td-page-title">{.filename}</td>
+              <td>{.user_id}</td>
+              <td>{.container}</td>
+              <td>{@dateformat date=.created_at /}</td>
+              <td>
+                {^.is_deleted}
+                <a href="/medias/{.uuid}/{.filename|u}" target="_blank">Voir</a>
+                &nbsp;<a href="{options.adminpath}/cms/medias/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>
+                {/.is_deleted}
+              </td>
+            </tr>
+          {/medias}
+        </table>
+      </div>
+    </div>
   </div>
-
-  <div class="table-responsive">
-    <table class="table table-condensed">
-      <thead>
-        <tr>
-          <th class="th-media-title">Media</th>
-          <th class="">User</th>
-          <th class="">Container</th>
-          <th class="th-media-created-at">Date de création</th>
-          <th class="th-page-actions"></th>
-        </tr>
-      </thead>
-      {#medias}
-        <tr>
-          <td class="td-page-title">{.filename}</td>
-          <td>{.user_id}</td>
-          <td>{.container}</td>
-          <td>{@dateformat date=.created_at /}</td>
-          <td>
-            {^.is_deleted}
-            <a href="/medias/{.uuid}/{.filename|u}" target="_blank">Voir</a>
-            &nbsp;<a href="{options.adminpath}/cms/medias/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>
-            {/.is_deleted}
-          </td>
-        </tr>
-      {/medias}
-    </table>
-  </div>
-
 
 {/content}

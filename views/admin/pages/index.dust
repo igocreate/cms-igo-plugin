@@ -9,71 +9,61 @@
     <li class="breadcrumb-item active">Site Pages</li>
   </ol>
 
-  <div class="admin-actions float-right" >
-    <a href="{options.adminpath}/cms/pages/new" class="btn btn-primary ml-1" ><i class="icon-pencil" ></i> Nouvelle Page</a>
+  <div class="cms-igo-plugin">
+
+    <div class="row">
+      <div class="col-sm-8" >
+
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link {@eq key=cmsfilter.status value="published"}active{/eq}" href="?status=published">Publiées</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {@eq key=cmsfilter.status value="draft"}active{/eq}" href="?status=draft">Brouillons</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {@eq key=cmsfilter.status value="trashed"}active{/eq}" href="?status=trashed">Supprimées</a>
+          </li>
+        </ul>
+
+        <div class="nav-tabs-body">
+          <div class="table-responsive">
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                  <th class="th-page-title" width="50%">Titre</th>
+                  <th class="th-page-lang">Catégorie</th>
+                  <th class="th-page-updated-at">Modifiée le</th>
+                  <th class="th-page-actions"></th>
+                </tr>
+              </thead>
+              {#pages}
+                <tr>
+                  <td class="td-page-title td-level-{.level}">
+                    <a href="{options.adminpath}/cms/pages/{.id}/edit">{?.title}{.title}{:else}{#t key="plugins.cms.admin.notitle" /}{/.title}</a>
+                    <br/><span class="slug">{.slug}</span>
+                  </td>
+                  <td class="td-page-title">{.category}</td>
+                  <td class="td-page-date">{@dateformat date=.updated_at /}</td>
+                  <td class="actions">
+                    <a href="{options.adminpath}/cms/pages/{.id}/edit" >Modifier</a>
+                    {@ne key=.status value="trashed"}&nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>{/ne}
+                  </td>
+                </tr>
+              {/pages}
+            </table>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-4" >
+        <div class="form-page-sidebar">
+          <a href="{options.adminpath}/cms/pages/new" class="btn btn-primary btn-block" ><i class="icon-pencil" ></i> Nouvelle Page</a>
+          {> "{dirname}/views/admin/pages/_filters.dust" /}
+        </div>
+      </div>
+    </div>
+
   </div>
-
-  <div class="admin-actions">
-    <form action="{options.adminpath}/cms/pages" method="get" class="form-inline">
-      <label for="lang">Langue</label>
-      <select class="form-control" name="lang" id="lang" data-value="{cmsfilter.lang}"  >
-        {#langs}<option value="{.}">{.}</option>{/langs}
-      </select>
-
-      <label for="site">Site</label>
-      <select class="form-control" name="site" id="site" data-value="{cmsfilter.site}">
-        {#sites}<option value="{.}">{.}</option>{/sites}
-      </select>
-
-      <label for="category">Catégorie</label>
-      <input type="text" class="form-control" name="category" id="category" value="{cmsfilter.category}" />
-
-      <button type="submit" class="btn btn-secondary">Filtrer</button>
-    </form>
-  </div>
-
-  <div class="admin-actions">
-    <ul class="nav nav-tabs">
-      <li class="nav-item {@eq key=cmsfilter.status value="published"}active{/eq}">
-        <a class="nav-link" href="?status=published">Publiées</a>
-      </li>
-      <li class="nav-item {@eq key=cmsfilter.status value="draft"}active{/eq}">
-        <a class="nav-link" href="?status=draft">Brouillons</a>
-      </li>
-      <li class="nav-item {@eq key=cmsfilter.status value="trashed"}active{/eq}">
-        <a class="nav-link" href="?status=trashed">Supprimées</a>
-      </li>
-    </ul>
-  </div>
-  <br/>
-
-  <div class="table-responsive">
-    <table class="table table-condensed">
-      <thead>
-        <tr>
-          <th class="th-page-title" width="50%">Titre</th>
-          <th>URL</th>
-          <th class="th-page-lang">Catégorie</th>
-          <th class="th-page-updated-at">Modifiée le</th>
-          <th class="th-page-actions"></th>
-        </tr>
-      </thead>
-      {#pages}
-        <tr>
-          <td class="td-page-title td-level-{.level}">
-            <a href="{options.adminpath}/cms/pages/{.id}/edit">{?.title}{.title}{:else}{#t key="plugins.cms.admin.notitle" /}{/.title}</a>
-          </td>
-          <td>{.slug}</td>
-          <td class="td-page-title">{.category}</td>
-          <td>{@dateformat date=.updated_at /}</td>
-          <td class="actions">
-            <a href="{options.adminpath}/cms/pages/{.id}/edit" >Modifier</a>
-            {@ne key=.status value="trashed"}&nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>{/ne}
-          </td>
-        </tr>
-      {/pages}
-    </table>
-  </div>
-
 
 {/content}

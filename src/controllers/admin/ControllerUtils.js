@@ -41,7 +41,7 @@ module.exports.index = function(model, req, res, callback) {
   res.locals.langs = plugin.options.langs;
   res.locals.sites = plugin.options.sites;
 
-  if (req.query.status === 'published' && model.showTree) {
+  if (cmsfilter.status === 'published' && model.name === 'Page') {
     return model.showTree(cmsfilter, function(err, pages) {
       res.locals.pages = pages;
       callback(err, pages);
@@ -59,6 +59,10 @@ module.exports.index = function(model, req, res, callback) {
 //
 module.exports.new = function(model, req, res) {
   const cmsfilter = getCmsfilter(req, res);
+
+  res.locals.langs = plugin.options.langs;
+  res.locals.sites = plugin.options.sites;
+
   res.locals.page = {
     lang: cmsfilter.lang,
     site: cmsfilter.site || 'default',
@@ -73,10 +77,6 @@ module.exports.create = function(model, req, res, callback) {
     req.body[attr] = req.body[attr] || null;
   });
 
-  const cmsfilter = getCmsfilter(req, res);
-  req.body.lang = cmsfilter.lang;
-  req.body.site = cmsfilter.site;
-
   model.find(req.params.parent_id, function(err, parent) {
     req.body.level = parent ? parent.level + 1 : 0;
     model.create(req.body, callback);
@@ -90,10 +90,6 @@ module.exports.update = function(model, req, res, callback) {
   ].forEach(function(attr) {
     req.body[attr] = req.body[attr] || null;
   });
-
-  const cmsfilter = getCmsfilter(req, res);
-  req.body.lang = cmsfilter.lang;
-  req.body.site = cmsfilter.site;
 
   model.find(req.params.id, function(err, page) {
     req.body.slug = req.body.slug || StringUtils.slugify(req.body.slug || req.body.title);
