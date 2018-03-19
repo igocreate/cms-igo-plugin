@@ -32,6 +32,7 @@ const schema = {
     'parent_id',
     'level',
     'site',
+    'type',
     'published_at',
     'updated_at',
     'created_at'
@@ -42,6 +43,12 @@ const schema = {
   ],
   scopes: {
     default: (query) => query.order('`menu_order`, `title`')
+  },
+  subclasses: function() {
+    return {
+      page:     Page,
+      post:     require('./Post')
+    };
   }
 };
 
@@ -90,8 +97,10 @@ class Page extends Model(schema) {
 module.exports = Page;
 
 //
-module.exports.showTree = function(callback) {
-  Page.where({ status: 'published' }).order('`level`, `menu_order`, `title`').list(function(err, pages) {
+module.exports.showTree = function(cmsfilter, callback) {
+  Page.where(cmsfilter)
+      .order('`level`, `menu_order`, `title`')
+      .list(function(err, pages) {
     const tree = [];
     for (let i = 0; i < pages.length; i++) {
       // add page

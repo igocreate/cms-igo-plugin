@@ -6,17 +6,17 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
     <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
-    <li class="breadcrumb-item active">Site Pages</li>
+    <li class="breadcrumb-item active">Blog Posts</li>
   </ol>
 
   <p class="admin-actions float-right pull-right" >
-    <a href="{options.adminpath}/cms/pages/new" class="btn btn-primary ml-1" ><i class="icon-pencil" ></i> Nouvelle Page</a>
+    <a href="{options.adminpath}/cms/posts/new" class="btn btn-primary ml-1" ><i class="icon-pencil" ></i> Nouveau Post</a>
   </p>
 
   <p class="admin-actions">
-    <form action="{options.adminpath}/cms/pages" method="get" class="form-inline">
+    <form action="{options.adminpath}/cms/posts" method="get" class="form-inline">
       <label for="lang">Langue</label>
-      <select class="form-control" name="lang" id="lang" data-value="{cmsfilter.lang}"  >
+      <select class="form-control" name="lang" id="lang" data-value="{cmsfilter.lang}">
         {#langs}<option value="{.}">{.}</option>{/langs}
       </select>
 
@@ -32,13 +32,13 @@
   <div class="admin-actions">
     <ul class="nav nav-tabs">
       <li class="nav-item {@eq key=cmsfilter.status value="published"}active{/eq}">
-        <a class="nav-link" href="?status=published">Publiées</a>
+        <a class="nav-link" href="?status=published">Publiés</a>
       </li>
       <li class="nav-item {@eq key=cmsfilter.status value="draft"}active{/eq}">
         <a class="nav-link" href="?status=draft">Brouillons</a>
       </li>
       <li class="nav-item {@eq key=cmsfilter.status value="trashed"}active{/eq}">
-        <a class="nav-link" href="?status=trashed">Supprimées</a>
+        <a class="nav-link" href="?status=trashed">Supprimés</a>
       </li>
     </ul>
   </div>
@@ -48,7 +48,8 @@
     <table class="table table-condensed">
       <thead>
         <tr>
-          <th class="th-page-title" width="50%"></th>
+          <th class="th-page-status"></th>
+          <th class="th-page-title" width="50%">Titre</th>
           <th class="th-page-lang">Catégorie</th>
           <th class="th-page-updated-at">Dernière modification</th>
           <th class="th-page-actions"></th>
@@ -56,14 +57,15 @@
       </thead>
       {#pages}
         <tr>
+          <td>#{.id}</td>
           <td class="td-page-title td-level-{.level}">
-            <a href="{options.adminpath}/cms/pages/{.id}/edit">{?.title}{.title}{:else}{#t key="plugins.cms.admin.notitle" /}{/.title}</a>
+            <a href="{options.adminpath}/cms/posts/{.id}/edit">{?.title}{.title}{:else}{#t key="plugins.cms.admin.notitle" /}{/.title}</a>
           </td>
           <td class="td-page-title">{.category}</td>
           <td>{@dateformat date=.updated_at /}</td>
           <td class="actions">
-            <a href="{options.adminpath}/cms/pages/{.id}/edit" >Modifier</a>
-            {@ne key=.status value="trashed"}&nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>{/ne}
+            <a href="{options.adminpath}/cms/posts/{.id}/edit" >Modifier</a>
+            {@ne key=.status value="trashed"}&nbsp;<a href="{options.adminpath}/cms/posts/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>{/ne}
           </td>
         </tr>
       {/pages}

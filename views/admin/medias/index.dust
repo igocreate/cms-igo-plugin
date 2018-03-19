@@ -9,7 +9,7 @@
     <li class="breadcrumb-item active">Media</li>
   </ol>
 
-  <div class="float-left admin-actions">
+  <div class="admin-actions">
     <ul class="nav nav-pills">
       <li class="nav-item">
         <a class="nav-link {?is_published}active{/is_published}" href="?status=published">Publiés</a>
@@ -19,8 +19,6 @@
       </li>
     </ul>
   </div>
-
-  <div class="clearfix"></div>
 
   <div class="table-responsive">
     <table class="table table-condensed">

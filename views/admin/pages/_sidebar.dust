@@ -3,6 +3,16 @@
   <input type="submit" class="btn btn-primary btn-wide" value="Enregistrer" />
 
   <div class="form-group">
+    <label for="lang">Langue</label>
+    <input type="text" readonly class="form-control form-control-plaintext" value="{page.lang}">
+  </div>
+
+  <div class="form-group">
+    <label for="site">Site</label>
+    <input type="text" readonly class="form-control form-control-plaintext" value="{page.site}">
+  </div>
+
+  <div class="form-group">
     <label for="status">Statut</label>
     <select class="form-control" id="status" name="status" data-value="{page.status}" >
       <option value="published">Publié</option>
@@ -17,11 +27,6 @@
   </div>
 
   <div class="form-group">
-    <label for="lang">Langue</label>
-    <input type="text" class="form-control" id="lang" name="lang" placeholder="Langue" value="{page.lang}" />
-  </div>
-
-  <div class="form-group">
     <label for="meta_description">SEO description</label>
     <textarea class="form-control" id="meta_description" name="meta_description" placeholder="Meta Description" rows="5" >
       {page.meta_description}
@@ -33,20 +38,17 @@
     <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Sous titre" value="{page.subtitle}" />
   </div>
 
-  <div class="form-group">
-    <label for="parent_id">Page parent</label>
-    <select class="form-control" id="parent_id" name="parent_id" data-value="{page.parent_id}" >
-      <option value="">Aucune (1er Niveau)</option>
-      {#pages}
-        <option value="{.id}">{.title_with_level}</option>
-      {/pages}
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="menu_order">Ordre</label>
-    <input type="text" class="form-control" id="menu_order" name="menu_order" placeholder="Ordre" value="{page.menu_order}" />
-  </div>
+  {^hideparent}
+    <div class="form-group">
+      <label for="parent_id">Page parent</label>
+      <select class="form-control" id="parent_id" name="parent_id" data-value="{page.parent_id}" >
+        <option value="">Aucune (1er Niveau)</option>
+        {#pages}
+          <option value="{.id}">{.title_with_level}</option>
+        {/pages}
+      </select>
+    </div>
+  {/hideparent}
 
   <div class="form-group">
     <label>Image</label>
@@ -57,6 +59,16 @@
       <a href="#" class="btn btn-secondary select-image" data-toggle="modal" data-target="#select-image-modal">Choisir</a>
     </div>
     <input type="hidden" id="image_id" name="image_id" value="{page.image_id}" />
+  </div>
+
+  <div class="form-group">
+    <label for="menu_id">Menu</label>
+    <input type="text" class="form-control" id="menu_id" name="menu_id" placeholder="Menu" value="{page.menu_id}" />
+  </div>
+
+  <div class="form-group">
+    <label for="menu_order">Ordre</label>
+    <input type="text" class="form-control" id="menu_order" name="menu_order" placeholder="Ordre" value="{page.menu_order}" />
   </div>
 
   <div class="form-group">
@@ -72,18 +84,13 @@
   </div>
 
   <div class="form-group">
-    <label for="published_at">Date de publication</label>
-    <input type="text" class="form-control datetimepicker" id="published_at" name="published_at" placeholder="Date de publication" value="{@dateformat date=page.published_at format="YYYY-MM-DD HH:mm" /}" />
-  </div>
-
-  <div class="form-group">
-    <label for="menu_id">Menu</label>
-    <input type="text" class="form-control" id="menu_id" name="menu_id" placeholder="Menu" value="{page.menu_id}" />
-  </div>
-
-  <div class="form-group">
     <label for="tags">Tags</label>
     <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags" value="{page.tags}" />
+  </div>
+
+  <div class="form-group">
+    <label for="published_at">Date de publication</label>
+    <input type="text" class="form-control datetimepicker" id="published_at" name="published_at" placeholder="Date de publication" value="{@dateformat date=page.published_at format="YYYY-MM-DD HH:mm" /}" />
   </div>
 
 </div>

@@ -7,7 +7,7 @@
     <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
     <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
     <li class="breadcrumb-item"><a href="{options.adminpath}/cms/pages">Pages</a></li>
-    <li class="breadcrumb-item active">Nouvelle page</li>
+    <li class="breadcrumb-item active">Nouvelle Page</li>
   </ol>
 
   <form action="{options.adminpath}/cms/pages" id="form-page" method="POST">

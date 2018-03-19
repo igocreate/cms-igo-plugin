@@ -6,18 +6,17 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
     <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
-    <li class="breadcrumb-item"><a href="{options.adminpath}/cms/pages">Pages</a></li>
-    <li class="breadcrumb-item active">{page.title}</li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms/posts">Blog Posts</a></li>
+    <li class="breadcrumb-item active">Nouveau Post</li>
   </ol>
 
-  <form action="{options.adminpath}/cms/pages/{page.id}" id="form-page" method="POST">
-    <input type="hidden" name="id" value="{page.id}" />
+  <form action="{options.adminpath}/cms/posts" id="form-page" method="POST">
     <div class="row">
       <div class="col-sm-8">
         {> "{dirname}/views/admin/pages/_form.dust" /}
       </div>
       <div class="col-sm-4">
-        {> "{dirname}/views/admin/pages/_sidebar.dust" /}
+        {> "{dirname}/views/admin/pages/_sidebar.dust" hideparent="true" /}
       </div>
     </div>
   </form>
