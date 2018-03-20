@@ -24,6 +24,7 @@ plugin.init = function(igo) {
   };
   plugin.services = {
     MediaService: require('./src/services/MediaService'),
+    BlogService:  require('./src/services/BlogService')
   };
   plugin.CMS    = require('./src/services/CMS');
   plugin.models = {
