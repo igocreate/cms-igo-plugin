@@ -46,8 +46,9 @@
                   <td class="td-page-title">{.category}</td>
                   <td class="td-page-date">{@dateformat date=.updated_at /}</td>
                   <td class="actions">
-                    <a href="{options.adminpath}/cms/pages/{.id}/edit" >Modifier</a>
-                    {@ne key=.status value="trashed"}&nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>{/ne}
+                    <a href="{options.adminpath}/cms/pages/{.id}/edit" ><i class="fa fa-edit"></i></a>
+                    &nbsp;<a href="{options.adminpath}/cms/pages/new?copy={.id}" ><i class="fa fa-copy"></i></a>
+                    {@ne key=.status value="trashed"}&nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');"><i class="fa fa-trash"></i></a>{/ne}
                   </td>
                 </tr>
               {/pages}

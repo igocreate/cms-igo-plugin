@@ -15,23 +15,15 @@ const ControllerUtils = require('./ControllerUtils');
 module.exports.index = function(req, res) {
 
   ControllerUtils.index(Post, req, res, function(err, pages) {
-
-    // if (req.query.status === 'published') {
-    //   Page.showTree(cmsfilter, function(err, pages) {
-    //     res.locals.pages = pages;
-    //     res.render(plugin.dirname + '/views/admin/pages/index.dust');
-    //   });
-    //   return;
-    // }
-
     res.render(plugin.dirname + '/views/admin/posts/index.dust');
   });
 };
 
 //
 module.exports.new = function(req, res) {
-  ControllerUtils.new(Post, req, res);
-  res.render(plugin.dirname + '/views/admin/posts/new.dust');
+  ControllerUtils.new(Post, req, res, function() {
+    res.render(plugin.dirname + '/views/admin/posts/new.dust');
+  });
 };
 
 //

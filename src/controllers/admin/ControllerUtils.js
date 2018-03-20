@@ -57,16 +57,25 @@ module.exports.index = function(model, req, res, callback) {
 };
 
 //
-module.exports.new = function(model, req, res) {
+module.exports.new = function(model, req, res, callback) {
   const cmsfilter = getCmsfilter(req, res);
 
   res.locals.langs = plugin.options.langs;
   res.locals.sites = plugin.options.sites;
 
-  res.locals.page = {
-    lang: cmsfilter.lang,
-    site: cmsfilter.site || 'default',
-  };
+  if (!req.query.copy) {
+    res.locals.page = {
+      lang: cmsfilter.lang,
+      site: cmsfilter.site || 'default',
+    };
+    return callback();
+  }
+
+  model.find(req.query.copy, function(err, page) {
+    delete page.id;
+    res.locals.page = page;
+    callback();
+  })
 };
 
 //
