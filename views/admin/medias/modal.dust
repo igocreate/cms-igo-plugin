@@ -1,4 +1,4 @@
 {#medias}
-  <img src="/medias/{.uuid}/small/{.filename|u}" class="media-small" data-id="{.id}"/>
+  <img src="/medias/{.uuid}/thumbnail/{.filename|u}" class="media-thumbnail" data-id="{.id}"/>
 {/medias}
 <div class="clearfix"></div>

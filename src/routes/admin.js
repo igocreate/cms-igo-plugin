@@ -32,6 +32,7 @@ router.get ('/cms/posts/:id/trash',   PostsController.trash);
 // Medias
 router.get ('/cms/medias',            MediasController.index);
 router.post('/cms/medias/upload',     MediasController.upload);
+router.get ('/cms/medias/modal',      MediasController.modal);
 router.get ('/cms/medias/:id/trash',  MediasController.trash);
 
 module.exports = router;

@@ -24,7 +24,7 @@ const FORMATS = {
     height: 300,
     background: 'white'
   },
-  logo: {
+  thumbnail: {
     width:  200,
     height: 200,
     background: 'white'

@@ -22,7 +22,7 @@ module.exports.index = function(req, res) {
 //
 module.exports.new = function(req, res) {
   const cmsfilter = ControllerUtils.getCmsfilter(req, res);
-  ControllerUtils.new(Page, req, res, function() {    
+  ControllerUtils.new(Page, req, res, function() {
     Page.showTree(cmsfilter, function(err, pages) {
       res.locals.pages = pages;
       res.render(plugin.dirname + '/views/admin/pages/new.dust');
@@ -44,7 +44,7 @@ module.exports.edit = function(req, res) {
   res.locals.langs = plugin.options.langs;
   res.locals.sites = plugin.options.sites;
 
-  Page.find(req.params.id, function(err, page) {
+  Page.includes('image').find(req.params.id, function(err, page) {
     if (!page) {
       return res.redirect(plugin.options.adminpath + '/cms/pages');
     }
