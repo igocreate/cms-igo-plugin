@@ -13,7 +13,8 @@ module.exports.categories= function(callback) {
 
 //
 module.exports.posts = function(filter, callback) {
-  Post.where(filter)
+  Post.includes('image')
+      .where(filter)
       .where({ status: 'published'})
       .order('`updated_at` DESC')
       .list(callback);
@@ -21,7 +22,8 @@ module.exports.posts = function(filter, callback) {
 
 //
 module.exports.post = function(filter, callback) {
-  Post.where(filter)
+  Post.includes('image')
+      .where(filter)
       .where({ status: 'published'})
       .order('`updated_at` DESC')
       .first(callback);
