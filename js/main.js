@@ -2,6 +2,10 @@
 
 $(function() {
 
+  if ($('#cms-plugin-redactor').length < 1) {
+    return ;
+  }
+
   const adminpath = $('#cms-plugin-redactor').data('adminpath');
   $('#cms-plugin-redactor').redactor({
     imageUpload:    adminpath + '/cms/medias/upload',

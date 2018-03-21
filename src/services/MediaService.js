@@ -7,29 +7,19 @@ const config  = igo.config;
 const logger  = igo.logger;
 const cache   = igo.cache;
 
-
+const _       = require('lodash');
 const Media   = require('../models/Media');
 
 const OVH     = require('./OVH');
 const gm      = require('gm').subClass({ imageMagick: true });
 
-const FORMATS = {
-  large: {
-    width:  1200,
-    height: 800,
-    background: 'white'
-  },
-  small: {
-    width:  400,
-    height: 300,
-    background: 'white'
-  },
+const FORMATS = _.merge({
   thumbnail: {
     width:  200,
     height: 200,
     background: 'white'
   },
-};
+}, plugin.options.formats || {});;
 
 //
 module.exports.resize = function(srcData, format, callback) {
@@ -52,7 +42,7 @@ module.exports.resize = function(srcData, format, callback) {
     }
 
     file.resize(format.width, format.height)
-      .background('white')
+      .background(format.background || 'white')
       .setFormat('jpeg')
       .gravity('Center')
       .extent(format.width, format.height)
