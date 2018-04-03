@@ -33,7 +33,13 @@ module.exports.new = function(req, res) {
 //
 module.exports.create = function(req, res) {
   ControllerUtils.create(Page, req, res, function(err, page) {
-    res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
+    if(err) {
+      req.flash('error', err);
+      res.locals.pages = req.body;
+      res.render(plugin.dirname + '/views/admin/pages/new.dust');
+    } else {
+      res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
+    }
   });
 };
 
@@ -60,7 +66,12 @@ module.exports.edit = function(req, res) {
 //
 module.exports.update = function(req, res) {
   ControllerUtils.update(Page, req, res, function(err, page) {
-    res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
+    if(err) {
+      req.flash('error', `${err.code} ${err.sqlMessage}.`);
+      res.redirect(plugin.options.adminpath + '/cms/pages/' + req.body.id + '/edit');
+    } else {
+      res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
+    }
   });
 };
 
