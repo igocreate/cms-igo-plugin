@@ -20,10 +20,16 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
     cmsfilter.lang = req.query.lang || cmsfilter.lang || plugin.options.langs[0];
   }
   if (req.query.category !== undefined) {
-    cmsfilter.category    = req.query.category;
+    cmsfilter.category = req.query.category;
+  }
+  if (req.query.slug !== undefined) {
+    cmsfilter.slug = req.query.slug;
   }
   if (!cmsfilter.category) {
     delete cmsfilter.category;
+  }
+  if (!cmsfilter.slug) {
+    delete cmsfilter.slug;
   }
 
   cmsfilter.status = req.query.status || cmsfilter.status || 'published';
