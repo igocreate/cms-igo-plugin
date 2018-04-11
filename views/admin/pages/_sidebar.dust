@@ -1,6 +1,6 @@
 <div class="form-page-sidebar">
 
-  <input type="submit" class="btn btn-primary btn-block" value="Enregistrer" />
+  <a href="#" onclick="document.getElementById('form-page').submit();" class="btn btn-primary btn-block" ><i class="fa fa-save" ></i> Enregistrer</a>
 
   <div class="form-group">
     <label for="site">Site</label>

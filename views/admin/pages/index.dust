@@ -59,7 +59,7 @@
       </div>
       <div class="col-sm-4" >
         <div class="form-page-sidebar">
-          <a href="{options.adminpath}/cms/pages/new" class="btn btn-primary btn-block" ><i class="icon-pencil" ></i> Nouvelle Page</a>
+          <a href="{options.adminpath}/cms/pages/new" class="btn btn-primary btn-block" ><i class="fa fa-edit"></i> Nouvelle Page</a>
           {> "{dirname}/views/admin/pages/_filters.dust" /}
         </div>
       </div>

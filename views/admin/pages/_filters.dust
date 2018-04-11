@@ -25,5 +25,5 @@
     <input type="text" class="form-control" name="category" id="category" value="{cmsfilter.category}" />
   </div>
 
-  <button type="submit" class="btn btn-secondary btn-block">Filtrer</button>
+  <button type="submit" class="btn btn-secondary btn-block"><i class="fa fa-filter"></i> Filtrer</button>
 </form>
