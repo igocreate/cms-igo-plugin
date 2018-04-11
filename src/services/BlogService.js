@@ -21,8 +21,9 @@ module.exports.posts = function(filter, callback) {
 }
 
 //
-module.exports.lastestPosts = function(n, callback) {
+module.exports.latestPosts = function(n, filter, callback) {
   Post.includes('image')
+      .where(filter)
       .where({ status: 'published'})
       .order('`published_at` DESC')
       .limit(n)
