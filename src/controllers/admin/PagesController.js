@@ -33,13 +33,12 @@ module.exports.new = function(req, res) {
 //
 module.exports.create = function(req, res) {
   ControllerUtils.create(Page, req, res, function(err, page) {
-    if(err) {
+    if (err) {
       req.flash('error', err);
-      res.locals.pages = req.body;
-      res.render(plugin.dirname + '/views/admin/pages/new.dust');
-    } else {
-      res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
+      req.cacheflash('page', req.body);
+      return res.redirect(plugin.options.adminpath + '/cms/pages/new');
     }
+    res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
   });
 };
 
@@ -54,7 +53,7 @@ module.exports.edit = function(req, res) {
     if (!page) {
       return res.redirect(plugin.options.adminpath + '/cms/pages');
     }
-    res.locals.page = page;
+    res.locals.page = res.locals.flash.page || page;
     Page.showTree(cmsfilter, function(err, pages) {
       _.remove(pages, { id: page.id });
       res.locals.pages = pages;
@@ -66,12 +65,11 @@ module.exports.edit = function(req, res) {
 //
 module.exports.update = function(req, res) {
   ControllerUtils.update(Page, req, res, function(err, page) {
-    if(err) {
-      req.flash('error', `${err.code} ${err.sqlMessage}.`);
-      res.redirect(plugin.options.adminpath + '/cms/pages/' + req.body.id + '/edit');
-    } else {
-      res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
+    if (err) {
+      req.flash('error', err);
+      req.cacheflash('page', req.body);
     }
+    res.redirect(plugin.options.adminpath + '/cms/pages/' + req.body.id + '/edit');
   });
 };
 

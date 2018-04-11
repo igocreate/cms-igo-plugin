@@ -70,7 +70,7 @@ module.exports.new = function(model, req, res, callback) {
   res.locals.sites = plugin.options.sites;
 
   if (!req.query.copy) {
-    res.locals.page = {
+    res.locals.page = res.locals.flash.page || {
       lang: cmsfilter.lang,
       site: cmsfilter.site || 'default',
     };
