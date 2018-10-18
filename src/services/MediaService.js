@@ -81,6 +81,10 @@ module.exports.download = function(user, options, callback) {
 //
 module.exports.upload = function(user, file, options, callback) {
 
+  if (!file || !file.size) {
+    return callback();
+  }
+
   options = options || {};
 
   const container   = (config.ovh.containerprefix || '') + 'medias';
@@ -102,10 +106,8 @@ module.exports.upload = function(user, file, options, callback) {
     if (err) {
       return callback(err);
     }
-    const options = {
-      container: container
-    };
-    OVH.putFile(file.path, media.fullpath, options, function(err) {
+
+    OVH.putFile(file.path, media.fullpath, {container}, function(err) {
       if (err) {
         return callback(err);
       }
