@@ -56,7 +56,7 @@ module.exports.getFile = function(path, options, callback) {
       logger.error(err);
       return callback(err);
     }
-    storage.getFiles(path, (err, file) => {
+    storage.getFile(path, (err, file) => {
       if (err) {
         logger.error(err);
         return callback(err);
