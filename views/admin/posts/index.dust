@@ -40,7 +40,7 @@
               {#pages}
                 <tr>
                   <td class="td-page-title td-level-{.level}">
-                    <a href="{options.adminpath}/cms/posts/{.id}/edit">{?.title}{.title}{:else}{#t key="plugins.cms.admin.notitle" /}{/.title}</a>
+                    <a href="{options.adminpath}/cms/posts/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
                     <br/><span class="slug">{.slug}</span>
                   </td>
                   <td class="td-page-title">{.category}</td>
