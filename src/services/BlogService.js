@@ -1,6 +1,4 @@
 
-'use strict';
-
 const Post = require('../models/Post');
 
 //

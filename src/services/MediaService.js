@@ -1,4 +1,3 @@
-'use strict';
 
 const plugin  = require('../../plugin');
 const igo     = plugin.igo;

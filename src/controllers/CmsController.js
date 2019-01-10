@@ -1,10 +1,8 @@
 
 
-'use strict';
-
 const _         = require('lodash');
-const Page      = require('../models/Page');
 
+const Page      = require('../models/Page');
 const plugin    = require('../../plugin');
 
 //

@@ -1,11 +1,5 @@
 
-
-'use strict';
-
-const _         = require('lodash');
-
 const plugin    = require('../../../plugin');
-
 
 //
 module.exports.filter = function(req, res, next) {

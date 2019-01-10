@@ -1,6 +1,4 @@
 
-'use strict';
-
 const _               = require('lodash');
 const fs              = require('fs');
 const OVHStorage      = require('node-ovh-storage');

@@ -1,7 +1,3 @@
-
-
-'use strict';
-
 const _           = require('lodash');
 
 const Model       = require('../../plugin').igo.Model;

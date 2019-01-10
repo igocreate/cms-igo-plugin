@@ -1,8 +1,4 @@
 
-
-
-'use strict';
-
 const igo           = require('../../plugin').igo;
 const router        = igo.express.Router();
 

@@ -1,18 +1,15 @@
 
-
-'use strict';
-
 const _         = require('lodash');
-const Page      = require('../../models/Page');
 
+const Page      = require('../../models/Page');
 const plugin    = require('../../../plugin');
 const igo       = plugin.igo;
+
 const StringUtils     = require('../../utils/StringUtils');
 const ControllerUtils = require('./ControllerUtils');
 
 //
 module.exports.index = function(req, res) {
-
   ControllerUtils.index(Page, req, res, function(err, pages) {
     res.locals.pages = pages;
     res.render(plugin.dirname + '/views/admin/pages/index.dust');

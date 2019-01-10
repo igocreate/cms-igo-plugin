@@ -20,26 +20,26 @@
     </ul>
     <div class="nav-tabs-body">
       <div class="table-responsive">
-        <table class="table table-condensed">
+        <table class="table table-sm">
           <thead>
             <tr>
-              <th class="th-media-title">Media</th>
-              <th class="">Utilisateur</th>
-              <th class="">Container</th>
-              <th class="th-media-created-at">Date de création</th>
-              <th class="th-page-actions"></th>
+              <th>Media</th>
+              <th>Utilisateur</th>
+              <th>Container</th>
+              <th class="text-right">Enregistré le</th>
+              <th></th>
             </tr>
           </thead>
           {#medias}
             <tr>
-              <td class="td-page-title">{.filename}</td>
+              <td>{.filename}</td>
               <td>{.user_id}</td>
               <td>{.container}</td>
-              <td>{@dateformat date=.created_at /}</td>
-              <td>
+              <td class="td-page-date">{@dateformat date=.created_at /}</td>
+              <td class="text-right">
                 {^.is_deleted}
-                <a href="/medias/{.uuid}/{.filename|u}" target="_blank">Voir</a>
-                &nbsp;<a href="{options.adminpath}/cms/medias/{.id}/trash" onclick="return window.confirm('Supprimer ?');">Supprimer</a>
+                  <a href="/medias/{.uuid}/{.filename|u}" target="_blank" class="btn btn-xs btn-light"><i class="fa fa-eye"></i></a>
+                  &nbsp;<a href="{options.adminpath}/cms/medias/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-xs btn-light"><i class="fa fa-trash"></i></a>
                 {/.is_deleted}
               </td>
             </tr>

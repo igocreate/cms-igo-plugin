@@ -1,6 +1,4 @@
 
-'use strict';
-
 const MediaService  = require('../services/MediaService');
 
 //

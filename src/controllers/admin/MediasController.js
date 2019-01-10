@@ -1,10 +1,6 @@
 
-
-'use strict';
-
-const _             = require('lodash');
-
 const plugin        = require('../../../plugin');
+
 const igo           = plugin.igo;
 
 const MediaService  = require('../../services/MediaService');

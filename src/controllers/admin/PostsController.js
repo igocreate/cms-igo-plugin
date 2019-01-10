@@ -1,11 +1,7 @@
 
-
-'use strict';
-
-const _         = require('lodash');
 const Post      = require('../../models/Post');
-
 const plugin    = require('../../../plugin');
+
 const igo       = plugin.igo;
 
 const StringUtils     = require('../../utils/StringUtils');

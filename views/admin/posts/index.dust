@@ -11,6 +11,9 @@
 
   <div class="cms-igo-plugin">
 
+    <p class="text-right">
+      <a href="{options.adminpath}/cms/posts/new" class="btn btn-secondary" ><i class="fa fa-edit" ></i> Nouveau Post...</a>
+    </p>
     <div class="row">
       <div class="col-sm-8" >
 
@@ -28,7 +31,7 @@
 
         <div class="nav-tabs-body">
           <div class="table-responsive">
-            <table class="table table-condensed">
+            <table class="table table-sm">
               <thead>
                 <tr>
                   <th class="th-page-title" width="50%">Titre</th>
@@ -43,12 +46,12 @@
                     <a href="{options.adminpath}/cms/posts/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
                     <br/><span class="slug">{.slug}</span>
                   </td>
-                  <td class="td-page-title">{.category}</td>
+                  <td>{.category}</td>
                   <td class="td-page-date">{@dateformat date=.updated_at /}</td>
-                  <td class="actions">
-                    <a href="{options.adminpath}/cms/posts/{.id}/edit" ><i class="fa fa-edit"></i></a>
-                    &nbsp;<a href="{options.adminpath}/cms/posts/new?copy={.id}" ><i class="fa fa-copy"></i></a>
-                    {@ne key=.status value="trashed"}&nbsp;<a href="{options.adminpath}/cms/posts/{.id}/trash" onclick="return window.confirm('Supprimer ?');"><i class="fa fa-trash"></i></a>{/ne}
+                  <td class="text-right">
+                    <a href="{options.adminpath}/cms/posts/{.id}/edit" class="btn btn-xs btn-light" ><i class="fa fa-edit"></i></a>
+                    &nbsp;<a href="{options.adminpath}/cms/posts/new?copy={.id}" class="btn btn-xs btn-light" ><i class="fa fa-copy"></i></a>
+                    {@ne key=.status value="trashed"}&nbsp;<a href="{options.adminpath}/cms/posts/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-xs btn-light" ><i class="fa fa-trash"></i></a>{/ne}
                   </td>
                 </tr>
               {/pages}
@@ -58,7 +61,6 @@
       </div>
       <div class="col-sm-4" >
         <div class="form-page-sidebar">
-          <a href="{options.adminpath}/cms/posts/new" class="btn btn-primary btn-block" ><i class="icon-pencil" ></i> Nouveau Post</a>
           {> "{dirname}/views/admin/pages/_filters.dust" /}
         </div>
       </div>

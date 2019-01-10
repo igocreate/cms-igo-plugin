@@ -1,13 +1,10 @@
 
-
-'use strict';
-
-const _               = require('lodash');
-
 const plugin          = require('../../../plugin');
+
 const igo             = plugin.igo;
 const StringUtils     = require('../../utils/StringUtils');
 
+const Page            = require('../../models/Page');
 
 //
 const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
