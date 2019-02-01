@@ -9,9 +9,9 @@ const PostsController   = require('../controllers/admin/PostsController');
 const MediasController  = require('../controllers/admin/MediasController');
 
 
-router.all('/cms*',                 IndexController.filter);
+router.all('/cms*',                   IndexController.filter);
 
-router.get ('/cms',                 IndexController.index);
+router.get ('/cms',                   IndexController.index);
 
 // Pages
 router.get ('/cms/pages',             PagesController.index);

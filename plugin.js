@@ -2,7 +2,8 @@ const _       = require('lodash');
 
 const plugin = {
   options: {
-    adminpath:  '/admin',
+    adminpath:    '/admin',
+    adminlayout:  'admin/layouts/main',
     templates: {
       cms_show: __dirname + '/views/pages/show.dust'
     }

@@ -1,5 +1,5 @@
 
-{> "admin/layouts/main" /}
+{> "{options.adminlayout}" /}
 
 {<content}
 
@@ -12,10 +12,10 @@
   <div class="cms-igo-plugin">
 
     <p class="text-right">
-      <a href="{options.adminpath}/cms/posts/new" class="btn btn-secondary" ><i class="fa fa-edit" ></i> Nouveau Post...</a>
+      <a href="{options.adminpath}/cms/posts/new" class="btn btn-primary" ><i class="fa fa-edit" ></i> Nouveau Post...</a>
     </p>
     <div class="row">
-      <div class="col-sm-8" >
+      <div class="col-sm-8 mb-3" >
 
         <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -31,7 +31,7 @@
 
         <div class="nav-tabs-body">
           <div class="table-responsive">
-            <table class="table table-sm">
+            <table class="table table-sm table-hover">
               <thead>
                 <tr>
                   <th class="th-page-title" width="50%">Titre</th>
@@ -48,10 +48,12 @@
                   </td>
                   <td>{.category}</td>
                   <td class="td-page-date">{@dateformat date=.updated_at /}</td>
-                  <td class="text-right">
+                  <td class="actions text-right">
                     <a href="{options.adminpath}/cms/posts/{.id}/edit" class="btn btn-xs btn-light" ><i class="fa fa-edit"></i></a>
                     &nbsp;<a href="{options.adminpath}/cms/posts/new?copy={.id}" class="btn btn-xs btn-light" ><i class="fa fa-copy"></i></a>
-                    {@ne key=.status value="trashed"}&nbsp;<a href="{options.adminpath}/cms/posts/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-xs btn-light" ><i class="fa fa-trash"></i></a>{/ne}
+                    {@ne key=.status value="trashed"}
+                      &nbsp;<a href="{options.adminpath}/cms/posts/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-xs btn-danger" ><i class="fa fa-trash"></i></a>
+                    {/ne}
                   </td>
                 </tr>
               {/pages}

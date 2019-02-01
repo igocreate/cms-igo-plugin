@@ -1,5 +1,5 @@
 
-{> "admin/layouts/main" /}
+{> "{options.adminlayout}" /}
 
 {<content}
 
@@ -13,7 +13,7 @@
   <div class="cms-igo-plugin">
 
     <p class="text-right">
-      <a href="{options.adminpath}/cms/pages/new" class="btn btn-secondary" ><i class="fa fa-edit"></i> Nouvelle Page...</a>
+      <a href="{options.adminpath}/cms/pages/new" class="btn btn-primary" ><i class="fa fa-edit"></i> Nouvelle Page...</a>
     </p>
 
     <form action="{options.adminpath}/cms/pages" id="form-page" method="POST">
