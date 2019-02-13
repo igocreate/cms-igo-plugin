@@ -19,6 +19,10 @@ plugin.init = function(igo) {
     medias: require('./src/routes/medias'),
     admin:  require('./src/routes/admin'),
   };
+  plugin.controllers = {
+    CmsController:    require('./src/controllers/CmsController'),
+    MediasController: require('./src/controllers/MediasController')
+  };
   plugin.services = {
     MediaService: require('./src/services/MediaService'),
     BlogService:  require('./src/services/BlogService')
@@ -32,26 +36,8 @@ plugin.init = function(igo) {
 };
 
 //
-plugin.configure = function(options) {
+plugin.configure = (options) => {
   _.merge(plugin.options, options);
-};
-
-//
-plugin.loadMenu = function(menu_id) {
-  return function(req, res, next) {
-    plugin.CMS.loadMenu(menu_id, function(err, menu) {
-      _.each(menu, function(page) {
-        page.active = req.path.endsWith(page.url);
-      });
-      res.locals['menu_' + menu_id] = menu;
-      next();
-    });
-  };
-};
-
-//
-plugin.loadPage = function(filter, callback) {
-  plugin.CMS.loadPage(filter, callback);
 };
 
 //

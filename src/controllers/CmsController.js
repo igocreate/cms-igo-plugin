@@ -2,25 +2,40 @@
 
 const _         = require('lodash');
 
-const Page      = require('../models/Page');
-const plugin    = require('../../plugin');
+const Page        = require('../models/Page');
+const CMS         = require('../services/CMS');
+const { options } = require('../../plugin');
 
 //
-module.exports.show = function(req, res, next) {
+module.exports.loadMenu = (menu_id) => {
+  return (req, res, next) => {
+    const filter = {
+      lang: res.locals.lang,
+      site: res.locals.site
+    }
+    CMS.loadMenu(menu_id, filter, (err, menu) => {
+      _.each(menu, function(page) {
+        page.active = req.path.endsWith(page.url);
+      });
+      res.locals['menu_' + menu_id] = menu;
+      next();
+    });
+  };
+};
 
-  res.locals.initmap = true;
 
-  const id = _.chain(req.params.page).split('-').last().value();
-  Page.find(id, function(err, page) {
+//
+module.exports.page = function(req, res, next) {
+
+  CMS.loadPage({
+    slug: req.params.slug || req.path,
+    lang: res.locals.lang,
+    site: res.locals.site,
+  }, (err, page) => {
     if (!page) {
       return next();
     }
-    if (page.url !== req.params.page) {
-      //const url = req.url.replace(req.params.page, page.url);
-      return res.redirect(page.url);
-    }
-    res.locals.page = page;
-    res.render(plugin.options.templates.cms_show);
+    res.render(options.templates.cms_show, { page });
   });
 
 };

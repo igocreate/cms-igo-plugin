@@ -36,7 +36,7 @@
               <td>{.user_id}</td>
               <td>{.container}</td>
               <td class="td-page-date">{@dateformat date=.created_at /}</td>
-              <td class="actions text-right">
+              <td class="actions">
                 {^.is_deleted}
                   <a href="/medias/{.uuid}/{.filename|u}" target="_blank" class="btn btn-xs btn-light"><i class="fa fa-eye"></i></a>
                   &nbsp;<a href="{options.adminpath}/cms/medias/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>

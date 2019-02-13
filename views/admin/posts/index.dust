@@ -48,7 +48,7 @@
                   </td>
                   <td>{.category}</td>
                   <td class="td-page-date">{@dateformat date=.updated_at /}</td>
-                  <td class="actions text-right">
+                  <td class="actions">
                     <a href="{options.adminpath}/cms/posts/{.id}/edit" class="btn btn-xs btn-light" ><i class="fa fa-edit"></i></a>
                     &nbsp;<a href="{options.adminpath}/cms/posts/new?copy={.id}" class="btn btn-xs btn-light" ><i class="fa fa-copy"></i></a>
                     {@ne key=.status value="trashed"}
