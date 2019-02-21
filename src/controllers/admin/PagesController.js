@@ -11,18 +11,15 @@ const ControllerUtils = require('./ControllerUtils');
 //
 module.exports.index = function(req, res) {
   ControllerUtils.index(Page, req, res, function(err, pages) {
-    res.locals.pages = pages;
-    res.render(plugin.dirname + '/views/admin/pages/index.dust');
+    res.render(plugin.dirname + '/views/admin/pages/index.dust', { pages });
   });
 };
 
 //
 module.exports.new = function(req, res) {
-  const cmsfilter = ControllerUtils.getCmsfilter(req, res);
   ControllerUtils.new(Page, req, res, function() {
-    Page.showTree(cmsfilter, function(err, pages) {
-      res.locals.pages = pages;
-      res.render(plugin.dirname + '/views/admin/pages/new.dust');
+    Page.showTree(res.locals.cmsfilter, function(err, pages) {
+      res.render(plugin.dirname + '/views/admin/pages/new.dust', { pages });
     });
   });
 };
@@ -43,9 +40,6 @@ module.exports.create = function(req, res) {
 module.exports.edit = function(req, res) {
   const cmsfilter = ControllerUtils.getCmsfilter(req, res);
 
-  res.locals.langs = plugin.options.langs;
-  res.locals.sites = plugin.options.sites;
-
   Page.includes('image').find(req.params.id, function(err, page) {
     if (!page) {
       return res.redirect(plugin.options.adminpath + '/cms/pages');
@@ -53,8 +47,7 @@ module.exports.edit = function(req, res) {
     res.locals.page = res.locals.flash.page || page;
     Page.showTree(cmsfilter, function(err, pages) {
       _.remove(pages, { id: page.id });
-      res.locals.pages = pages;
-      res.render(plugin.dirname + '/views/admin/pages/edit.dust');
+      res.render(plugin.dirname + '/views/admin/pages/edit.dust', { pages });
     });
   });
 };

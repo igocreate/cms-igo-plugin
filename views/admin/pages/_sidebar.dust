@@ -1,20 +1,24 @@
 <div class="form-page-sidebar">
 
-  <a href="#" onclick="document.getElementById('form-page').submit();" class="btn btn-primary btn-block" ><i class="fa fa-save" ></i> Enregistrer</a>
+  <button type="submit" class="btn btn-primary btn-block" ><i class="fa fa-save" ></i> Enregistrer</button>
 
-  <div class="form-group">
-    <label for="site">Site</label>
-    <select class="form-control" name="site" id="site" >
-      {#sites}<option value="{.}" {@eq key=page.site value=. }selected{/eq} >{.}</option>{/sites}
-    </select>
-  </div>
+  {^cms_site}
+    <div class="form-group">
+      <label for="site">Site</label>
+      <select class="form-control" name="site" id="site" >
+        {#sites}<option value="{.}" {@eq key=page.site value=. }selected{/eq} >{.}</option>{/sites}
+      </select>
+    </div>
+  {/cms_site}
 
-  <div class="form-group">
-    <label for="lang">Langue</label>
-    <select class="form-control" name="lang" id="lang" >
-      {#langs}<option value="{.}" {@eq key=page.lang value=. }selected{/eq}>{.}</option>{/langs}
-    </select>
-  </div>
+  {^cms_lang}
+    <div class="form-group">
+      <label for="lang">Langue</label>
+      <select class="form-control" name="lang" id="lang" >
+        {#langs}<option value="{.}" {@eq key=page.lang value=. }selected{/eq}>{.}</option>{/langs}
+      </select>
+    </div>
+  {/cms_lang}
 
   <div class="form-group">
     <label for="status">Statut</label>
@@ -94,7 +98,7 @@
 
   <div class="form-group">
     <label for="published_at">Date de publication</label>
-    <input type="text" class="form-control datetimepicker" id="published_at" name="published_at" placeholder="Date de publication" value="{@dateformat date=page.published_at format="YYYY-MM-DD HH:mm" /}" />
+    <input type="text" class="form-control" id="published_at" name="published_at" placeholder="Date de publication" value="{@dateformat date=page.published_at format="YYYY-MM-DD HH:mm" /}" />
   </div>
 
 </div>

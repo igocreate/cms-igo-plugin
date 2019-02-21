@@ -38,9 +38,6 @@ module.exports.create = function(req, res) {
 //
 module.exports.edit = function(req, res) {
 
-  res.locals.langs = plugin.options.langs;
-  res.locals.sites = plugin.options.sites;
-
   Post.includes('image').find(req.params.id, function(err, post) {
     if (!post) {
       return res.redirect(plugin.options.adminpath + '/cms/posts');
