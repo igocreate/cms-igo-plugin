@@ -28,7 +28,7 @@ module.exports.loadMenu = (menu_id) => {
 module.exports.page = function(req, res, next) {
 
   CMS.loadPage({
-    slug: req.params.slug || req.path,
+    slug: req.params.slug,
     lang: res.locals.lang,
     site: res.locals.site,
   }, (err, page) => {
