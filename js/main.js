@@ -32,9 +32,9 @@ $(function() {
     refreshmodal();
   });
 
-  window.Dropzone.options.cmsPluginMediaUpload = {
+  $("#cmsPluginMediaUpload").dropzone({
     init: function() {
-      this.on('success', refreshmodal);
+      this.on("complete",   refreshmodal);
     }
-  };
+  });
 });

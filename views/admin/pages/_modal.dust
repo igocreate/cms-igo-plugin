@@ -5,16 +5,14 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title">Selectionnez une photo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        <h5 class="modal-title">Sélectionnez une image</h5>
       </div>
 
       <div class="modal-body">
-        <div class="images"></div>
-
-        <form action="/fr/admin/cms/medias/upload" class="dropzone" id="cmsPluginMediaUpload">
+        <form action="{options.adminpath}/cms/medias/upload" class="dropzone" id="cmsPluginMediaUpload">
           <div class="dz-message needsclick">
             Cliquez ici, ou glissez votre photo
           </div>
@@ -22,6 +20,11 @@
             <input name="file" type="file" />
           </div>
         </form>
+
+        <hr/>
+
+        <div class="images"></div>
+
       </div>
 
     </div>
