@@ -15,7 +15,7 @@ module.exports.loadMenu = (menu_id) => {
     }
     CMS.loadMenu(menu_id, filter, (err, menu) => {
       _.each(menu, function(page) {
-        page.active = req.path.endsWith(page.url);
+        page.active = req.path.endsWith(page.slug);
       });
       res.locals['menu_' + menu_id] = menu;
       next();
