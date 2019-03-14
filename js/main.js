@@ -7,11 +7,11 @@ $(function() {
   }
 
   const adminpath = $('#cms-plugin-redactor').data('adminpath');
-  $('#cms-plugin-redactor').redactor({
+  $R('#cms-plugin-redactor', {
     imageUpload:    adminpath + '/cms/medias/upload',
     imageResizable: true,
     imagePosition:  true,
-    plugins:        [ 'table', 'alignment' ]
+    plugins:        [ 'table', 'alignment', 'video' ]
   });
 
   // select image modal

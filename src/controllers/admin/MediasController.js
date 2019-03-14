@@ -65,18 +65,23 @@ module.exports.update = function(req, res) {
 
 //
 module.exports.upload = function(req, res, next) {
-  const file = req.files.file;
+  const file = req.files.file[0];
   const options = {
     offer_id: req.body.offer_id
   };
-  MediaService.upload(null, file, options, function(err, media) {
-    if (err) {
-      return res.status(500).send('KO');
+  MediaService.upload(null, file, options, (err, media) => {
+    if (err || !media) {
+      return res.send({
+        error: true,
+        message: err || 'Something went wrong...'
+      });
     }
     console.log('/medias/' + media.uuid + '/original.png');
     res.send({
-      url:  '/medias/' + media.uuid + '/original.png',
-      id:   media.uuid
+      file: {        
+        url:  '/medias/' + media.uuid + '/original.png',
+        id:   media.uuid
+      }
     });
   });
 };

@@ -81,7 +81,7 @@ module.exports.download = function(user, options, callback) {
 module.exports.upload = function(user, file, options, callback) {
 
   if (!file || !file.size) {
-    return callback();
+    return callback('missingfile');
   }
 
   options = options || {};
