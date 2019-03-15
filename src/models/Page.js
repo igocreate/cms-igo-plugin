@@ -36,6 +36,7 @@ const schema = {
   ],
   associations: () => [
     [ 'belongs_to', 'image',    Media,  'image_id', 'id' ],
+    [ 'belongs_to', 'parent',   Page,   'parent_id', 'id' ],
     [ 'has_many',   'children', Page,   'id',       'parent_id']
   ],
   scopes: {

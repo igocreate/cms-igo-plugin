@@ -15,7 +15,8 @@ module.exports.loadMenu = function(menu_id, filter, callback) {
 
 //
 module.exports.loadPage = function(filter, callback) {
-  Page.where(filter)
+  Page.includes(['parent', 'children'])
+      .where(filter)
       .where({ status: 'published'})
       .order('`published_at` DESC')
       .first(callback);
