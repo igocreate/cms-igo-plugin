@@ -12,7 +12,7 @@
   <div class="cms-igo-plugin">
 
     <p class="text-right">
-      <a href="{options.adminpath}/cms/pages/new" class="btn btn-primary" ><i class="fa fa-edit"></i> Nouvelle Page...</a>
+      <a href="{options.adminpath}/cms/pages/new" class="btn btn-secondary" ><i class="fa fa-edit"></i> Nouvelle Page...</a>
     </p>
 
     <div class="row">
@@ -45,7 +45,11 @@
                 <tr>
                   <td class="td-page-title td-level-{.level}">
                     <a href="{options.adminpath}/cms/pages/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
-                    <br/><span class="slug">{.slug}</span>
+                    {@eq key=.status value="published"}
+                      <small><a href="{options.publicpath}/{.slug}" target="preview"><i class="fa fa-external-link"></i></a></small>
+                    {/eq}
+                    <br/><span class="slug">{.slug} </span>
+
                   </td>
                   <td>{.category}</td>
                   <td class="td-page-date">{@dateformat date=.updated_at /}</td>

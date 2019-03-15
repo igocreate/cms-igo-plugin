@@ -2,10 +2,11 @@
 .cms-igo-plugin {
 
   .form-page-sidebar {
-    padding: 1rem;
+    padding: 0 1rem 1rem;
     margin-bottom: 2rem;
     background-color: #e9ecef;
     .btn-primary {
+      margin-top: 0;
       margin-bottom: 2rem;
     }
   }
@@ -20,6 +21,10 @@
   .slug {
     font-size: .8rem;
     color: #999;
+  }
+
+  .fa-external-link {
+    margin-left: .5rem;
   }
 
   th.th-page-updated-at {
