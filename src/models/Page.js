@@ -92,11 +92,13 @@ class Page extends Model(schema) {
 
   get title_with_level() {
     let ret = '';
-    for (let i = 0; i < this.level; i++) {
-      ret += '--';
-    }
-    if (ret.length > 0) {
-      ret += ' ';
+    if (this.level > 0) {
+      let i = 0;
+      while (i < this.level - 1) {
+        ret += '&nbsp;&nbsp;&nbsp;&nbsp;';
+        i++;
+      }
+      ret += '└ ';
     }
     return ret + (this.title || 'Sans titre');
   }
@@ -110,15 +112,19 @@ module.exports.showTree = function(cmsfilter, callback) {
   Page.where(cmsfilter)
       .order('`level`, `menu_order`, `title`')
       .list(function(err, pages) {
+
     const tree = [];
-    for (let i = 0; i < pages.length; i++) {
-      // add page
-      if (tree.indexOf(pages[i]) < 0) {
-        tree.push(pages[i]);
+    const addPage = (page) => {
+      if (tree.indexOf(page) < 0) {
+        tree.push(page);
       }
       // add children
-      const children = _.filter(pages, (p) => p.parent_id === pages[i].id)
-      Array.prototype.push.apply(tree, children);
+      const children = _.filter(pages, (p) => p.parent_id === page.id)
+      children.forEach(addPage);
+    }
+
+    for (let i = 0; i < pages.length; i++) {
+      addPage(pages[i]);
     }
     callback(err, tree);
   });

@@ -21,6 +21,15 @@
       <div class="row">
         <div class="col-sm-8">
           {> "{dirname}/views/admin/pages/_form.dust" /}
+
+          {?page.children}
+            <h5 class="mt-5">Dans la rubrique :</h5>
+            <ul>
+              {#page.children}
+                <li><a href="{options.adminpath}/cms/pages/{.id}/edit">{.title}</a></li>
+              {/page.children}
+            </ul>
+          {/page.children}
         </div>
         <div class="col-sm-4">
           {> "{dirname}/views/admin/pages/_sidebar.dust" /}

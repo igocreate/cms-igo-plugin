@@ -44,11 +44,14 @@
               {#pages}
                 <tr>
                   <td class="td-page-title td-level-{.level}">
+                    {?.menu_order}<small>[{.menu_order}]</small>&nbsp;{/.menu_order}
                     <a href="{options.adminpath}/cms/pages/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
                     {@eq key=.status value="published"}
                       <small><a href="{options.publicpath}/{.slug}" target="preview"><i class="fa fa-external-link"></i></a></small>
                     {/eq}
-                    <br/><span class="slug">{.slug} </span>
+
+                    <br/>
+                    <span class="slug">{.slug} </span>
 
                   </td>
                   <td>{.category}</td>

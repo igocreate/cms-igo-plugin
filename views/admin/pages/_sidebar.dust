@@ -53,11 +53,11 @@
 
   {^hideparent}
     <div class="form-group">
-      <label for="parent_id">Page parent</label>
+      <label for="parent_id">Rubrique</label>
       <select class="form-control" id="parent_id" name="parent_id" >
         <option value="">Aucune (1er Niveau)</option>
         {#pages}
-          <option value="{.id}" {@eq key=page.parent_id value=.id }selected{/eq} >{.title_with_level}</option>
+          <option value="{.id}" {@eq key=page.parent_id value=.id }selected{/eq} {@eq key=page.id value=.id }disabled{/eq} >{.title_with_level|s}</option>
         {/pages}
       </select>
     </div>
