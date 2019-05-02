@@ -18,7 +18,9 @@ module.exports.index = function(req, res) {
 //
 module.exports.new = function(req, res) {
   ControllerUtils.new(Page, req, res, function() {
-    Page.showTree(res.locals.cmsfilter, function(err, pages) {
+    const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
+    filter.status = 'published';
+    ControllerUtils.showTree(Page, filter, function(err, pages) {
       res.render(plugin.dirname + '/views/admin/pages/new.dust', { pages });
     });
   });
@@ -32,7 +34,7 @@ module.exports.create = function(req, res) {
       req.cacheflash('page', req.body);
       return res.redirect(plugin.options.adminpath + '/cms/pages/new');
     }
-    res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
+    res.redirect(plugin.options.adminpath + '/cms/pages');
   });
 };
 
@@ -45,7 +47,9 @@ module.exports.edit = function(req, res) {
       return res.redirect(plugin.options.adminpath + '/cms/pages');
     }
     res.locals.page = res.locals.flash.page || page;
-    Page.showTree(cmsfilter, function(err, pages) {
+    const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
+    filter.status = 'published';
+    ControllerUtils.showTree(Page, filter, function(err, pages) {
       res.render(plugin.dirname + '/views/admin/pages/edit.dust', { pages });
     });
   });
@@ -58,7 +62,7 @@ module.exports.update = function(req, res) {
       req.flash('error', err);
       req.cacheflash('page', req.body);
     }
-    res.redirect(plugin.options.adminpath + '/cms/pages/' + req.body.id + '/edit');
+    res.redirect(plugin.options.adminpath + '/cms/pages');
   });
 };
 

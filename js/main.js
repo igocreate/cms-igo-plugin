@@ -2,6 +2,13 @@
 
 $(function() {
 
+  $('.fa-caret-right').click(function() {
+    const target = $(this).data('target');
+    $(target).toggle();
+    $(this).toggleClass('fa-caret-right');
+    $(this).toggleClass('fa-caret-down');
+  })
+
   if ($('#cms-plugin-redactor').length < 1) {
     return ;
   }

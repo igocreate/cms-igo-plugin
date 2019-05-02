@@ -106,26 +106,3 @@ class Page extends Model(schema) {
 }
 
 module.exports = Page;
-
-//
-module.exports.showTree = function(cmsfilter, callback) {
-  Page.where(cmsfilter)
-      .order('`level`, `menu_order`, `title`')
-      .list(function(err, pages) {
-
-    const tree = [];
-    const addPage = (page) => {
-      if (tree.indexOf(page) < 0) {
-        tree.push(page);
-      }
-      // add children
-      const children = _.filter(pages, (p) => p.parent_id === page.id)
-      children.forEach(addPage);
-    }
-
-    for (let i = 0; i < pages.length; i++) {
-      addPage(pages[i]);
-    }
-    callback(err, tree);
-  });
-};

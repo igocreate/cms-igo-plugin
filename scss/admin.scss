@@ -2,7 +2,7 @@
 .cms-igo-plugin {
 
   .form-page-sidebar {
-    padding: 0 1rem 1rem;
+    padding: 1rem;
     margin-bottom: 2rem;
     background-color: #e9ecef;
     .btn-primary {
@@ -27,31 +27,42 @@
     margin-left: .5rem;
   }
 
-  th.th-page-updated-at {
-    text-align: right;
-  }
+  table {
+    th.th-page-updated-at {
+      text-align: right;
+    }
 
-  td.td-page-date {
-    font-size: .8rem;
-    min-width: 160px;
-    text-align: right;
-    color: #999;
-  }
+    td.td-page-date {
+      font-size: .8rem;
+      min-width: 160px;
+      text-align: right;
+      color: #999;
+    }
 
-  .td-level-1 {
-    padding-left: 2rem;
-  }
-  .td-level-2 {
-    padding-left: 4rem;
-  }
-  .td-level-3 {
-    padding-left: 6rem;
-  }
-  .td-level-4 {
-    padding-left: 8rem;
-  }
-  .td-level-5 {
-    padding-left: 10rem;
+    .fa-caret-right, .fa-caret-down {
+      width: 16px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    tr.has-parent {
+      display: none;
+    }
+    .td-level-1 {
+      padding-left: 2rem;
+    }
+    .td-level-2 {
+      padding-left: 4rem;
+    }
+    .td-level-3 {
+      padding-left: 6rem;
+    }
+    .td-level-4 {
+      padding-left: 8rem;
+    }
+    .td-level-5 {
+      padding-left: 10rem;
+    }
   }
 
   .media-thumbnail {

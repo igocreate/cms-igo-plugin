@@ -46,23 +46,52 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
 }
 
 //
+const applyCmsFilter = (model, cmsfilter) => {
+  const query = model.where(_.pick(cmsfilter, ['site', 'lang', 'status']));
+  ['slug', 'category'].forEach(attr => {
+    if (cmsfilter[attr]) {
+      query.where(`\`${attr}\` like CONCAT('%', ?,  '%')`, cmsfilter[attr]);
+    }
+  });
+  return query;
+};
+
+module.exports.showTree = (model, cmsfilter, callback) => {
+  const query = applyCmsFilter(model, cmsfilter);
+  query.order('`level`, COALESCE(`menu_order`, 999), `title`')
+        .list(function(err, pages) {
+
+    const tree = [];
+    const addPage = (page) => {
+      if (tree.indexOf(page) < 0) {
+        tree.push(page);
+      }
+      // add children
+      const children = _.filter(pages, (p) => p.parent_id === page.id)
+      page.hasChildren = children.length > 0;
+      children.forEach(addPage);
+    }
+
+    for (let i = 0; i < pages.length; i++) {
+      addPage(pages[i]);
+    }
+    callback(err, tree);
+  });
+};
+
+
+//
 module.exports.index = function(model, req, res, callback) {
 
   const cmsfilter = getCmsfilter(req, res);
 
   if (cmsfilter.status === 'published' && model.name === 'Page') {
-    return model.showTree(cmsfilter, function(err, pages) {
-      res.locals.pages = pages;
-      callback(err, pages);
-    });
+    res.locals.showtree = true;
+    return module.exports.showTree(model, cmsfilter, callback);
   }
 
-  model.where(cmsfilter)
-      .order('`updated_at` DESC')
-      .list(function(err, pages) {
-    res.locals.pages = pages;
-    callback(err, pages);
-  });
+  const query = applyCmsFilter(model, cmsfilter);
+  query.order('`updated_at` DESC').list(callback);
 };
 
 //

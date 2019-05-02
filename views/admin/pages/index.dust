@@ -35,15 +35,15 @@
             <table class="table table-sm table-hover">
               <thead>
                 <tr>
-                  <th class="th-page-title" width="50%">Titre</th>
-                  <th class="th-page-lang">Catégorie</th>
+                  <th class="th-page-title">Titre</th>
                   <th class="th-page-updated-at">Modifiée le</th>
-                  <th class="th-page-actions"></th>
+                  <th class="th-page-actions" width="110"></th>
                 </tr>
               </thead>
               {#pages}
-                <tr>
-                  <td class="td-page-title td-level-{.level}">
+                <tr class="{?.parent_id}has-parent parent-{.parent_id}{/.parent_id}">
+                  <td class="td-page-title {?showtree}td-level-{.level}{/showtree}">
+                    {?.hasChildren}<i class="fa fa-caret-right" data-target=".parent-{.id}"></i>{/.hasChildren}
                     {?.menu_order}<small>[{.menu_order}]</small>&nbsp;{/.menu_order}
                     <a href="{options.adminpath}/cms/pages/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
                     {@eq key=.status value="published"}
@@ -52,15 +52,15 @@
 
                     <br/>
                     <span class="slug">{.slug} </span>
+                    <span class="badge badge-info">{.category}</span>
 
                   </td>
-                  <td>{.category}</td>
                   <td class="td-page-date">{@dateformat date=.updated_at /}</td>
-                  <td class="actions">
-                    <a href="{options.adminpath}/cms/pages/{.id}/edit" class="btn btn-xs btn-light" ><i class="fa fa-edit"></i></a>
-                    &nbsp;<a href="{options.adminpath}/cms/pages/new?copy={.id}" class="btn btn-xs btn-light" ><i class="fa fa-copy"></i></a>
+                  <td class="actions text-right">
+                    <a href="{options.adminpath}/cms/pages/{.id}/edit" class="btn btn-sm btn-light" ><i class="fa fa-edit"></i></a>
+                    &nbsp;<a href="{options.adminpath}/cms/pages/new?copy={.id}" class="btn btn-sm btn-light" ><i class="fa fa-copy"></i></a>
                     {@ne key=.status value="trashed"}
-                      &nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-xs btn-danger" ><i class="fa fa-trash"></i></a>
+                      &nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>
                     {/ne}
                   </td>
                 </tr>

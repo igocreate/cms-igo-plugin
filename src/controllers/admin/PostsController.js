@@ -11,7 +11,7 @@ const ControllerUtils = require('./ControllerUtils');
 module.exports.index = function(req, res) {
 
   ControllerUtils.index(Post, req, res, function(err, pages) {
-    res.render(plugin.dirname + '/views/admin/posts/index.dust');
+    res.render(plugin.dirname + '/views/admin/posts/index.dust', { pages });
   });
 };
 
@@ -31,7 +31,7 @@ module.exports.create = function(req, res) {
       req.cacheflash('post', req.body);
       return res.redirect(plugin.options.adminpath + '/cms/posts/new');
     }
-    res.redirect(plugin.options.adminpath + '/cms/posts/' + page.id + '/edit');
+    res.redirect(plugin.options.adminpath + '/cms/posts');
   });
 };
 
@@ -54,7 +54,7 @@ module.exports.update = function(req, res) {
       req.flash('error', err);
       req.cacheflash('post', req.body);
     }
-    res.redirect(plugin.options.adminpath + '/cms/posts/' + page.id + '/edit');
+    res.redirect(plugin.options.adminpath + '/cms/posts');
   });
 };
 
