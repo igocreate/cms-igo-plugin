@@ -21,7 +21,7 @@ CREATE TABLE `pages` (
   `updated_at`          datetime,
   `created_at`          datetime      NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `posts` (
   `updated_at`          datetime,
   `created_at`          datetime      NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 --
@@ -62,4 +62,5 @@ CREATE TABLE `medias` (
   `deleted_at`          datetime,
   `deleted_by`          int(11),
   `created_at`          datetime      NOT NULL,
-PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
