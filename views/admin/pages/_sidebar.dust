@@ -40,6 +40,11 @@
   </div>
 
   <div class="form-group">
+    <label for="meta_title">SEO title</label>
+    <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="SEO title" value="{page.meta_title}" />
+  </div>
+
+  <div class="form-group">
     <label for="meta_description">SEO description</label>
     <textarea class="form-control" id="meta_description" name="meta_description" placeholder="Meta Description" rows="5" >
       {page.meta_description}
