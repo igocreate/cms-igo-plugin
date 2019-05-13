@@ -16,7 +16,7 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   } else if (plugin.options.sites) {
     cmsfilter.site = req.query.site || cmsfilter.site || plugin.options.sites[0];
   }
-  if (plugin.options.langs && plugin.options.langs.length > 1) {
+  if (plugin.options.langs && plugin.options.langs.length > 0) {
     cmsfilter.lang = req.query.lang || cmsfilter.lang || plugin.options.langs[0];
   }
   if (req.query.category !== undefined) {
