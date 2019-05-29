@@ -133,7 +133,7 @@ module.exports.create = function(model, req, res, callback) {
   if (!req.body.published_at && req.body.status === 'published') {
     req.body.published_at = new Date();
   }
-  model.find(req.params.parent_id, function(err, parent) {
+  model.find(req.body.parent_id, function(err, parent) {
     req.body.level = parent ? parent.level + 1 : 0;
     model.create(req.body, callback);
   });
