@@ -1,6 +1,7 @@
 const _           = require('lodash');
 
-const Model       = require('../../plugin').igo.Model;
+const plugin      = require('../../plugin');
+const Model       = plugin.igo.Model;
 const StringUtils = require('../utils/StringUtils');
 const Media       = require('./Media');
 
@@ -82,7 +83,7 @@ class Page extends Model(schema) {
   }
 
   get url() {
-    return [this.slug, this.id].join('-');
+    return plugin.options.url(this);
   }
 
   get parts() {

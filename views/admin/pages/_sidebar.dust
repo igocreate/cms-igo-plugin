@@ -33,7 +33,7 @@
     <label for="slug">
       URL
       {@eq key=page.status value="published"}
-        <a href="{options.publicpath}/{page.slug}" target="preview"><i class="fa fa-external-link"></i></a>
+        <a href="{page.url}" target="_blank"><i class="fa fa-external-link"></i></a>
       {/eq}
     </label>
     <input type="text" class="form-control" id="slug" name="slug" placeholder="URL" value="{page.slug}" />
