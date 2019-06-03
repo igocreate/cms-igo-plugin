@@ -39,8 +39,10 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
 
   res.locals.langs    = plugin.options.langs;
   res.locals.sites    = plugin.options.sites;
-  res.locals.cms_site = plugin.options.site && res.locals[plugin.options.site];
-  res.locals.cms_lang = plugin.options.langs && plugin.options.langs.length === 1 && plugin.options.langs[0];
+
+  // detect site and lang
+  res.locals.cms_site = plugin.options.detect_site && res.locals[plugin.options.detect_site];
+  res.locals.cms_lang = plugin.options.detect_lang && res.locals[plugin.options.detect_lang];
 
   return cmsfilter;
 }
