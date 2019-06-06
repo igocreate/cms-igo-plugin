@@ -1,4 +1,6 @@
 
+const _         = require('lodash');
+
 const Post      = require('../../models/Post');
 const plugin    = require('../../../plugin');
 
@@ -37,13 +39,22 @@ module.exports.create = function(req, res) {
 
 //
 module.exports.edit = function(req, res) {
+  const cmsfilter = ControllerUtils.getCmsfilter(req, res);
 
-  Post.includes('image').find(req.params.id, function(err, post) {
+  Post.includes(['children', 'image']).find(req.params.id, function(err, post) {
     if (!post) {
       return res.redirect(plugin.options.adminpath + '/cms/posts');
     }
-    res.locals.page = res.locals.flash.post || post;
-    res.render(plugin.dirname + '/views/admin/posts/edit.dust');
+    res.locals.page = res.locals.flash.page || post;
+    const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
+    filter.status = 'published';
+    ControllerUtils.showTree(Post, filter, function(err, pages) {
+      ControllerUtils.getObjectTypes(function(err, objectTypes) {
+        res.locals.objectTypes  = objectTypes;
+        res.locals.pageTypes    = plugin.options.pageTypes;
+        res.render(plugin.dirname + '/views/admin/posts/edit.dust', { pages });
+      });
+    });
   });
 };
 
