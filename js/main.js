@@ -1,5 +1,7 @@
 
 
+require('./object-types');
+
 $(function() {
 
   $('.fa-caret-right').click(function() {

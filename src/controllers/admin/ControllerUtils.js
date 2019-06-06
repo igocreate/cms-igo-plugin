@@ -1,6 +1,6 @@
 
 const _               = require('lodash');
-
+const async           = require('async');
 const plugin          = require('../../../plugin');
 const igo             = plugin.igo;
 const StringUtils     = require('../../utils/StringUtils');
@@ -174,4 +174,17 @@ module.exports.trash = function(req, res, next) {
       return res.redirect(plugin.options.adminpath + '/cms/pages')
     });
   });
+};
+
+//
+module.exports.getObjectTypes = function(callback) {
+  async.map(plugin.options.objectTypes, function(objectType, callback) {
+    objectType.list(function(err, objects) {
+      callback(null, {
+        list:   objects,
+        label:  objectType.label,
+        type:   objectType.type,
+      });
+    });
+  }, callback);
 };

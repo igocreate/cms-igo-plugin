@@ -13,6 +13,7 @@
     "url": "git@github.com:igocreate/cms-igo-plugin.git"
   },
   "dependencies": {
+    "async": "^3.0.1",
     "gm": "^1.23.1",
     "lodash": "^4.17.11",
     "node-ovh-storage": "^0.1.7",

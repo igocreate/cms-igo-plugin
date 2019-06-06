@@ -3,9 +3,7 @@ const _         = require('lodash');
 
 const Page      = require('../../models/Page');
 const plugin    = require('../../../plugin');
-const igo       = plugin.igo;
 
-const StringUtils     = require('../../utils/StringUtils');
 const ControllerUtils = require('./ControllerUtils');
 
 //
@@ -21,7 +19,10 @@ module.exports.new = function(req, res) {
     const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
     filter.status = 'published';
     ControllerUtils.showTree(Page, filter, function(err, pages) {
-      res.render(plugin.dirname + '/views/admin/pages/new.dust', { pages });
+      ControllerUtils.getObjectTypes(function(err, objectTypes) {
+        res.locals.objectTypes = objectTypes;
+        res.render(plugin.dirname + '/views/admin/pages/new.dust', { pages });
+      });
     });
   });
 };
@@ -50,7 +51,10 @@ module.exports.edit = function(req, res) {
     const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
     filter.status = 'published';
     ControllerUtils.showTree(Page, filter, function(err, pages) {
-      res.render(plugin.dirname + '/views/admin/pages/edit.dust', { pages });
+      ControllerUtils.getObjectTypes(function(err, objectTypes) {
+        res.locals.objectTypes = objectTypes;
+        res.render(plugin.dirname + '/views/admin/pages/edit.dust', { pages });
+      });
     });
   });
 };

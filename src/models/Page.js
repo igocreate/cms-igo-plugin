@@ -31,6 +31,8 @@ const schema = {
     'level',
     'site',
     'type',
+    'object_type',
+    'object_id',
     'published_at',
     'updated_at',
     'created_at'
