@@ -41,7 +41,7 @@
                 </tr>
               </thead>
               {#pages}
-                <tr class="{?.parent_id}has-parent parent-{.parent_id}{/.parent_id}">
+                <tr class="{?showtree}{?.parent_id}has-parent parent-{.parent_id}{/.parent_id}{/showtree}">
                   <td class="td-page-title {?showtree}td-level-{.level}{/showtree}">
                     {?.hasChildren}<i class="fa fa-caret-right" data-target=".parent-{.id}"></i>{/.hasChildren}
                     {?.menu_order}<small>[{.menu_order}]</small>&nbsp;{/.menu_order}

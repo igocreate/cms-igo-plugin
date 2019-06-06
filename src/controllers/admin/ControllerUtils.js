@@ -19,6 +19,11 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   if (plugin.options.langs && plugin.options.langs.length > 0) {
     cmsfilter.lang = req.query.lang || cmsfilter.lang || plugin.options.langs[0];
   }
+  if (req.query.page_type) {
+    cmsfilter.page_type = req.query.page_type
+  } else {
+    delete cmsfilter.page_type;
+  }
   if (req.query.category !== undefined) {
     cmsfilter.category = req.query.category;
   }
@@ -37,8 +42,9 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   res.locals.cmsfilter    = cmsfilter;
   req.session.cmsfilter   = cmsfilter;
 
-  res.locals.langs    = plugin.options.langs;
-  res.locals.sites    = plugin.options.sites;
+  res.locals.langs      = plugin.options.langs;
+  res.locals.sites      = plugin.options.sites;
+  res.locals.pageTypes  = plugin.options.pageTypes;
 
   // detect site and lang
   res.locals.cms_site = plugin.options.detect_site && res.locals[plugin.options.detect_site];
@@ -49,12 +55,13 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
 
 //
 const applyCmsFilter = (model, cmsfilter) => {
-  const query = model.where(_.pick(cmsfilter, ['site', 'lang', 'status']));
+  const query = model.where(_.pick(cmsfilter, ['site', 'lang', 'status', 'page_type']));
   ['slug', 'category'].forEach(attr => {
     if (cmsfilter[attr]) {
       query.where(`\`${attr}\` like CONCAT('%', ?,  '%')`, cmsfilter[attr]);
     }
   });
+  
   return query;
 };
 
@@ -86,12 +93,11 @@ module.exports.showTree = (model, cmsfilter, callback) => {
 module.exports.index = function(model, req, res, callback) {
 
   const cmsfilter = getCmsfilter(req, res);
-
-  if (cmsfilter.status === 'published' && model.name === 'Page') {
+  if (cmsfilter.status === 'published' && model.name === 'Page'
+      && !cmsfilter.category && !cmsfilter.slug && !cmsfilter.page_type) {
     res.locals.showtree = true;
     return module.exports.showTree(model, cmsfilter, callback);
   }
-
   const query = applyCmsFilter(model, cmsfilter);
   query.order('`updated_at` DESC').list(callback);
 };
