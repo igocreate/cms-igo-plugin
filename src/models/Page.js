@@ -31,6 +31,7 @@ const schema = {
     'level',
     'site',
     'type',
+    'page_type',
     'object_type',
     'object_id',
     'published_at',

@@ -21,6 +21,7 @@ module.exports.new = function(req, res) {
     ControllerUtils.showTree(Page, filter, function(err, pages) {
       ControllerUtils.getObjectTypes(function(err, objectTypes) {
         res.locals.objectTypes = objectTypes;
+        res.locals.pageTypes   = plugin.options.pageTypes;
         res.render(plugin.dirname + '/views/admin/pages/new.dust', { pages });
       });
     });
@@ -52,7 +53,8 @@ module.exports.edit = function(req, res) {
     filter.status = 'published';
     ControllerUtils.showTree(Page, filter, function(err, pages) {
       ControllerUtils.getObjectTypes(function(err, objectTypes) {
-        res.locals.objectTypes = objectTypes;
+        res.locals.objectTypes  = objectTypes;
+        res.locals.pageTypes    = plugin.options.pageTypes;
         res.render(plugin.dirname + '/views/admin/pages/edit.dust', { pages });
       });
     });

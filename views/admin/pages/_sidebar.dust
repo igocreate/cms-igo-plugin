@@ -68,8 +68,19 @@
     </div>
   {/hideparent}
 
-  {?objectTypes}
+  {?pageTypes}
+    <div class="form-group">
+      <label for="page_type">Type de page</label>
+      <select class="form-control" id="page_type" name="page_type" >
+        <option value="">Aucun</option>
+        {#pageTypes}
+          <option value="{.type}" {@eq key=page.page_type value=.type }selected{/eq}>{.label}</option>
+        {/pageTypes}
+      </select>
+    </div>
+  {/pageTypes}
 
+  {?objectTypes}
     <div class="form-group">
       <label for="object_type">Type d'object lié</label>
       <select class="form-control" id="object_type" name="object_type" >
@@ -85,7 +96,6 @@
       <select class="form-control" id="object_id" name="object_id" data-value="{page.object_id}">
       </select>
     </div>
-
   {/objectTypes}
 
 
