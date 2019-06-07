@@ -21,3 +21,11 @@ module.exports.loadPage = function(filter, callback) {
       .order('`published_at` DESC')
       .first(callback);
 };
+
+//
+module.exports.loadPages = function(filter, callback) {
+  Page.where(filter)
+      .where({ status: 'published'})
+      .order('`published_at` DESC')
+      .list(callback);
+};
