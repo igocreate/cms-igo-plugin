@@ -9,6 +9,7 @@ const ControllerUtils = require('./ControllerUtils');
 //
 module.exports.index = function(req, res) {
   ControllerUtils.index(Page, req, res, function(err, pages) {
+    res.locals.pageTypesByType = _.keyBy(plugin.options.pageTypes, 'type');
     res.render(plugin.dirname + '/views/admin/pages/index.dust', { pages });
   });
 };
@@ -18,11 +19,10 @@ module.exports.new = function(req, res) {
   ControllerUtils.new(Page, req, res, function() {
     const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
     filter.status = 'published';
-    ControllerUtils.showTree(Page, filter, function(err, pages) {
-      ControllerUtils.getObjectTypes(function(err, objectTypes) {
-        res.locals.objectTypes = objectTypes;
+    ControllerUtils.showTree(Page, filter, (err, pages) => {
+      ControllerUtils.getObjectTypes((err, objectTypes) => {
         res.locals.pageTypes   = plugin.options.pageTypes;
-        res.render(plugin.dirname + '/views/admin/pages/new.dust', { pages });
+        res.render(plugin.dirname + '/views/admin/pages/new.dust', { pages, objectTypes });
       });
     });
   });
@@ -51,11 +51,10 @@ module.exports.edit = function(req, res) {
     res.locals.page = res.locals.flash.page || page;
     const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
     filter.status = 'published';
-    ControllerUtils.showTree(Page, filter, function(err, pages) {
-      ControllerUtils.getObjectTypes(function(err, objectTypes) {
-        res.locals.objectTypes  = objectTypes;
+    ControllerUtils.showTree(Page, filter, (err, pages) => {
+      ControllerUtils.getObjectTypes((err, objectTypes) => {
         res.locals.pageTypes    = plugin.options.pageTypes;
-        res.render(plugin.dirname + '/views/admin/pages/edit.dust', { pages });
+        res.render(plugin.dirname + '/views/admin/pages/edit.dust', { pages, objectTypes });
       });
     });
   });

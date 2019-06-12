@@ -58,7 +58,7 @@
 
   {^hideparent}
     <div class="form-group">
-      <label for="parent_id">Rubrique</label>
+      <label for="parent_id">Page parent</label>
       <select class="form-control" id="parent_id" name="parent_id" >
         <option value="">Aucune (1er Niveau)</option>
         {#pages}
@@ -70,29 +70,20 @@
 
   {?pageTypes}
     <div class="form-group">
-      <label for="page_type">Type de page</label>
+      <label for="page_type">Type de page spécial</label>
       <select class="form-control" id="page_type" name="page_type" >
         <option value="">Aucun</option>
         {#pageTypes}
-          <option value="{.type}" {@eq key=page.page_type value=.type }selected{/eq}>{.label}</option>
+          <option value="{.type}" data-object-type="{.object_type}" {@eq key=page.page_type value=.type }selected{/eq}>{.label}</option>
         {/pageTypes}
       </select>
     </div>
   {/pageTypes}
 
   {?objectTypes}
-    <div class="form-group">
-      <label for="object_type">Type d'objet lié</label>
-      <select class="form-control" id="object_type" name="object_type" >
-        <option value="">Aucun</option>
-        {#objectTypes}
-          <option value="{.type}" {@eq key=page.object_type value=.type }selected{/eq}>{.label}</option>
-        {/objectTypes}
-      </select>
-    </div>
-
-    <div class="form-group" id="object_id_group">
-      <label for="object_id">Objet</label>
+    <div class="form-group" id="object_id_group" {^page.page_type}style="display: none;"{/page.page_type} >
+      <input type="hidden" name="object_type" id="object_type" value="{page.object_type}" />
+      <label for="object_id"></label>
       <select class="form-control" id="object_id" name="object_id" data-value="{page.object_id}">
       </select>
     </div>

@@ -52,7 +52,8 @@
 
                     <br/>
                     <span class="slug">{.slug} </span>
-                    <span class="badge badge-info">{.category}</span>
+                    {?.page_type}&nbsp;<span class="badge badge-primary">{pageTypesByType[.page_type].label}</span>{/.page_type}
+                    {?.category}&nbsp;<span class="badge badge-secondary">{.category}</span>{/.category}
 
                   </td>
                   <td class="td-page-date">{@dateformat date=.updated_at /}</td>
