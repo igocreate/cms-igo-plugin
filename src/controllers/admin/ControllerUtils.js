@@ -104,7 +104,7 @@ module.exports.new = function(model, req, res, callback) {
   if (!req.query.copy) {
     res.locals.page = res.locals.flash.page || _.merge(
       _.pick(cmsfilter, ['lang', 'site']),
-      _.pick(req.query, ['slug', 'title', 'page_type', 'object_type', 'object_id'])
+      _.pick(req.query, ['slug', 'title', 'parent_slug', 'page_type', 'object_type', 'object_id'])
     );
     return callback();
   }
