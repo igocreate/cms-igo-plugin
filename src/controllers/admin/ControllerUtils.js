@@ -19,23 +19,15 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   if (plugin.options.langs && plugin.options.langs.length > 0) {
     cmsfilter.lang = req.query.lang || cmsfilter.lang || plugin.options.langs[0];
   }
-  if (req.query.page_type) {
-    cmsfilter.page_type = req.query.page_type
-  } else {
-    delete cmsfilter.page_type;
-  }
-  if (req.query.category !== undefined) {
-    cmsfilter.category = req.query.category;
-  }
-  if (req.query.slug !== undefined) {
-    cmsfilter.slug = req.query.slug;
-  }
-  if (!cmsfilter.category) {
-    delete cmsfilter.category;
-  }
-  if (!cmsfilter.slug) {
-    delete cmsfilter.slug;
-  }
+
+  [ 'page_type', 'slug', 'category' ].forEach(attr => {
+    if (req.query[attr] !== undefined) {
+      cmsfilter[attr] = req.query[attr];
+    }
+    if (!cmsfilter[attr]) {
+      delete cmsfilter[attr];
+    }
+  });
 
   cmsfilter.status = req.query.status || cmsfilter.status || 'published';
 
