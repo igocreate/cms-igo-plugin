@@ -41,9 +41,9 @@ $(function() {
     refreshmodal();
   });
 
-  $("#cmsPluginMediaUpload").dropzone({
+  Dropzone.options.cmsPluginMediaUpload = {
     init: function() {
       this.on("complete",   refreshmodal);
     }
-  });
+  };
 });
