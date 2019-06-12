@@ -102,10 +102,10 @@ module.exports.new = function(model, req, res, callback) {
   res.locals.sites = plugin.options.sites;
 
   if (!req.query.copy) {
-    res.locals.page = res.locals.flash.page || {
-      lang: cmsfilter.lang,
-      site: cmsfilter.site || 'default',
-    };
+    res.locals.page = res.locals.flash.page || _.merge(
+      _.pick(cmsfilter, ['lang', 'site']),
+      _.pick(req.query, ['slug', 'title', 'page_type', 'object_type', 'object_id'])
+    );
     return callback();
   }
 
