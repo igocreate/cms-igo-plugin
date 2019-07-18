@@ -1,6 +1,7 @@
 
 
 require('./object-types');
+window.Dropzone.options.cmsPluginMediaUpload = false;
 
 $(function() {
 
@@ -41,9 +42,10 @@ $(function() {
     refreshmodal();
   });
 
-  Dropzone.options.cmsPluginMediaUpload = {
+  $('#cms-plugin-media-upload').dropzone({
+    paramName: 'file[]',
     init: function() {
-      this.on("complete",   refreshmodal);
-    }
-  };
+      this.on('complete', refreshmodal);
+    },
+  });
 });

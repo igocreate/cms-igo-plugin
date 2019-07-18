@@ -12,12 +12,12 @@
       </div>
 
       <div class="modal-body">
-        <form action="{options.adminpath}/cms/medias/upload" class="dropzone" id="cmsPluginMediaUpload">
+        <form action="{options.adminpath}/cms/medias/upload" class="dropzone" id="cms-plugin-media-upload">
           <div class="dz-message needsclick">
             Cliquez ici, ou glissez votre photo
           </div>
           <div class="fallback">
-            <input name="file" type="file" />
+            <input name="file[]" type="file" />
           </div>
         </form>
 
