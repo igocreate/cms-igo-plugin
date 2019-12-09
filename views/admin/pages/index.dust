@@ -3,17 +3,20 @@
 
 {<content}
 
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
-    <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
-    <li class="breadcrumb-item active">Site Pages</li>
-  </ol>
+  <div class="row">
+    <div class="col-md-7">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
+        <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
+        <li class="breadcrumb-item active">Site Pages</li>
+      </ol>
+    </div>
+    <div class="col-md-5 text-right">
+      <a href="{options.adminpath}/cms/pages/new?page_type={cmsfilter.page_type}" class="btn btn-secondary" ><i class="fa fa-edit"></i> Nouvelle Page</a>
+    </div>
+  </div>
 
   <div class="cms-igo-plugin">
-
-    <p class="text-right">
-      <a href="{options.adminpath}/cms/pages/new" class="btn btn-secondary" ><i class="fa fa-edit"></i> Nouvelle Page</a>
-    </p>
 
     <div class="row">
       <div class="col-sm-8 mb-3" >
@@ -44,7 +47,6 @@
                 <tr class="{?showtree}{?.parent_id}has-parent parent-{.parent_id}{/.parent_id}{/showtree}">
                   <td class="td-page-title {?showtree}td-level-{.level}{/showtree}">
                     {?.hasChildren}<i class="fa fa-caret-right" data-target=".parent-{.id}"></i>{/.hasChildren}
-                    {?.menu_order}<small>[{.menu_order}]</small>&nbsp;{/.menu_order}
                     <a href="{options.adminpath}/cms/pages/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
                     {@eq key=.status value="published"}
                       <small><a href="{.url}" target="_blank"><i class="fa fa-external-link"></i></a></small>

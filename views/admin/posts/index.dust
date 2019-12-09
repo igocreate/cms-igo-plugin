@@ -3,17 +3,24 @@
 
 {<content}
 
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
-    <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
-    <li class="breadcrumb-item active">Blog Posts</li>
-  </ol>
+  <div class="row">
+    <div class="col-md-7">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
+        <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
+        <li class="breadcrumb-item active">Blog Posts</li>
+      </ol>
+    </div>
+    <div class="col-md-5 text-right">
+      <a href="{options.adminpath}/cms/posts/new" class="btn btn-secondary" ><i class="fa fa-edit" ></i> Nouveau Post</a>
+    </div>
+  </div>
+
+
+
 
   <div class="cms-igo-plugin">
 
-    <p class="text-right">
-      <a href="{options.adminpath}/cms/posts/new" class="btn btn-secondary" ><i class="fa fa-edit" ></i> Nouveau Post...</a>
-    </p>
     <div class="row">
       <div class="col-sm-8 mb-3" >
 

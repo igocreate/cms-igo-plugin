@@ -11,9 +11,7 @@ const Page            = require('../../models/Page');
 const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   const cmsfilter = req.session.cmsfilter || {};
 
-  if (plugin.options.site) {
-    cmsfilter.site = res.locals[plugin.options.site];
-  } else if (plugin.options.sites) {
+  if (plugin.options.sites && plugin.options.sites.length > 0) {
     cmsfilter.site = req.query.site || cmsfilter.site || plugin.options.sites[0];
   }
   if (plugin.options.langs && plugin.options.langs.length > 0) {
@@ -53,7 +51,7 @@ const applyCmsFilter = (model, cmsfilter) => {
       query.where(`\`${attr}\` like CONCAT('%', ?,  '%')`, cmsfilter[attr]);
     }
   });
-  
+
   return query;
 };
 

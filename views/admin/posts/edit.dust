@@ -11,10 +11,6 @@
   </ol>
 
   <div class="cms-igo-plugin">
-    <p class="text-right">
-      <a href="{options.adminpath}/cms/posts/new" class="btn btn-secondary" ><i class="fa fa-edit" ></i> Nouveau Post...</a>
-    </p>
-
     <form action="{options.adminpath}/cms/posts/{page.id}" id="form-page" method="POST">
       <input type="hidden" name="id" value="{page.id}" />
       <div class="row">
