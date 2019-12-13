@@ -17,17 +17,19 @@
       </select>
     </div>
   {/cms_lang}
-  {?pageTypes}
-    <div class="form-group">
-      <label for="page_type">Type de page</label>
-      <select class="form-control" name="page_type" id="page_type">
-        <option value="">Tous</option>
-        {#pageTypes}
-          <option value="{.type}" {@eq key=cmsfilter.page_type value=.type }selected{/eq}>{.label}</option>
-        {/pageTypes}
-      </select>
-    </div>
-  {/pageTypes}
+  {^hidepagetype}
+    {?pageTypes}
+      <div class="form-group">
+        <label for="page_type">Type de page</label>
+        <select class="form-control" name="page_type" id="page_type">
+          <option value="">Tous</option>
+          {#pageTypes}
+            <option value="{.type}" {@eq key=cmsfilter.page_type value=.type }selected{/eq}>{.label}</option>
+          {/pageTypes}
+        </select>
+      </div>
+    {/pageTypes}
+  {/hidepagetype}
 
   <div class="form-group">
     <label for="category">URL</label>

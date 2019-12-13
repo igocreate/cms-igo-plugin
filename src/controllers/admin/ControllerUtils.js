@@ -83,6 +83,10 @@ module.exports.showTree = (model, cmsfilter, callback) => {
 module.exports.index = function(model, req, res, callback) {
 
   const cmsfilter = getCmsfilter(req, res);
+  if (model.name !== 'Page') {
+    delete cmsfilter.page_type;
+  }
+
   if (cmsfilter.status === 'published' && model.name === 'Page'
       && !cmsfilter.category && !cmsfilter.slug && !cmsfilter.page_type) {
     res.locals.showtree = true;

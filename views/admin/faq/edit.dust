@@ -1,0 +1,30 @@
+
+{> "{options.adminlayout}" /}
+
+{<content}
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms/faq">FAQ</a></li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms/faq/{page.parent.id}">{page.parent.title}</a></li>
+    <li class="breadcrumb-item active">{page.title}</li>
+  </ol>
+
+  <div class="cms-igo-plugin">
+    <form action="{options.adminpath}/cms/faq/{page.parent_id}/{page.id}" id="form-page" method="POST">
+      <input type="hidden" name="id" value="{page.id}" />
+      <div class="row">
+        <div class="col-sm-8">
+          {> "{dirname}/views/admin/faq/_form.dust" /}
+        </div>
+        <div class="col-sm-4">
+          {> "{dirname}/views/admin/pages/_sidebar.dust" hideparent="true" hidepagetype="true" /}
+        </div>
+      </div>
+    </form>
+
+    {> "{dirname}/views/admin/pages/_modal.dust" /}
+  </div>
+
+{/content}

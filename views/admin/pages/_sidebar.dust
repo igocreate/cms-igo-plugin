@@ -20,17 +20,19 @@
     </div>
   {/cms_lang}
 
-  {?pageTypes}
-    <div class="form-group">
-      <label for="page_type">Type de page</label>
-      <select class="form-control" id="page_type" name="page_type" >
-        <option value="">Aucun</option>
-        {#pageTypes}
-          <option value="{.type}" data-object-type="{.object_type}" {@eq key=page.page_type value=.type }selected{/eq}>{.label}</option>
-        {/pageTypes}
-      </select>
-    </div>
-  {/pageTypes}
+  {^hidepagetype}
+    {?pageTypes}
+      <div class="form-group">
+        <label for="page_type">Type de page</label>
+        <select class="form-control" id="page_type" name="page_type" >
+          <option value="">Aucun</option>
+          {#pageTypes}
+            <option value="{.type}" data-object-type="{.object_type}" {@eq key=page.page_type value=.type }selected{/eq}>{.label}</option>
+          {/pageTypes}
+        </select>
+      </div>
+    {/pageTypes}
+  {/hidepagetype}
 
   <div class="form-group">
     <label for="status">Statut</label>
