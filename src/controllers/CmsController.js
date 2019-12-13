@@ -3,6 +3,7 @@
 const _         = require('lodash');
 
 const Page        = require('../models/Page');
+const FaqCategory = require('../models/FaqCategory');
 const CMS         = require('../services/CMS');
 const { options } = require('../../plugin');
 
@@ -36,6 +37,40 @@ module.exports.page = function(req, res, next) {
       return next();
     }
     res.render(options.templates.cms_show, { page });
+  });
+
+};
+
+//
+module.exports.faqIndex = function(req, res, next) {
+
+  CMS.loadPage({
+    slug: 'faq',
+    lang: res.locals.lang,
+    site: res.locals.site,
+  }, (err, page) => {
+
+    FaqCategory.where({
+      lang:   res.locals.lang,
+      site:   res.locals.site,
+      status: 'published'
+    }).list((err, faq_categories) => {
+      res.render(options.templates.faq_index, { page, faq_categories });
+    });
+  });
+
+};
+
+//
+module.exports.faq = function(req, res, next) {
+
+  FaqCategory.includes('faqs').where({
+    slug:   req.params.slug,
+    lang:   res.locals.lang,
+    site:   res.locals.site,
+    status: 'published'
+  }).first((err, faq_category) => {
+    res.render(options.templates.faq_index, { faq_category, page: faq_category });
   });
 
 };

@@ -41,8 +41,8 @@ const schema = {
   associations: () => [
     [ 'belongs_to', 'image',    Media,  'image_id', 'id' ],
     [ 'belongs_to', 'parent',   Page,   'parent_id', 'id' ],
-    [ 'has_many',   'children', Page,   'id',       'parent_id'],
-    [ 'has_many',   'faqs',         require('./Faq'),         'id',         'parent_id', { status: 'published' }],
+    [ 'has_many',   'children', Page,   'id',       'parent_id', { status: 'published' }],
+    [ 'has_many',   'faqs',         require('./Faq'),   'id', 'parent_id', { status: 'published' }],
     [ 'belongs_to', 'faq_category', require('./FaqCategory'), 'parent_id',  'id' ],
   ],
   scopes: {
