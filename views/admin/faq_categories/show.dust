@@ -8,11 +8,12 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
         <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
-        <li class="breadcrumb-item active">Blog Posts</li>
+        <li class="breadcrumb-item"><a href="{options.adminpath}/cms/faq">FAQ</a></li>
+        <li class="breadcrumb-item active">{faq_category.title}</li>
       </ol>
     </div>
     <div class="col-md-5 text-right">
-      <a href="{options.adminpath}/cms/posts/new" class="btn btn-secondary" ><i class="fa fa-edit" ></i> Nouveau Post</a>
+      <a href="{options.adminpath}/cms/faq/{faq_category.id}/new" class="btn btn-secondary" ><i class="fa fa-edit" ></i> Nouvelle Question</a>
     </div>
   </div>
 
@@ -46,31 +47,30 @@
                   <th class="th-page-actions" width="110"></th>
                 </tr>
               </thead>
-              {#pages}
+              {#faq_category.children}
                 <tr>
                   <td class="td-page-title td-level-{.level}">
-                    <a href="{options.adminpath}/cms/posts/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
+                    <a href="{options.adminpath}/cms/faq/{faq_category.id}/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
                     <br/>
                     <span class="slug">{.slug} </span>
                     <span class="badge badge-info">{.category}</span>
                   </td>
                   <td class="td-page-date">{@dateformat date=.updated_at /}</td>
                   <td class="actions text-right">
-                    <a href="{options.adminpath}/cms/posts/{.id}/edit" class="btn btn-sm btn-light" ><i class="fa fa-edit"></i></a>
-                    &nbsp;<a href="{options.adminpath}/cms/posts/new?copy={.id}" class="btn btn-sm btn-light" ><i class="fa fa-copy"></i></a>
+                    <a href="{options.adminpath}/cms/faq/{faq_category.id}/{.id}/edit" class="btn btn-sm btn-light" ><i class="fa fa-edit"></i></a>
                     {@ne key=.status value="trashed"}
-                      &nbsp;<a href="{options.adminpath}/cms/posts/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>
+                      &nbsp;<a href="{options.adminpath}/cms/faq/{faq_category.id}/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>
                     {/ne}
                   </td>
                 </tr>
-              {/pages}
+              {/faq_category.children}
             </table>
           </div>
         </div>
       </div>
       <div class="col-sm-4" >
         <div class="form-page-sidebar">
-          {> "{dirname}/views/admin/pages/_filters.dust" /}
+          {> "{dirname}/views/admin/pages/_filters.dust" hidepagetype="true" /}
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ module.exports.filter = function(req, res, next) {
   res.locals.options = plugin.options;
   res.locals.dirname = plugin.dirname;
   if (plugin.options.menu) {
-    _.set(res.locals, plugin.options.menu, true);
+    _.set(res.locals, plugin.options.menu, {[req.query.page_type]: true});
   }
   next();
 };

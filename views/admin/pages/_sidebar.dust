@@ -20,6 +20,20 @@
     </div>
   {/cms_lang}
 
+  {^hidepagetype}
+    {?pageTypes}
+      <div class="form-group">
+        <label for="page_type">Type de page</label>
+        <select class="form-control" id="page_type" name="page_type" >
+          <option value="">Aucun</option>
+          {#pageTypes}
+            <option value="{.type}" data-object-type="{.object_type}" {@eq key=page.page_type value=.type }selected{/eq}>{.label}</option>
+          {/pageTypes}
+        </select>
+      </div>
+    {/pageTypes}
+  {/hidepagetype}
+
   <div class="form-group">
     <label for="status">Statut</label>
     <select class="form-control" id="status" name="status" >
@@ -68,18 +82,6 @@
     </div>
   {/hideparent}
 
-  {?pageTypes}
-    <div class="form-group">
-      <label for="page_type">Type de page spécial</label>
-      <select class="form-control" id="page_type" name="page_type" >
-        <option value="">Aucun</option>
-        {#pageTypes}
-          <option value="{.type}" data-object-type="{.object_type}" {@eq key=page.page_type value=.type }selected{/eq}>{.label}</option>
-        {/pageTypes}
-      </select>
-    </div>
-  {/pageTypes}
-
   {?objectTypes}
     <div class="form-group" id="object_id_group" {^page.page_type}style="display: none;"{/page.page_type} >
       <input type="hidden" name="object_type" id="object_type" value="{page.object_type}" />
@@ -88,7 +90,6 @@
       </select>
     </div>
   {/objectTypes}
-
 
   <div class="form-group">
     <label>Image</label>

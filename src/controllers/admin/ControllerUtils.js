@@ -11,14 +11,19 @@ const Page            = require('../../models/Page');
 const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   const cmsfilter = req.session.cmsfilter || {};
 
-  if (plugin.options.site) {
-    cmsfilter.site = res.locals[plugin.options.site];
-  } else if (plugin.options.sites) {
+  // detect site and lang
+  res.locals.cms_site = plugin.options.detect_site && res.locals[plugin.options.detect_site];
+  res.locals.cms_lang = plugin.options.detect_lang && res.locals[plugin.options.detect_lang];
+
+  if (plugin.options.sites && plugin.options.sites.length > 0) {
     cmsfilter.site = req.query.site || cmsfilter.site || plugin.options.sites[0];
   }
+  cmsfilter.site = cmsfilter.site || res.locals.cms_site;
+
   if (plugin.options.langs && plugin.options.langs.length > 0) {
     cmsfilter.lang = req.query.lang || cmsfilter.lang || plugin.options.langs[0];
   }
+  cmsfilter.lang = cmsfilter.lang || res.locals.cms_lang;
 
   [ 'page_type', 'slug', 'category' ].forEach(attr => {
     if (req.query[attr] !== undefined) {
@@ -38,10 +43,6 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   res.locals.sites      = plugin.options.sites;
   res.locals.pageTypes  = plugin.options.pageTypes;
 
-  // detect site and lang
-  res.locals.cms_site = plugin.options.detect_site && res.locals[plugin.options.detect_site];
-  res.locals.cms_lang = plugin.options.detect_lang && res.locals[plugin.options.detect_lang];
-
   return cmsfilter;
 }
 
@@ -53,7 +54,7 @@ const applyCmsFilter = (model, cmsfilter) => {
       query.where(`\`${attr}\` like CONCAT('%', ?,  '%')`, cmsfilter[attr]);
     }
   });
-  
+
   return query;
 };
 
@@ -85,6 +86,10 @@ module.exports.showTree = (model, cmsfilter, callback) => {
 module.exports.index = function(model, req, res, callback) {
 
   const cmsfilter = getCmsfilter(req, res);
+  if (model.name !== 'Page') {
+    delete cmsfilter.page_type;
+  }
+
   if (cmsfilter.status === 'published' && model.name === 'Page'
       && !cmsfilter.category && !cmsfilter.slug && !cmsfilter.page_type) {
     res.locals.showtree = true;

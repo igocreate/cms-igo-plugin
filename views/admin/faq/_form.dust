@@ -1,0 +1,21 @@
+
+
+<div class="form-group">
+  <input type="text" class="form-control form-control-lg" id="title" name="title" placeholder="Titre" value="{page.title}" />
+</div>
+
+<p class="mt-4"><strong>Question</strong></p>
+
+<div class="form-group">
+  <textarea id="cms-plugin-redactor" name="question" data-adminpath={options.adminpath} >
+    {page.question}
+  </textarea>
+</div>
+
+<p class="mt-4"><strong>Réponse</strong></p>
+
+<div class="form-group">
+  <textarea id="cms-plugin-redactor" name="answer" data-adminpath={options.adminpath} >
+    {page.answer}
+  </textarea>
+</div>

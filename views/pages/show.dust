@@ -5,18 +5,16 @@
 
 {<content}
 
-  <div class="container">
-    <div class="row cms-pages-show">
-      <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-        {#page}
-          <div class="header">
-            <h1>{.title}</h1>
-          </div>
-          <div class="body">
-            {.body|s}
-          </div>
-        {/page}
-      </div>
+  <div class="row cms-pages-show">
+    <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      {#page}
+        <div class="header">
+          <h1>{.title}</h1>
+        </div>
+        <div class="body">
+          {.body|s}
+        </div>
+      {/page}
     </div>
   </div>
 

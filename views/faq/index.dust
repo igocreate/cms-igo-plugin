@@ -1,0 +1,42 @@
+
+{> "layouts/main" /}
+
+{<title}{page.title}{/title}
+
+{<content}
+  <div class="cms-faq-index">
+
+    {#page}
+      <div class="header">
+        <h1>{.title}</h1>
+      </div>
+      <div class="body">
+        {.body|s}
+      </div>
+    {/page}
+
+    {#faq_categories}
+      <div class="faq-category">
+        <a href="/faq/{.slug}">
+          <i class="fa fa-chevron-right pull-right"></i>
+          {.title}
+        </a>
+      </div>
+    {/faq_categories}
+
+    {#faq_category.faqs}
+      <div class="faq-faq">
+        <div class="faq-question">
+          <i class="fa fa-chevron-right pull-right"></i>
+          {.question|s}
+        </div>
+        <div class="faq-answer" style="display: none;">
+          <div>{.answer|s}</div>
+        </div>
+      </div>
+
+    {/faq_category.faqs}
+
+  </div>
+
+{/content}

@@ -12,6 +12,7 @@
   <ul>
     <li><a href="{options.adminpath}/cms/pages">Site Pages</a></li>
     <li><a href="{options.adminpath}/cms/posts">Blog Posts</a></li>
+    <li><a href="{options.adminpath}/cms/faq">FAQ</a></li>
     <li><a href="{options.adminpath}/cms/medias">Medias</a></li>
   </ul>
 {/content}

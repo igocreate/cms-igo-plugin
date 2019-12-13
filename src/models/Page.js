@@ -41,15 +41,19 @@ const schema = {
   associations: () => [
     [ 'belongs_to', 'image',    Media,  'image_id', 'id' ],
     [ 'belongs_to', 'parent',   Page,   'parent_id', 'id' ],
-    [ 'has_many',   'children', Page,   'id',       'parent_id']
+    [ 'has_many',   'children', Page,   'id',       'parent_id', { status: 'published' }],
+    [ 'has_many',   'faqs',         require('./Faq'),   'id', 'parent_id', { status: 'published' }],
+    [ 'belongs_to', 'faq_category', require('./FaqCategory'), 'parent_id',  'id' ],
   ],
   scopes: {
     default: (query) => query.order('`menu_order`, `title`')
   },
   subclasses: function() {
     return {
-      page:     Page,
-      post:     require('./Post')
+      page:         Page,
+      post:         require('./Post'),
+      faq:          require('./Faq'),
+      faq_category: require('./FaqCategory'),
     };
   }
 };
@@ -90,8 +94,8 @@ class Page extends Model(schema) {
   }
 
   get parts() {
-    this._parts = this._parts || this.body.split('<hr>');
-    return this._parts;
+    this._parts = this._parts || this.body && this.body.split('<hr>') || [];
+    return this._parts ;
   }
 
   get title_with_level() {
