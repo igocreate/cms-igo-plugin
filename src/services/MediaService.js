@@ -92,6 +92,7 @@ module.exports.upload = function(user, file, options, callback) {
 
   const media = {
     user_id:    user_id,
+    site:       options.site,
     name:       file.name,
     filename:   file.name,
     type:       file.type,
