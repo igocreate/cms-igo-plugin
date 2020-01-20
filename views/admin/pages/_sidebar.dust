@@ -91,15 +91,30 @@
     </div>
   {/objectTypes}
 
-  <div class="form-group">
-    <label>Image</label>
-    <div>
-      <img {?page.image}src="/medias/{page.image.uuid}/thumbnail/{page.image.filename|u}"{/page.image} class="media-thumbnail" id="page-image" {^page.image}style="display: none;"{/page.image} />
+  <div class="form-row">
+    <div class="col form-group">
+      <label>Bannière</label>
+      <a href="#" class="delete-image" data-target="banner" {^page.banner}style="display:none;"{/page.banner}><i class="fa fa-trash"></i></a>
+      <div>
+        <img {?page.banner}src="/medias/{page.banner.uuid}/thumbnail/{page.banner.filename|u}"{:else}src="/cms/empty.png"{/page.banner} class="media-thumbnail" id="page-banner" />
+      </div>
+      <div>
+        <a href="#" class="btn btn-outline-primary select-image" data-target="banner">Choisir</a>
+      </div>
+      <input type="hidden" id="banner-id" name="banner_id" value="{page.banner_id}" />
     </div>
-    <div>
-      <a href="#" class="btn btn-secondary select-image" data-toggle="modal" data-target="#select-image-modal">Choisir</a>
+
+    <div class="col form-group">
+      <label>Image</label>
+      <a href="#" class="delete-image" data-target="image" {^page.image}style="display:none;"{/page.image}><i class="fa fa-trash"></i></a>
+      <div>
+        <img {?page.image}src="/medias/{page.image.uuid}/thumbnail/{page.image.filename|u}"{:else}src="/cms/empty.png"{/page.image} class="media-thumbnail" id="page-image" />
+      </div>
+      <div>
+        <a href="#" class="btn btn-outline-primary select-image" data-target="image">Choisir</a>
+      </div>
+      <input type="hidden" id="image-id" name="image_id" value="{page.image_id}" />
     </div>
-    <input type="hidden" id="image-id" name="image_id" value="{page.image_id}" />
   </div>
 
   <div class="form-group">

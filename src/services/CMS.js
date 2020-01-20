@@ -15,7 +15,7 @@ module.exports.loadMenu = function(menu_id, filter, callback) {
 
 //
 module.exports.loadPage = function(filter, callback) {
-  Page.includes(['image', {parent: {parent: 'parent'}}, {children: ['image', {children: 'children'}]}])
+  Page.includes([{parent: {parent: 'parent'}}, {children: {children: 'children'}}])
       .where(filter)
       .where({ status: 'published'})
       .order('`published_at` DESC')
@@ -28,8 +28,7 @@ module.exports.loadPages = function(filter, options, callback) {
     callback  = options;
     options   = {};
   }
-  const query = Page.includes(['image'])
-                    .where(filter)
+  const query = Page.where(filter)
                     .where({ status: 'published'})
                     .order('`published_at` DESC');
   if (options.limit) {

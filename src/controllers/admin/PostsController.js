@@ -41,7 +41,7 @@ module.exports.create = function(req, res) {
 module.exports.edit = function(req, res) {
   const cmsfilter = ControllerUtils.getCmsfilter(req, res);
 
-  Post.includes(['children', 'image']).find(req.params.id, function(err, post) {
+  Post.includes('children').find(req.params.id, function(err, post) {
     if (!post) {
       return res.redirect(plugin.options.adminpath + '/cms/posts');
     }

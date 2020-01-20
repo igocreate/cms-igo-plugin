@@ -123,7 +123,7 @@ module.exports.new = function(model, req, res, callback) {
 
 //
 module.exports.create = function(model, req, res, callback) {
-  [ 'image_id', 'menu_id', 'parent_id',
+  [ 'image_id', 'banner_id', 'menu_id', 'parent_id',
     'menu_order', 'category', 'published_at'
   ].forEach(function(attr) {
     req.body[attr] = req.body[attr] || null;
@@ -146,7 +146,7 @@ module.exports.create = function(model, req, res, callback) {
 
 //
 module.exports.update = function(model, req, res, callback) {
-  [ 'image_id', 'menu_id', 'parent_id',
+  [ 'image_id', 'banner_id', 'menu_id', 'parent_id',
     'menu_order', 'category', 'published_at'
   ].forEach(function(attr) {
     req.body[attr] = req.body[attr] || null;
