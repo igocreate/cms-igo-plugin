@@ -3,21 +3,28 @@ const plugin        = require('../../../plugin');
 
 const igo           = plugin.igo;
 
-const MediaService  = require('../../services/MediaService');
-const Media         = require('../../models/Media');
+const ControllerUtils = require('./ControllerUtils');
+const MediaService    = require('../../services/MediaService');
+const Media           = require('../../models/Media');
 
 
 //
 module.exports.index = function(req, res) {
 
+
   const is_deleted = req.query.status === 'deleted';
   res.locals.cmsfilter = {
-    status: is_deleted ? req.query.status : 'published'
+    status: is_deleted ? 'deleted' : 'published'
   };
 
-  Media.unscoped()
-      .where({is_deleted: is_deleted})
-      .order('`created_at` DESC')
+  const query = Media.unscoped().where({is_deleted: is_deleted});
+
+  const cmsfilter = ControllerUtils.getCmsfilter(req, res);
+  if (cmsfilter.site) {
+    query.where({ site: cmsfilter.site });
+  }
+
+  query.order('`created_at` DESC')
       .list(function(err, medias) {
     res.locals.medias = medias;
     res.render(plugin.dirname + '/views/admin/medias/index.dust');
@@ -32,6 +39,8 @@ module.exports.new = function(req, res) {
 //
 module.exports.create = function(req, res) {
   igo.Admin.AdminUtils.handleParams(Media, req.body);
+  const cmsfilter = ControllerUtils.getCmsfilter(req, res);
+  req.body.site = cmsfilter.site;
   Media.create(req.body, function(err, page) {
     res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
   });
@@ -66,8 +75,11 @@ module.exports.update = function(req, res) {
 //
 module.exports.upload = function(req, res, next) {
   const file = req.files.file[0];
+  const cmsfilter = ControllerUtils.getCmsfilter(req, res);
+
   const options = {
-    offer_id: req.body.offer_id
+    offer_id: req.body.offer_id,
+    site:     cmsfilter.site,
   };
   MediaService.upload(null, file, options, (err, media) => {
     if (err || !media) {
@@ -78,7 +90,7 @@ module.exports.upload = function(req, res, next) {
     }
     console.log('/medias/' + media.uuid + '/original.png');
     res.send({
-      file: {        
+      file: {
         url:  '/medias/' + media.uuid + '/original.png',
         id:   media.uuid
       }
@@ -98,8 +110,14 @@ module.exports.trash = function(req, res, next) {
 
 //
 module.exports.modal = function(req, res) {
-  Media.where({ is_deleted: false })
-      .order('`created_at` DESC')
+  const query = Media.where({ is_deleted: false });
+
+  const cmsfilter = ControllerUtils.getCmsfilter(req, res);
+  if (cmsfilter.site) {
+    query.where({ site: cmsfilter.site });
+  }
+
+  query.order('`created_at` DESC')
       .limit(50).list(function(err, medias) {
     res.locals.medias = medias;
     res.render(plugin.dirname + '/views/admin/medias/modal');

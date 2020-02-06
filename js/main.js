@@ -30,16 +30,28 @@ $(function() {
     $.get(adminpath + '/cms/medias/modal', function(html) {
       $('#select-image-modal .images').html(html);
       $('#select-image-modal .images img').click(function() {
-        var id = $(this).data('id');
-        $('.form-page-sidebar #image-id').val(id);
-        $('.form-page-sidebar #page-image').attr('src', $(this).attr('src'));
-        $('.form-page-sidebar #page-image').show();
+        const id      = $(this).data('id');
+        const target  = $('#select-image-modal').data('target');
+        $(`.form-page-sidebar #${target}-id`).val(id);
+        $(`.form-page-sidebar #page-${target}`).attr('src', $(this).attr('src'));
         $('#select-image-modal').modal('hide');
+        $(`.form-page-sidebar #${target}-id`).parent('.form-group').find('.delete-image').show();
       });
     });
   };
-  $('#select-image-modal').on('shown.bs.modal', function () {
+  $('.select-image').click(function(e) {
+    $('#select-image-modal').data('target', $(this).data('target'));
+    $('#select-image-modal').modal('show');
     refreshmodal();
+    return false;
+  });
+
+  $('.delete-image').click(function(e) {
+    const target = $(this).data('target');
+    $(`.form-page-sidebar #${target}-id`).val(null);
+    $(`.form-page-sidebar #page-${target}`).attr('src', '/cms/empty.png');
+    $(this).hide();
+    return false;
   });
 
   $('#cms-plugin-media-upload').dropzone({

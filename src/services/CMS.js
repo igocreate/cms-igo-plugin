@@ -15,7 +15,7 @@ module.exports.loadMenu = function(menu_id, filter, callback) {
 
 //
 module.exports.loadPage = function(filter, callback) {
-  Page.includes(['image', {parent: {parent: 'parent'}}, {children: {children: 'children'}}])
+  Page.includes([{parent: {parent: 'parent'}}, {children: {children: 'children'}}])
       .where(filter)
       .where({ status: 'published'})
       .order('`published_at` DESC')
@@ -23,9 +23,16 @@ module.exports.loadPage = function(filter, callback) {
 };
 
 //
-module.exports.loadPages = function(filter, callback) {
-  Page.where(filter)
-      .where({ status: 'published'})
-      .order('`published_at` DESC')
-      .list(callback);
+module.exports.loadPages = function(filter, options, callback) {
+  if (!callback) {
+    callback  = options;
+    options   = {};
+  }
+  const query = Page.where(filter)
+                    .where({ status: 'published'})
+                    .order('`published_at` DESC');
+  if (options.limit) {
+    query.limit(options.limit);
+  }
+  query.list(callback);
 };

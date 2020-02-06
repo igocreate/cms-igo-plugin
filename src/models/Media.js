@@ -7,6 +7,7 @@ const schema = {
   table:    'medias',
   columns:  [
     'id',
+    'site',
     'uuid',
     'user_id',
     'name',

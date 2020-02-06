@@ -25,6 +25,7 @@ const schema = {
     'category_slug',
     'tags',
     'image_id',
+    'banner_id',
     'menu_id',
     'menu_order',
     'parent_id',
@@ -40,13 +41,14 @@ const schema = {
   ],
   associations: () => [
     [ 'belongs_to', 'image',    Media,  'image_id', 'id' ],
+    [ 'belongs_to', 'banner',   Media,  'banner_id', 'id' ],
     [ 'belongs_to', 'parent',   Page,   'parent_id', 'id' ],
     [ 'has_many',   'children', Page,   'id',       'parent_id', { status: 'published' }],
     [ 'has_many',   'faqs',         require('./Faq'),   'id', 'parent_id', { status: 'published' }],
     [ 'belongs_to', 'faq_category', require('./FaqCategory'), 'parent_id',  'id' ],
   ],
   scopes: {
-    default: (query) => query.order('`menu_order`, `title`')
+    default: (query) => query.includes(['image', 'banner']).order('`menu_order`, `title`')
   },
   subclasses: function() {
     return {

@@ -44,7 +44,7 @@ module.exports.create = function(req, res) {
 module.exports.edit = function(req, res) {
   const cmsfilter = ControllerUtils.getCmsfilter(req, res);
 
-  Page.includes(['children', 'image']).find(req.params.id, function(err, page) {
+  Page.includes('children').find(req.params.id, function(err, page) {
     if (!page) {
       return res.redirect(plugin.options.adminpath + '/cms/pages');
     }
