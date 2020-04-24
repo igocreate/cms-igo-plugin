@@ -2,15 +2,18 @@
 const Post = require('../models/Post');
 
 //
-module.exports.categories= function(callback) {
+module.exports.categories= (filter, callback) => {
   Post.unscoped()
-      .distinct([ 'category', 'category_slug'])
+      .select('count(1) as `c`, `category`, `category_slug`')
+      .where(filter)
+      .where({ status: 'published'})
+      .group([ 'category', 'category_slug'])
       .order('category')
       .list(callback);
 };
 
 //
-module.exports.posts = function(filter, callback) {
+module.exports.posts = (filter, callback) => {
   Post.where(filter)
       .where({ status: 'published'})
       .order('`published_at` DESC')
@@ -18,7 +21,7 @@ module.exports.posts = function(filter, callback) {
 }
 
 //
-module.exports.latestPosts = function(n, filter, callback) {
+module.exports.latestPosts = (n, filter, callback) => {
   Post.where(filter)
       .where({ status: 'published'})
       .order('`published_at` DESC')
@@ -27,7 +30,7 @@ module.exports.latestPosts = function(n, filter, callback) {
 }
 
 //
-module.exports.post = function(filter, callback) {
+module.exports.post = (filter, callback) => {
   Post.where(filter)
       .where({ status: 'published'})
       .first(callback);

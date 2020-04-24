@@ -88,7 +88,6 @@ module.exports.upload = function(req, res, next) {
         message: err || 'Something went wrong...'
       });
     }
-    console.log('/medias/' + media.uuid + '/original.png');
     res.send({
       file: {
         url:  '/medias/' + media.uuid + '/original.png',
