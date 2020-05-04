@@ -1,6 +1,6 @@
 {
   "name": "cms-igo-plugin",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "CMS plugin for Igo",
   "main": "plugin.js",
   "scripts": {
