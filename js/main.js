@@ -21,6 +21,7 @@ $(function() {
     imageUpload:    adminpath + '/cms/medias/upload',
     imageResizable: true,
     imagePosition:  true,
+    linkNewTab:     true,
     plugins:        [ 'table', 'alignment', 'video' ]
   });
 
