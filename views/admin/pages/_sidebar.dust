@@ -2,23 +2,23 @@
 
   <button type="submit" class="btn btn-primary btn-block" ><i class="fa fa-save" ></i> Enregistrer</button>
 
-  {^cms_site}
+  {?sites}
     <div class="form-group">
       <label for="site">Site</label>
       <select class="form-control" name="site" id="site" >
         {#sites}<option value="{.}" {@eq key=page.site value=. }selected{/eq} >{.}</option>{/sites}
       </select>
     </div>
-  {/cms_site}
+  {/sites}
 
-  {^cms_lang}
+  {?langs}
     <div class="form-group">
       <label for="lang">Langue</label>
       <select class="form-control" name="lang" id="lang" >
         {#langs}<option value="{.}" {@eq key=page.lang value=. }selected{/eq}>{.}</option>{/langs}
       </select>
     </div>
-  {/cms_lang}
+  {/langs}
 
   {^hidepagetype}
     {?pageTypes}

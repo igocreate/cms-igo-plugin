@@ -11,19 +11,23 @@ const Page            = require('../../models/Page');
 const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   const cmsfilter = req.session.cmsfilter || {};
 
-  // detect site and lang
-  res.locals.cms_site = plugin.options.detect_site && res.locals[plugin.options.detect_site];
-  res.locals.cms_lang = plugin.options.detect_lang && res.locals[plugin.options.detect_lang];
-
-  if (plugin.options.sites && plugin.options.sites.length > 0) {
+  if (plugin.options.sites) {
+    res.locals.sites = plugin.options.sites;  
     cmsfilter.site = req.query.site || cmsfilter.site || plugin.options.sites[0];
+  } else if (plugin.options.detect_site) {
+    cmsfilter.site = res.locals[plugin.options.detect_site];
+  } else {
+    delete cmsfilter.site;
   }
-  cmsfilter.site = cmsfilter.site || res.locals.cms_site;
 
-  if (plugin.options.langs && plugin.options.langs.length > 0) {
-    cmsfilter.lang = req.query.lang || cmsfilter.lang || plugin.options.langs[0];
+  if (plugin.options.langs) {
+    res.locals.langs = plugin.options.langs;
+    cmsfilter.lang  = req.query.lang || cmsfilter.lang || plugin.options.langs[0];
+  } else if (plugin.options.detect_lang) {
+    cmsfilter.lang = res.locals[plugin.options.detect_lang];
+  } else {
+    delete cmsfilter.lang;
   }
-  cmsfilter.lang = cmsfilter.lang || res.locals.cms_lang;
 
   [ 'page_type', 'slug', 'category' ].forEach(attr => {
     if (req.query[attr] !== undefined) {
@@ -37,11 +41,9 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   cmsfilter.status = req.query.status || cmsfilter.status || 'published';
 
   res.locals.cmsfilter    = cmsfilter;
-  req.session.cmsfilter   = cmsfilter;
+  // req.session.cmsfilter   = cmsfilter;
 
-  res.locals.langs      = plugin.options.langs;
-  res.locals.sites      = plugin.options.sites;
-  res.locals.pageTypes  = plugin.options.pageTypes;
+  res.locals.pageTypes    = plugin.options.pageTypes;
 
   return cmsfilter;
 }
@@ -131,8 +133,14 @@ module.exports.create = function(model, req, res, callback) {
 
   // force lang & site
   getCmsfilter(req, res);
-  req.body.site = res.locals.cms_site || req.body.site;
-  req.body.lang = res.locals.cms_lang || req.body.lang;
+
+  // force site and lang if no options and detected
+  if (!plugin.options.sites && plugin.options.detect_site) {
+    req.body.site = res.locals[plugin.options.detect_site];
+  }
+  if (!plugin.options.langs && plugin.options.detect_lang) {
+    req.body.lang = res.locals[plugin.options.detect_lang];
+  }
 
   req.body.slug = req.body.slug || StringUtils.slugify(req.body.slug || req.body.title);
   if (!req.body.published_at && req.body.status === 'published') {
@@ -154,9 +162,18 @@ module.exports.update = function(model, req, res, callback) {
 
   // force lang & site
   getCmsfilter(req, res);
-  req.body.site = res.locals.cms_site || req.body.site;
-  req.body.lang = res.locals.cms_lang || req.body.lang;
 
+  // do not allow change site and lang if no options
+  if (!plugin.options.sites) {
+    delete req.body.site;
+  }
+  if (!plugin.options.langs) {
+    delete req.body.lang;
+  }
+
+  if (plugin.options.detect_lang) {
+    req.body.lang = res.locals[plugin.options.detect_lang];
+  }
   model.find(req.params.id, function(err, page) {
     req.body.slug = req.body.slug || StringUtils.slugify(req.body.slug || req.body.title);
     if (!req.body.published_at && req.body.status === 'published') {

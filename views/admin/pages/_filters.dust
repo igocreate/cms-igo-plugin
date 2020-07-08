@@ -1,22 +1,22 @@
 
 <form action="" method="get">
 
-  {^cms_site}
+  {?sites}
     <div class="form-group">
       <label for="site">Site</label>
       <select class="form-control" name="site" id="site" >
         {#sites}<option value="{.}" {@eq key=cmsfilter.site value=. }selected{/eq}>{.}</option>{/sites}
       </select>
     </div>
-  {/cms_site}
-  {^cms_lang}
+  {/sites}
+  {?langs}
     <div class="form-group">
       <label for="lang">Langue</label>
       <select class="form-control" name="lang" id="lang" >
         {#langs}<option value="{.}" {@eq key=cmsfilter.lang value=. }selected{/eq}>{.}</option>{/langs}
       </select>
     </div>
-  {/cms_lang}
+  {/langs}
   {^hidepagetype}
     {?pageTypes}
       <div class="form-group">
