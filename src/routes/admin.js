@@ -11,46 +11,46 @@ const FaqCategoriesController = require('../controllers/admin/FaqCategoriesContr
 const MediasController        = require('../controllers/admin/MediasController');
 
 
-router.all('/cms*',                   IndexController.filter);
+router.all ('*',                   IndexController.filter);
 
-router.get ('/cms',                   IndexController.index);
+router.get ('',                   IndexController.index);
 
 // Pages
-router.get ('/cms/pages',             PagesController.index);
-router.get ('/cms/pages/new',         PagesController.new);
-router.post('/cms/pages',             PagesController.create);
-router.get ('/cms/pages/:id/edit',    PagesController.edit);
-router.post('/cms/pages/:id',         PagesController.update);
-router.get ('/cms/pages/:id/trash',   PagesController.trash);
+router.get ('/pages',             PagesController.index);
+router.get ('/pages/new',         PagesController.new);
+router.post('/pages',             PagesController.create);
+router.get ('/pages/:id/edit',    PagesController.edit);
+router.post('/pages/:id',         PagesController.update);
+router.get ('/pages/:id/trash',   PagesController.trash);
 
 // Postss
-router.get ('/cms/posts',             PostsController.index);
-router.get ('/cms/posts/new',         PostsController.new);
-router.post('/cms/posts',             PostsController.create);
-router.get ('/cms/posts/:id/edit',    PostsController.edit);
-router.post('/cms/posts/:id',         PostsController.update);
-router.get ('/cms/posts/:id/trash',   PostsController.trash);
+router.get ('/posts',             PostsController.index);
+router.get ('/posts/new',         PostsController.new);
+router.post('/posts',             PostsController.create);
+router.get ('/posts/:id/edit',    PostsController.edit);
+router.post('/posts/:id',         PostsController.update);
+router.get ('/posts/:id/trash',   PostsController.trash);
 
 // FAQ
-router.all ('/cms/faq*',              FaqCategoriesController.faq);
-router.get ('/cms/faq',               FaqCategoriesController.index);
-router.get ('/cms/faq/new',           FaqCategoriesController.new);
-router.post('/cms/faq',               FaqCategoriesController.create);
-router.get ('/cms/faq/:id/edit',      FaqCategoriesController.edit);
-router.get ('/cms/faq/:id',           FaqCategoriesController.show);
-router.post('/cms/faq/:id',           FaqCategoriesController.update);
-router.get ('/cms/faq/:id/trash',     FaqCategoriesController.trash);
+router.all ('/faq*',              FaqCategoriesController.faq);
+router.get ('/faq',               FaqCategoriesController.index);
+router.get ('/faq/new',           FaqCategoriesController.new);
+router.post('/faq',               FaqCategoriesController.create);
+router.get ('/faq/:id/edit',      FaqCategoriesController.edit);
+router.get ('/faq/:id',           FaqCategoriesController.show);
+router.post('/faq/:id',           FaqCategoriesController.update);
+router.get ('/faq/:id/trash',     FaqCategoriesController.trash);
 
-router.get ('/cms/faq/:cat_id/new',           FaqController.new);
-router.post('/cms/faq/:cat_id/new',           FaqController.create);
-router.get ('/cms/faq/:cat_id/:id/edit',      FaqController.edit);
-router.post('/cms/faq/:cat_id/:id',           FaqController.update);
-router.get ('/cms/faq/:cat_id/:id/trash',     FaqController.trash);
+router.get ('/faq/:cat_id/new',           FaqController.new);
+router.post('/faq/:cat_id/new',           FaqController.create);
+router.get ('/faq/:cat_id/:id/edit',      FaqController.edit);
+router.post('/faq/:cat_id/:id',           FaqController.update);
+router.get ('/faq/:cat_id/:id/trash',     FaqController.trash);
 
 // Medias
-router.get ('/cms/medias',            MediasController.index);
-router.post('/cms/medias/upload',     MediasController.upload);
-router.get ('/cms/medias/modal',      MediasController.modal);
-router.get ('/cms/medias/:id/trash',  MediasController.trash);
+router.get ('/medias',            MediasController.index);
+router.post('/medias/upload',     MediasController.upload);
+router.get ('/medias/modal',      MediasController.modal);
+router.get ('/medias/:id/trash',  MediasController.trash);
 
 module.exports = router;

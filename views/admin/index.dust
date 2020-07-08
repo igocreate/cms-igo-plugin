@@ -4,8 +4,8 @@
 {<content}
 
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{options.adminpath}/cms">Admin</a></li>
-    <li class="breadcrumb-item active"> CMS</li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
+    <li class="breadcrumb-item active">CMS</li>
   </ol>
 
   <h1>CMS plugin</h1>
