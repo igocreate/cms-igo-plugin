@@ -142,6 +142,10 @@ module.exports.create = function(model, req, res, callback) {
     req.body.lang = res.locals[plugin.options.detect_lang];
   }
 
+  if (!req.body.page_type) {
+    req.body.page_type = 'page';
+  }
+
   req.body.slug = req.body.slug || StringUtils.slugify(req.body.slug || req.body.title);
   if (!req.body.published_at && req.body.status === 'published') {
     req.body.published_at = new Date();
