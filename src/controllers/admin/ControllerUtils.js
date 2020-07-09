@@ -3,6 +3,7 @@ const _               = require('lodash');
 const async           = require('async');
 const plugin          = require('../../../plugin');
 const igo             = plugin.igo;
+const FilterUtils     = require('../../utils/FilterUtils');
 const StringUtils     = require('../../utils/StringUtils');
 
 const Page            = require('../../models/Page');
@@ -11,23 +12,8 @@ const Page            = require('../../models/Page');
 const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   const cmsfilter = req.session.cmsfilter || {};
 
-  if (plugin.options.sites) {
-    res.locals.sites = plugin.options.sites;  
-    cmsfilter.site = req.query.site || cmsfilter.site || plugin.options.sites[0];
-  } else if (plugin.options.detect_site) {
-    cmsfilter.site = res.locals[plugin.options.detect_site];
-  } else {
-    delete cmsfilter.site;
-  }
-
-  if (plugin.options.langs) {
-    res.locals.langs = plugin.options.langs;
-    cmsfilter.lang  = req.query.lang || cmsfilter.lang || plugin.options.langs[0];
-  } else if (plugin.options.detect_lang) {
-    cmsfilter.lang = res.locals[plugin.options.detect_lang];
-  } else {
-    delete cmsfilter.lang;
-  }
+  FilterUtils.getSiteFilter(req, res, cmsfilter);
+  FilterUtils.getLangFilter(req, res, cmsfilter);
 
   [ 'page_type', 'slug', 'category' ].forEach(attr => {
     if (req.query[attr] !== undefined) {

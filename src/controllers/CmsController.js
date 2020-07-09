@@ -6,6 +6,7 @@ const Page        = require('../models/Page');
 const FaqCategory = require('../models/FaqCategory');
 const CMS         = require('../services/CMS');
 const { options } = require('../../plugin');
+const FilterUtils = require('../utils/FilterUtils');
 
 //
 module.exports.loadMenu = (menu_id) => {
@@ -28,15 +29,11 @@ module.exports.loadMenu = (menu_id) => {
 //
 module.exports.page = function(req, res, next) {
 
-  CMS.loadPage({
-    slug: req.params.slug,
-    lang: res.locals.lang,
-    site: res.locals.site,
-  }, (err, page) => {
+  CMS.loadPage(FilterUtils.loadPageFilter(req, res), (err, page) => {
     if (!page) {
       return next();
     }
-    res.render(options.templates.cms_show, { page });
+    res.render(`${options.templates.dir}/${page.page_type}.dust`, { page });
   });
 
 };
