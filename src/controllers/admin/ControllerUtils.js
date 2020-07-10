@@ -117,6 +117,10 @@ module.exports.create = function(model, req, res, callback) {
     req.body[attr] = req.body[attr] || null;
   });
 
+  if(!req.body.meta_title){
+    req.body.meta_title = req.body.title;
+  }
+
   // force lang & site
   getCmsfilter(req, res);
 
