@@ -4,7 +4,7 @@ const uuidV4    = require('uuid/v4');
 const Model     = require('../../plugin').igo.Model;
 
 const schema = {
-  table:    'medias',
+  table:    'cms_medias',
   columns:  [
     'id',
     'site',

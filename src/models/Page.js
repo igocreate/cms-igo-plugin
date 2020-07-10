@@ -8,7 +8,7 @@ const Media       = require('./Media');
 
 //
 const schema = {
-  table:    'pages',
+  table:    'cms_pages',
   columns:  [
     'id',
     'author_id',
