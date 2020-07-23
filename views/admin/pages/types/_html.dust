@@ -1,0 +1,5 @@
+<div class="form-group">
+  <textarea id="cms-plugin-redactor" name="{.attr}" data-adminpath={options.adminpath} >
+    {page[.attr]}
+  </textarea>
+</div>

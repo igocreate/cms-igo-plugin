@@ -1,9 +1,3 @@
-<div class="form-group">
-  <input type="text" class="form-control form-control-lg" id="title" name="title" placeholder="Titre" value="{page.title}" />
-</div>
-
-<div class="form-group">
-  <textarea id="cms-plugin-redactor" name="body" data-adminpath={options.adminpath} >
-    {page.body}
-  </textarea>
-</div>
+{#fields}
+  {> "{dirname}/views/admin/pages/types/_{.type}" /}
+{/fields}

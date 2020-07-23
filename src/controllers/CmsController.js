@@ -29,7 +29,8 @@ module.exports.loadMenu = (menu_id) => {
 //
 module.exports.page = function(req, res, next) {
 
-  CMS.loadPage(FilterUtils.loadPageFilter(req, res), (err, page) => {
+  const cmsfilter = FilterUtils.loadPageFilter(req, res);
+  CMS.loadPage(cmsfilter, (err, page) => {
     if (!page) {
       return next();
     }

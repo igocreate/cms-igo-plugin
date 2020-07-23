@@ -5,7 +5,7 @@ const plugin = {
     adminpath:    '/admin',
     adminlayout:  'layouts/main',
     templates: {
-      dir:        __dirname + '/views/templates',
+      dir:        'cms',
       cms_show:   __dirname + '/views/templates/page.dust',
       faq_index:  __dirname + '/views/faq/index.dust'
     },

@@ -5,6 +5,6 @@ const router        = igo.express.Router();
 const CmsController     = require('../controllers/CmsController');
 
 // Cms pages
-router.get('/:page',    CmsController.page);
+router.get('/:slug',    CmsController.page);
 
 module.exports = router;

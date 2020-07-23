@@ -43,7 +43,7 @@
                 <tr>
                   <th class="th-page-title">Catégorie</th>
                   <th class="">Questions</th>
-                  <th class="th-page-updated-at">Modifié le</th>
+                  <th class="th-page-updated-at">Dernière modification</th>
                   <th class="th-page-actions" width="110"></th>
                 </tr>
               </thead>
