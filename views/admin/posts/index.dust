@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
         <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
-        <li class="breadcrumb-item active">Blog Posts</li>
+        <li class="breadcrumb-item active">Posts</li>
       </ol>
     </div>
     <div class="col-md-5 text-right">

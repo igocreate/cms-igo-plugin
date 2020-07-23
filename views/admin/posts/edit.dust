@@ -6,7 +6,7 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
     <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
-    <li class="breadcrumb-item"><a href="{options.adminpath}/cms/posts">Blog Posts</a></li>
+    <li class="breadcrumb-item"><a href="{options.adminpath}/cms/posts">Posts</a></li>
     <li class="breadcrumb-item active">{page.title}</li>
   </ol>
 

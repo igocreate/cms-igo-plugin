@@ -1,6 +1,8 @@
 
 {> "{options.adminlayout}" /}
 
+{<title}Nouvelle Page{/title}
+
 {<content}
 
   <ol class="breadcrumb">

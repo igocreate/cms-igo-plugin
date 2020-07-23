@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
         <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
-        <li class="breadcrumb-item active">Site Pages</li>
+        <li class="breadcrumb-item active">Pages</li>
       </ol>
     </div>
     <div class="col-md-5 text-right">
@@ -19,9 +19,9 @@
   <div class="cms-igo-plugin">
 
     <div class="row">
-      <div class="col-sm-8 mb-3" >
+      <div class="col-sm-8" >
 
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-pills mb-3">
           <li class="nav-item">
             <a class="nav-link {@eq key=cmsfilter.status value="published"}active{/eq}" href="?status=published">Publiées</a>
           </li>
@@ -40,7 +40,7 @@
                 <tr>
                   <th class="th-page-title">Titre</th>
                   <th class="th-page-updated-at">Modifiée le</th>
-                  <th class="th-page-actions" width="110"></th>
+                  <th class="th-page-actions" width="120"></th>
                 </tr>
               </thead>
               {#pages}
@@ -53,7 +53,7 @@
                     {/eq}
 
                     <br/>
-                    <span class="slug">{.slug} </span>
+                    <span class="slug">/{.slug} </span>
                     {?.page_type}&nbsp;<span class="badge badge-primary">{pageTypesByType[.page_type].label}</span>{/.page_type}
                     {?.category}&nbsp;<span class="badge badge-secondary">{.category}</span>{/.category}
 

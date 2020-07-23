@@ -1,5 +1,5 @@
 
-const uuidV4    = require('uuid/v4');
+const uuidV4    = require('uuid').v4;
 
 const Model     = require('../../plugin').igo.Model;
 

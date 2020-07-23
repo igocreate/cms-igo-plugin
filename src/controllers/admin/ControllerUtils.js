@@ -117,9 +117,6 @@ module.exports.create = function(model, req, res, callback) {
     req.body[attr] = req.body[attr] || null;
   });
 
-  if(!req.body.meta_title){
-    req.body.meta_title = req.body.title;
-  }
 
   // force lang & site
   getCmsfilter(req, res);
@@ -132,14 +129,13 @@ module.exports.create = function(model, req, res, callback) {
     req.body.lang = res.locals[plugin.options.detect_lang];
   }
 
-  if (!req.body.page_type) {
-    req.body.page_type = 'page';
-  }
-
-  req.body.slug = req.body.slug || StringUtils.slugify(req.body.slug || req.body.title);
+  req.body.meta_title = req.body.meta_title || req.body.title;
+  req.body.page_type  = req.body.page_type || 'page';
+  req.body.slug       = req.body.slug || StringUtils.slugify(req.body.title);
   if (!req.body.published_at && req.body.status === 'published') {
     req.body.published_at = new Date();
   }
+  
   model.find(req.body.parent_id, function(err, parent) {
     req.body.level = parent ? parent.level + 1 : 0;
     model.create(req.body, callback);
@@ -168,11 +164,14 @@ module.exports.update = function(model, req, res, callback) {
   if (plugin.options.detect_lang) {
     req.body.lang = res.locals[plugin.options.detect_lang];
   }
+
+  req.body.meta_title = req.body.meta_title || req.body.title;
+  req.body.slug       = req.body.slug || StringUtils.slugify(req.body.slug);
+  if (!req.body.published_at && req.body.status === 'published') {
+    req.body.published_at = new Date();
+  }
+
   model.find(req.params.id, function(err, page) {
-    req.body.slug = req.body.slug || StringUtils.slugify(req.body.slug || req.body.title);
-    if (!req.body.published_at && req.body.status === 'published') {
-      req.body.published_at = new Date();
-    }
     model.find(req.body.parent_id, function(err, parent) {
       req.body.level = parent ? parent.level + 1 : 0;
       page.update(req.body, callback);
@@ -185,7 +184,7 @@ module.exports.trash = function(req, res, next) {
   Page.find(req.params.id, function(err, page) {
     page.update({ status: 'trashed' }, function() {
       req.flash('success', 'Page supprimée');
-      return res.redirect(plugin.options.adminpath + '/cms/pages')
+      return res.redirect(plugin.options.adminpath + '/pages')
     });
   });
 };
