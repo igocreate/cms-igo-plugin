@@ -21,6 +21,7 @@ const schema = {
     'meta_description',
     'excerpt',
     'body',
+    'content_json',
     'category',
     'category_slug',
     'tags',
@@ -74,20 +75,6 @@ class Page extends Model(schema) {
     if (this.category) {
       this.category_slug = StringUtils.slugify(this.category);
     }
-    if (!this.published_at && this.status === 'published') {
-      this.published_at = new Date();
-    }
-    callback();
-  }
-
-  beforeUpdate(values, callback) {
-    values.category_slug = values.category ? StringUtils.slugify(values.category) : null;
-    // if (!this.slug) {
-    //   values.slug = StringUtils.slugify(values.slug || values.title || this.title) || null;
-    // }
-    // if (!this.published_at && this.status === 'published') {
-    //   values.published_at = new Date();
-    // }
     callback();
   }
 

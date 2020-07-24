@@ -8,6 +8,63 @@ const StringUtils     = require('../../utils/StringUtils');
 
 const Page            = require('../../models/Page');
 
+const FIELDS = [
+  'id',
+  'title', 'body', 'page_type', 'slug',
+  'site', 'lang',
+  'meta_title', 'meta_description', 'subtitle', 'excerpt',
+  'image_id', 'banner_id', 'menu_id', 'parent_id',
+  'menu_order', 'category', 'tags', 'published_at'
+];
+
+const getParams = (req, res) => {
+  const { options } = plugin;
+
+  // force lang & site
+  getCmsfilter(req, res);
+  
+  const params = {};
+  FIELDS.forEach(function(attr) {
+    params[attr] = req.body[attr] || null;
+  });
+
+  const pageType = _.find(options.pageTypes, {type: params.page_type});
+  // page type structure
+  if (pageType && pageType.structure) {
+    params.content = {};
+    _.each(pageType.structure, field => {
+      params.content[field.attr] = req.body[field.attr] || null;
+    });
+  }
+
+  // force site and lang if no options and detected
+  if (!plugin.options.sites && plugin.options.detect_site) {
+    params.site = res.locals[plugin.options.detect_site];
+  }
+  if (!plugin.options.langs && plugin.options.detect_lang) {
+    params.lang = res.locals[plugin.options.detect_lang];
+  }
+
+  // do not allow change site and lang if no options
+  // if (!plugin.options.sites) {
+  //   delete req.body.site;
+  // }
+  // if (!plugin.options.langs) {
+  //   delete req.body.lang;
+  // }
+
+  params.meta_title     = params.meta_title || req.body.title;
+  params.page_type      = params.page_type || 'page';
+  params.slug           = params.slug || StringUtils.slugify(params.title);
+  params.category_slug  = params.category && StringUtils.slugify(params.category);
+
+  if (!params.published_at && params.status === 'published') {
+    params.published_at = new Date();
+  }
+
+  return params;
+}
+
 //
 const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   const cmsfilter = req.session.cmsfilter || {};
@@ -27,7 +84,7 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   cmsfilter.status = req.query.status || cmsfilter.status || 'published';
 
   res.locals.cmsfilter    = cmsfilter;
-  // req.session.cmsfilter   = cmsfilter;
+  req.session.cmsfilter   = cmsfilter;
 
   res.locals.pageTypes    = plugin.options.pageTypes;
 
@@ -36,7 +93,8 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
 
 //
 const applyCmsFilter = (model, cmsfilter) => {
-  const query = model.where(_.pick(cmsfilter, ['site', 'lang', 'status', 'page_type']));
+  const filter  = _.pick(cmsfilter, ['site', 'lang', 'status', 'page_type']);
+  const query   = model.where(filter);
   ['slug', 'category'].forEach(attr => {
     if (cmsfilter[attr]) {
       query.where(`\`${attr}\` like CONCAT('%', ?,  '%')`, cmsfilter[attr]);
@@ -78,8 +136,8 @@ module.exports.index = function(model, req, res, callback) {
     delete cmsfilter.page_type;
   }
 
-  if (cmsfilter.status === 'published' && model.name === 'Page'
-      && !cmsfilter.category && !cmsfilter.slug && !cmsfilter.page_type) {
+  if (cmsfilter.status === 'published' && model.name === 'Page' &&
+      !cmsfilter.category && !cmsfilter.slug && !cmsfilter.page_type) {
     res.locals.showtree = true;
     return module.exports.showTree(model, cmsfilter, callback);
   }
@@ -111,70 +169,24 @@ module.exports.new = function(model, req, res, callback) {
 
 //
 module.exports.create = function(model, req, res, callback) {
-  [ 'image_id', 'banner_id', 'menu_id', 'parent_id',
-    'menu_order', 'category', 'published_at'
-  ].forEach(function(attr) {
-    req.body[attr] = req.body[attr] || null;
-  });
 
-
-  // force lang & site
-  getCmsfilter(req, res);
-
-  // force site and lang if no options and detected
-  if (!plugin.options.sites && plugin.options.detect_site) {
-    req.body.site = res.locals[plugin.options.detect_site];
-  }
-  if (!plugin.options.langs && plugin.options.detect_lang) {
-    req.body.lang = res.locals[plugin.options.detect_lang];
-  }
-
-  req.body.meta_title = req.body.meta_title || req.body.title;
-  req.body.page_type  = req.body.page_type || 'page';
-  req.body.slug       = req.body.slug || StringUtils.slugify(req.body.title);
-  if (!req.body.published_at && req.body.status === 'published') {
-    req.body.published_at = new Date();
-  }
+  const params = getParams(req, res);
   
-  model.find(req.body.parent_id, function(err, parent) {
-    req.body.level = parent ? parent.level + 1 : 0;
-    model.create(req.body, callback);
+  model.find(params.parent_id, function(err, parent) {
+    params.level = parent ? parent.level + 1 : 0;
+    model.create(params, callback);
   });
 };
 
 //
 module.exports.update = function(model, req, res, callback) {
-  [ 'image_id', 'banner_id', 'menu_id', 'parent_id',
-    'menu_order', 'category', 'published_at'
-  ].forEach(function(attr) {
-    req.body[attr] = req.body[attr] || null;
-  });
 
-  // force lang & site
-  getCmsfilter(req, res);
+  const params = getParams(req, res);
 
-  // do not allow change site and lang if no options
-  if (!plugin.options.sites) {
-    delete req.body.site;
-  }
-  if (!plugin.options.langs) {
-    delete req.body.lang;
-  }
-
-  if (plugin.options.detect_lang) {
-    req.body.lang = res.locals[plugin.options.detect_lang];
-  }
-
-  req.body.meta_title = req.body.meta_title || req.body.title;
-  req.body.slug       = req.body.slug || StringUtils.slugify(req.body.slug);
-  if (!req.body.published_at && req.body.status === 'published') {
-    req.body.published_at = new Date();
-  }
-
-  model.find(req.params.id, function(err, page) {
-    model.find(req.body.parent_id, function(err, parent) {
-      req.body.level = parent ? parent.level + 1 : 0;
-      page.update(req.body, callback);
+  model.find(params.id, function(err, page) {
+    model.find(params.parent_id, function(err, parent) {
+      params.level = parent ? parent.level + 1 : 0;
+      page.update(params, callback);
     });
   });
 };

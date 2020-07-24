@@ -1,3 +1,4 @@
 <div class="form-group">
+  <label for="{.attr}">{.label}</label>
   <input type="text" class="form-control form-control-lg" id="{.attr}" name="{.attr}" placeholder="{.title}" value="{page[.attr]}" />
 </div>
