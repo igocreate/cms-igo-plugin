@@ -4,14 +4,14 @@
 {<content}
 
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-8">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
         <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
         <li class="breadcrumb-item active">Pages</li>
       </ol>
     </div>
-    <div class="col-md-5 text-right">
+    <div class="col-md-4 text-right">
       <a href="{options.adminpath}/cms/pages/new?page_type={cmsfilter.page_type}" class="btn btn-secondary" ><i class="fa fa-edit"></i> Nouvelle Page</a>
     </div>
   </div>

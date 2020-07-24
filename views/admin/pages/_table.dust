@@ -23,8 +23,8 @@
         </td>
         <td class="td-page-date">{@dateformat date=.updated_at /}</td>
         <td class="actions text-right">
-          <a href="{options.adminpath}/cms/pages/{.id}/edit" class="btn btn-sm btn-light" ><i class="fa fa-edit"></i></a>
-          &nbsp;<a href="{options.adminpath}/cms/pages/new?copy={.id}" class="btn btn-sm btn-light" ><i class="fa fa-copy"></i></a>
+          <a href="{options.adminpath}/cms/pages/{.id}/edit" class="btn btn-sm btn-dark" ><i class="fa fa-edit"></i></a>
+          &nbsp;<a href="{options.adminpath}/cms/pages/new?copy={.id}" class="btn btn-sm btn-dark" ><i class="fa fa-copy"></i></a>
           {@ne key=.status value="trashed"}
             &nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>
           {/ne}

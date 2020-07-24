@@ -4,14 +4,14 @@
 {<content}
 
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-8">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
         <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
         <li class="breadcrumb-item active">Posts</li>
       </ol>
     </div>
-    <div class="col-md-5 text-right">
+    <div class="col-md-4 text-right">
       <a href="{options.adminpath}/cms/posts/new" class="btn btn-secondary" ><i class="fa fa-edit" ></i> Nouveau Post</a>
     </div>
   </div>
@@ -56,8 +56,8 @@
                   </td>
                   <td class="td-page-date">{@dateformat date=.updated_at /}</td>
                   <td class="actions text-right">
-                    <a href="{options.adminpath}/cms/posts/{.id}/edit" class="btn btn-sm btn-light" ><i class="fa fa-edit"></i></a>
-                    &nbsp;<a href="{options.adminpath}/cms/posts/new?copy={.id}" class="btn btn-sm btn-light" ><i class="fa fa-copy"></i></a>
+                    <a href="{options.adminpath}/cms/posts/{.id}/edit" class="btn btn-sm btn-dark" ><i class="fa fa-edit"></i></a>
+                    &nbsp;<a href="{options.adminpath}/cms/posts/new?copy={.id}" class="btn btn-sm btn-dark" ><i class="fa fa-copy"></i></a>
                     {@ne key=.status value="trashed"}
                       &nbsp;<a href="{options.adminpath}/cms/posts/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>
                     {/ne}

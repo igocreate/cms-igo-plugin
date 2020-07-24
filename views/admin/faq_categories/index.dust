@@ -59,7 +59,7 @@
                   <td class="td-page-date">{@dateformat date=.updated_at /}</td>
                   <td class="actions text-right">
                     <a href="{options.adminpath}/cms/faq/{.id}" class="btn btn-sm btn-info" ><i class="fa fa-eye"></i></a>
-                    &nbsp;<a href="{options.adminpath}/cms/faq/{.id}/edit" class="btn btn-sm btn-light" ><i class="fa fa-edit"></i></a>
+                    &nbsp;<a href="{options.adminpath}/cms/faq/{.id}/edit" class="btn btn-sm btn-dark" ><i class="fa fa-edit"></i></a>
                     {@ne key=.status value="trashed"}
                       &nbsp;<a href="{options.adminpath}/cms/faq/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>
                     {/ne}
