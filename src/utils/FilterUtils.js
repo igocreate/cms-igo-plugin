@@ -31,7 +31,7 @@ module.exports.loadPageFilter = function(req, res) {
   const lang = getLangFilter(req, res, cmsfilter);
 
   const filter = {};
-  filter.slug = req.params.slug;
+  filter.slug = req.params.slug || '';
   
   if (site) {
     filter.site = site;
