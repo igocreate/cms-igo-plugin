@@ -25,7 +25,7 @@ module.exports.new = function(req, res) {
     ControllerUtils.showTree(Page, filter, (err, pages) => {
       ControllerUtils.getObjectTypes((err, objectTypes) => {
         res.locals.pageTypes   = plugin.options.pageTypes;
-        res.render(plugin.dirname + '/views/admin/pages/new.dust', { pages, objectTypes, fields });
+        res.render(plugin.dirname + '/views/admin/pages/new', { pages, objectTypes, fields });
       });
     });
   });
@@ -52,6 +52,10 @@ module.exports.edit = function(req, res) {
     if (!page) {
       return res.redirect(plugin.options.adminpath + '/cms/pages');
     }
+    // switch page_type
+    if (req.query.page_type) {
+      page.page_type = req.query.page_type;
+    }
     const page_type = _.find(plugin.options.pageTypes, { type: page.page_type }) || plugin.options.pageTypes[0];
     const fields    = page_type.structure;
     
@@ -61,7 +65,7 @@ module.exports.edit = function(req, res) {
     ControllerUtils.showTree(Page, filter, (err, pages) => {
       ControllerUtils.getObjectTypes((err, objectTypes) => {
         res.locals.pageTypes    = plugin.options.pageTypes;
-        res.render(plugin.dirname + '/views/admin/pages/edit.dust', { pages, objectTypes, fields });
+        res.render(plugin.dirname + '/views/admin/pages/edit', { pages, objectTypes, fields });
       });
     });
   });
