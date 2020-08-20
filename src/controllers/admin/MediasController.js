@@ -81,6 +81,8 @@ module.exports.upload = function(req, res, next) {
     offer_id: req.body.offer_id,
     site:     cmsfilter.site,
   };
+  file.type = file.headers && file.headers['content-type'];
+  
   MediaService.upload(null, file, options, (err, media) => {
     if (err || !media) {
       return res.send({

@@ -9,15 +9,15 @@ module.exports.show = function(req, res) {
     format:   req.params.format,
     site:     res.locals.site
   };
-  MediaService.download(user, options, function(err, data, file) {
+  MediaService.download(user, options, function(err, data, media) {
     if (err) {
       return res.status(404).send('Not found');
     }
-    if (file.type) {
-      res.setHeader('Content-type', file.type);
+    if (media.type) {
+      res.setHeader('Content-type', media.type);
     }
-    if (file.size) {
-      res.setHeader('Content-Length', file.size);
+    if (media.size) {
+      res.setHeader('Content-Length', media.size);
     }
     if (err) {
       return res.status(404).send('Not found');

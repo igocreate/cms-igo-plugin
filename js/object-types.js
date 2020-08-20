@@ -1,7 +1,7 @@
 
 $(function() {
 
-  if ($('#page_type').length < 1 || !objectTypes) {
+  if ($('#page_type').length < 1 || (typeof objectTypes === 'undefined')) {
     return ;
   }
 

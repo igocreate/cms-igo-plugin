@@ -1,9 +1,18 @@
 
+@import '../node_modules/dropzone/dist/dropzone.css';
+
 .cms-igo-plugin {
 
   .slug {
     font-size: .8rem;
     color: #999;
+  }
+
+  .btn-submit {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+    z-index: 100;
   }
 
   .fa-external-link {
@@ -48,13 +57,16 @@
     }
   }
 
-  .media-thumbnail {
-    width: 100px;
-  }
-
   .delete-image {
     margin-left: 1rem;
     color: rgb(239, 129, 87);
+  }
+
+  img.image {
+    &:hover {
+      cursor: pointer;
+      opacity: .8;
+    }
   }
 }
 

@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th class="th-page-title">Titre</th>
+        <th></th>
         <th class="th-page-updated-at">Dernière modification</th>
         <th class="th-page-actions" width="120"></th>
       </tr>
@@ -15,11 +16,10 @@
           {@eq key=.status value="published"}
             <small><a href="{.url}" target="_blank"><i class="fa fa-external-link"></i></a></small>
           {/eq}
-
-          <br/>
+        </td>
+        <td>
           {?.page_type}<span class="badge badge-light">{pageTypesByType[.page_type].label}</span>&nbsp;{/.page_type}
           {?.category}<span class="badge badge-light">{.category}</span>{/.category}
-
         </td>
         <td class="td-page-date">{@dateformat date=.updated_at /}</td>
         <td class="actions text-right">

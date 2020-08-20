@@ -1,16 +1,13 @@
 
-const plugin  = require('../../plugin');
-const igo     = plugin.igo;
-
-const config  = igo.config;
-const logger  = igo.logger;
-const cache   = igo.cache;
-
 const _       = require('lodash');
-const Media   = require('../models/Media');
-
-const OVH     = require('./OVH');
 const gm      = require('gm').subClass({ imageMagick: true });
+
+const plugin  = require('../../plugin');
+const Media   = require('../models/Media');
+const OVH     = require('./OVH');
+
+const { config, cache, logger } = plugin.igo;
+
 
 const FORMATS = _.merge({
   thumbnail: {
@@ -86,7 +83,7 @@ module.exports.upload = function(user, file, options, callback) {
 
   options = options || {};
 
-  const container   = (config.ovh.containerprefix || '') + 'medias';
+  const container   = config.ovh_storage.container;
   const title       = '/media-' + Date.now();
   const user_id     = user ? user.id : null;
 

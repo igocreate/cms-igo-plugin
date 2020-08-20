@@ -39,7 +39,7 @@ module.exports.create = function(req, res) {
       req.cacheflash('page', req.body);
       return res.redirect(plugin.options.adminpath + '/cms/pages/new');
     }
-    res.redirect(plugin.options.adminpath + '/cms/pages');
+    res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
   });
 };
 
@@ -78,7 +78,7 @@ module.exports.update = function(req, res) {
       req.flash('error', err);
       req.cacheflash('page', req.body);
     }
-    res.redirect(plugin.options.adminpath + '/cms/pages');
+    res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
   });
 };
 

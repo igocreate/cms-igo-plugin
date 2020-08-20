@@ -19,6 +19,7 @@
           {> "{dirname}/views/admin/pages/_form.dust" /}
 
           <div class="mt-5">
+            <hr/>
             {?page.children}
               {> "{dirname}/views/admin/pages/_table" pages=page.children /}
             {/page.children}

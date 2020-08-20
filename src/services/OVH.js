@@ -5,10 +5,8 @@ const OVHStorage      = require('node-ovh-storage');
 const stringToStream  = require('string-to-stream');
 
 const plugin          = require('../../plugin');
-const igo             = plugin.igo;
 
-const config          = igo.config;
-const logger          = igo.logger;
+const { config, logger }  = plugin.igo;
 
 
 //
@@ -17,7 +15,7 @@ module.exports.putFile = function(src, dest, options, callback) {
     if (err) {
       return callback(err);
     }
-    const storage = new OVHStorage(config.ovh);
+    const storage = new OVHStorage(config.ovh_storage);
     storage.getToken(function(err) {
       if (err) {
         logger.error('Could not get token', err);
@@ -48,7 +46,7 @@ module.exports.getFile = function(path, options, callback) {
     callback  = options;
     options   = {};
   }
-  const storage   = new OVHStorage(config.ovh);
+  const storage   = new OVHStorage(config.ovh_storage);
   storage.getToken(function(err) {
     if (err) {
       logger.error(err);

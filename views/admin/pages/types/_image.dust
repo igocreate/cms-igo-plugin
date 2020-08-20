@@ -1,0 +1,8 @@
+<div class="form-group form-image">
+  <label for="{.attr}">{.label}</label>
+  <a href="#" class="delete-image" data-target="image" {^page.content[.attr]}style="display:none;"{/page.content[.attr]}><i class="fa fa-trash"></i></a>
+  <div class="pb-2">
+    <img {?page.content[.attr]}src="/medias/{page.content[.attr].uuid}/thumbnail/{page.content[.attr].filename|u}"{:else}src="/cms/empty.png"{/page.content[.attr]} class="img-fluid image select-image" id="{.attr}" />
+  </div>
+  <input type="hidden" id="{.attr}" name="{.attr}" value="{page.content[.attr].id}" />
+</div>

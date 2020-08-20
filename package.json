@@ -16,9 +16,9 @@
     "async": "^3.2.0",
     "dropzone": "^5.7.2",
     "gm": "^1.23.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "node-ovh-storage": "^0.2.0",
     "string-to-stream": "^3.0.1",
-    "uuid": "^8.2.0"
+    "uuid": "^8.3.0"
   }
 }

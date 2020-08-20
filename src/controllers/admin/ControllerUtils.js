@@ -7,6 +7,7 @@ const FilterUtils     = require('../../utils/FilterUtils');
 const StringUtils     = require('../../utils/StringUtils');
 
 const Page            = require('../../models/Page');
+const Media = require('../../models/Media');
 
 const FIELDS = [
   'id',
@@ -17,7 +18,28 @@ const FIELDS = [
   'menu_order', 'category', 'tags', 'published_at'
 ];
 
-const getParams = (req, res) => {
+
+const getStructureContent = (req, pageType, params, callback) => {
+  params.content = {};
+  async.eachSeries(pageType.structure, (field, callback) => {
+    if (field.type === 'image') {
+      if (!req.body[field.attr]) {
+        return callback();
+      }
+      Media.find(req.body[field.attr], (err, media) => {
+        params.content[field.attr] = _.pick(media, ['id', 'uuid', 'filename']);
+        callback();
+      });
+    } else {
+      params.content[field.attr] = req.body[field.attr] || null;
+      callback();
+    }
+  }, (err) => {
+    callback(err, params);
+  });
+}
+
+const getParams = (req, res, callback) => {
   const { options } = plugin;
 
   // force lang & site
@@ -27,15 +49,6 @@ const getParams = (req, res) => {
   FIELDS.forEach(function(attr) {
     params[attr] = req.body[attr] || null;
   });
-
-  const pageType = _.find(options.pageTypes, {type: params.page_type});
-  // page type structure
-  if (pageType && pageType.structure) {
-    params.content = {};
-    _.each(pageType.structure, field => {
-      params.content[field.attr] = req.body[field.attr] || null;
-    });
-  }
 
   // force site and lang if no options and detected
   if (!plugin.options.sites && plugin.options.detect_site) {
@@ -62,7 +75,12 @@ const getParams = (req, res) => {
     params.published_at = new Date();
   }
 
-  return params;
+  // page type structure
+  const pageType = _.find(options.pageTypes, {type: params.page_type});
+  if (!pageType || !pageType.structure) {
+    return callback(null, params);
+  }
+  getStructureContent(req, pageType, params, callback);
 }
 
 //
@@ -170,23 +188,23 @@ module.exports.new = function(model, req, res, callback) {
 //
 module.exports.create = function(model, req, res, callback) {
 
-  const params = getParams(req, res);
-  
-  model.find(params.parent_id, function(err, parent) {
-    params.level = parent ? parent.level + 1 : 0;
-    model.create(params, callback);
+  getParams(req, res, (err, params) => {
+    model.find(params.parent_id, function(err, parent) {
+      params.level = parent ? parent.level + 1 : 0;
+      model.create(params, callback);
+    });  
   });
 };
 
 //
 module.exports.update = function(model, req, res, callback) {
 
-  const params = getParams(req, res);
-
-  model.find(params.id, function(err, page) {
-    model.find(params.parent_id, function(err, parent) {
-      params.level = parent ? parent.level + 1 : 0;
-      page.update(params, callback);
+  getParams(req, res, (err, params) => {
+    model.find(params.id, function(err, page) {
+      model.find(params.parent_id, function(err, parent) {
+        params.level = parent ? parent.level + 1 : 0;
+        page.update(params, callback);
+      });
     });
   });
 };
