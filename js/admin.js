@@ -4,6 +4,7 @@ window.Dropzone = require('dropzone');
 
 require('./redactor.js');
 require('./images.js');
+require('./repeater.js');
 
 require('./object-types.js');
 

@@ -1,0 +1,31 @@
+<div class="repeater" data-attr="{field.attr}">
+  <h2>{field.label}</h2>
+  <div class="items">
+    {#page.content[field.attr] it="item"}
+      <div class="row item">
+        <div class="col-4">
+          <b>N° <span class="item-i"></span></b>
+          <a href="#" class="delete-item ml-4"><i class="fa fa-trash"></i></a>
+        </div>
+        <div class="col-8">
+          {#field.fields it="f"}
+            {> "{dirname}/views/admin/pages/types/_{field.type}" obj=item field=f /}
+          {/field.fields}
+        </div>
+      </div>
+    {:else}
+      <div class="row item">
+        <div class="col-4">
+          <b>N° <span class="item-i"></span></b>
+          <a href="#" class="delete-item ml-4"><i class="fa fa-trash"></i></a>
+        </div>
+        <div class="col-8">
+          {#field.fields it="f"}
+            {> "{dirname}/views/admin/pages/types/_{field.type}" obj=item field=f /}
+          {/field.fields}
+        </div>
+      </div>
+    {/page.content[field.attr]}
+  </div>
+  <input type="button" class="add-item" value="Ajouter" />
+</div>

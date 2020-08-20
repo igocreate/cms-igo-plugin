@@ -4,7 +4,7 @@ window.Dropzone.options.cmsPluginMediaUpload = false;
 
 $(function() {
 
-  $('.select-image').click(function(e) {
+  $('body').on('click', '.select-image', function(e) {
     e.preventDefault();
     $('#select-image-modal').data('target', $(this).closest('.form-image'));
     $('#select-image-modal').modal('show');
@@ -12,7 +12,7 @@ $(function() {
     return false;
   });
 
-  $('.delete-image').click(function(e) {
+  $('body').on('click', '.delete-image', function(e) {
     e.preventDefault();
     const target = $(this).closest('.form-image');
     target.find('input[type=hidden]').val(null);
@@ -27,9 +27,10 @@ $(function() {
     $.get(adminpath + '/cms/medias/modal', function(html) {
       $('#select-image-modal .images').html(html);
       $('#select-image-modal .images img').click(function() {
-        const id      = $(this).data('id');
         const target  = $('#select-image-modal').data('target');
-        target.find('input[type=hidden]').val(id);
+        ['id', 'uuid', 'filename'].forEach(attr => {
+          target.find(`input[type=hidden].image-${attr}`).val($(this).data(attr));
+        })
         target.find('img.image').attr('src', $(this).attr('src'));
         target.find('.delete-image').show();
         $('#select-image-modal').modal('hide');

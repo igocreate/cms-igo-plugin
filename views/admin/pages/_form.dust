@@ -1,5 +1,5 @@
-{#fields}
-  {> "{dirname}/views/admin/pages/types/_{.type}" /}
+{#fields it="f" }
+  {> "{dirname}/views/admin/pages/types/_{field.type}" field=f obj=page.content /}
 {:else}
   <div class="form-group">
     <input type="text" class="form-control form-control-lg" id="title" name="title" placeholder="Titre" value="{page.title}" />

@@ -1,8 +1,10 @@
 <div class="form-group form-image">
-  <label for="{.attr}">{.label}</label>
-  <a href="#" class="delete-image" data-target="image" {^page.content[.attr]}style="display:none;"{/page.content[.attr]}><i class="fa fa-trash"></i></a>
+  <label for="{field.attr}">{field.label}</label>
+  <a href="#" class="delete-image" data-target="image" {^obj[field.attr].id}style="display:none;"{/obj[field.attr].id}><i class="fa fa-trash"></i></a>
   <div class="pb-2">
-    <img {?page.content[.attr]}src="/medias/{page.content[.attr].uuid}/thumbnail/{page.content[.attr].filename|u}"{:else}src="/cms/empty.png"{/page.content[.attr]} class="img-fluid image select-image" id="{.attr}" />
+    <img {?obj[field.attr].id}src="/medias/{obj[field.attr].uuid}/thumbnail/{obj[field.attr].filename|u}"{:else}src="/cms/empty.png"{/obj[field.attr].id} class="img-fluid image select-image" id="{field.attr}" />
   </div>
-  <input type="hidden" id="{.attr}" name="{.attr}" value="{page.content[.attr].id}" />
+  <input type="hidden" class="image-id" name="{field.attr}[id]" value="{obj[field.attr].id}" />
+  <input type="hidden" class="image-uuid" name="{field.attr}[uuid]" value="{obj[field.attr].uuid}" />
+  <input type="hidden" class="image-filename" name="{field.attr}[filename]" value="{obj[field.attr].filename}" />
 </div>

@@ -19,27 +19,14 @@ const FIELDS = [
 ];
 
 
-const getStructureContent = (req, pageType, params, callback) => {
+const getStructureContent = (req, pageType, params) => {
   params.content = {};
-  async.eachSeries(pageType.structure, (field, callback) => {
-    if (field.type === 'image') {
-      if (!req.body[field.attr]) {
-        return callback();
-      }
-      Media.find(req.body[field.attr], (err, media) => {
-        params.content[field.attr] = _.pick(media, ['id', 'uuid', 'filename']);
-        callback();
-      });
-    } else {
-      params.content[field.attr] = req.body[field.attr] || null;
-      callback();
-    }
-  }, (err) => {
-    callback(err, params);
+  _.each(pageType.structure, field => {
+    params.content[field.attr] = req.body[field.attr] || null;
   });
 }
 
-const getParams = (req, res, callback) => {
+const getParams = (req, res) => {
   const { options } = plugin;
 
   // force lang & site
@@ -77,10 +64,11 @@ const getParams = (req, res, callback) => {
 
   // page type structure
   const pageType = _.find(options.pageTypes, {type: params.page_type});
-  if (!pageType || !pageType.structure) {
-    return callback(null, params);
+  if (pageType && pageType.structure) {
+    getStructureContent(req, pageType, params);
   }
-  getStructureContent(req, pageType, params, callback);
+
+  return params;
 }
 
 //
@@ -188,23 +176,21 @@ module.exports.new = function(model, req, res, callback) {
 //
 module.exports.create = function(model, req, res, callback) {
 
-  getParams(req, res, (err, params) => {
-    model.find(params.parent_id, function(err, parent) {
-      params.level = parent ? parent.level + 1 : 0;
-      model.create(params, callback);
-    });  
-  });
+  const params = getParams(req, res);
+  model.find(params.parent_id, function(err, parent) {
+    params.level = parent ? parent.level + 1 : 0;
+    model.create(params, callback);
+  });  
 };
 
 //
 module.exports.update = function(model, req, res, callback) {
 
-  getParams(req, res, (err, params) => {
-    model.find(params.id, function(err, page) {
-      model.find(params.parent_id, function(err, parent) {
-        params.level = parent ? parent.level + 1 : 0;
-        page.update(params, callback);
-      });
+  const params = getParams(req, res);
+  model.find(params.id, function(err, page) {
+    model.find(params.parent_id, function(err, parent) {
+      params.level = parent ? parent.level + 1 : 0;
+      page.update(params, callback);
     });
   });
 };
