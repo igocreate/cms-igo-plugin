@@ -1,5 +1,6 @@
 
 {> "{options.adminlayout}" /}
+{<title}{faq_category.title}{/title}
 
 {<content}
 
