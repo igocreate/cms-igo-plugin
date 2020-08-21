@@ -10,7 +10,7 @@ const Page            = require('../../models/Page');
 const Media = require('../../models/Media');
 
 const FIELDS = [
-  'id',
+  'id', 'status',
   'title', 'body', 'page_type', 'slug',
   'site', 'lang',
   'meta_title', 'meta_description', 'subtitle', 'excerpt',

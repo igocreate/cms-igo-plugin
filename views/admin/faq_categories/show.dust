@@ -38,34 +38,14 @@
         </ul>
 
         <div class="nav-tabs-body">
-          <div class="table-responsive">
-            <table class="table table-sm table-hover">
-              <thead>
-                <tr>
-                  <th class="th-page-title">Titre</th>
-                  <th class="th-page-updated-at">Dernière modification</th>
-                  <th class="th-page-actions" width="110"></th>
-                </tr>
-              </thead>
-              {#faq_category.children}
-                <tr>
-                  <td class="td-page-title td-level-{.level}">
-                    <a href="{options.adminpath}/cms/faq/{faq_category.id}/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
-                    <br/>
-                    <span class="slug">{.slug} </span>
-                    <span class="badge badge-info">{.category}</span>
-                  </td>
-                  <td class="td-page-date">{@dateformat date=.updated_at /}</td>
-                  <td class="actions text-right">
-                    <a href="{options.adminpath}/cms/faq/{faq_category.id}/{.id}/edit" class="btn btn-sm btn-dark" ><i class="fa fa-edit"></i></a>
-                    {@ne key=.status value="trashed"}
-                      &nbsp;<a href="{options.adminpath}/cms/faq/{faq_category.id}/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>
-                    {/ne}
-                  </td>
-                </tr>
-              {/faq_category.children}
-            </table>
-          </div>
+
+          {?faq_category.children}
+            {> "{dirname}/views/admin/faq_categories/_questions_table" /}
+          {:else}
+            <div class="alert alert-light text-center mt-5" role="alert">
+              Aucune question
+            </div>
+          {/faq_category.children}
         </div>
       </div>
       <div class="col-sm-4" >

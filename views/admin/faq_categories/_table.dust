@@ -12,9 +12,6 @@
       <tr>
         <td class="td-page-title td-level-{.level}">
           <a href="{options.adminpath}/cms/faq/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
-          <br/>
-          <span class="slug">{.slug} </span>
-          <span class="badge badge-info">{.category}</span>
         </td>
         <td><a href="{options.adminpath}/cms/faq/{.id}" >{.faqs.length} question{@gt key=.faqs.length value=1}s{/gt} </a></td>
         <td class="td-page-date">{@dateformat date=.updated_at /}</td>
