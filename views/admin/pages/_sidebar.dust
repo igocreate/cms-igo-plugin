@@ -93,24 +93,18 @@
   <div class="form-row">
     <div class="col form-group form-image">
       <label>Bannière</label>
-      <a href="#" class="delete-image" {^page.banner}style="display:none;"{/page.banner}><i class="fa fa-trash"></i></a>
+      <a href="#" class="delete-image ml-2" {^page.banner}style="display:none;"{/page.banner}><i class="fa fa-trash"></i></a>
       <div class="pb-2">
         <img {?page.banner}src="/medias/{page.banner.uuid}/thumbnail/{page.banner.filename|u}"{:else}src="/cms/empty.png"{/page.banner} class="img-fluid image select-image" />
-      </div>
-      <div>
-        <a href="#" class="btn btn-outline-primary btn-block select-image" data-target="banner">Choisir</a>
       </div>
       <input type="hidden" id="banner-id" class="image-id" name="banner_id" value="{page.banner_id}" />
     </div>
 
     <div class="col form-group form-image">
       <label>Image</label>
-      <a href="#" class="delete-image" {^page.image}style="display:none;"{/page.image}><i class="fa fa-trash"></i></a>
+      <a href="#" class="delete-image ml-2" {^page.image}style="display:none;"{/page.image}><i class="fa fa-trash"></i></a>
       <div class="pb-2">
         <img {?page.image}src="/medias/{page.image.uuid}/thumbnail/{page.image.filename|u}"{:else}src="/cms/empty.png"{/page.image} class="img-fluid image select-image" />
-      </div>
-      <div>
-        <a href="#" class="btn btn-outline-primary btn-block select-image" >Choisir</a>
       </div>
       <input type="hidden" id="image-id" class="image-id" name="image_id" value="{page.image_id}" />
     </div>

@@ -1,13 +1,15 @@
-{#fields it="f" }
-  {> "{dirname}/views/admin/pages/types/_{field.type}" field=f obj=page.content /}
-{:else}
-  <div class="form-group">
-    <input type="text" class="form-control form-control-lg" id="title" name="title" placeholder="Titre" value="{page.title}" />
-  </div>
+<div class="page-form">
+  {#fields it="f" }
+    {> "{dirname}/views/admin/pages/types/_{field.type}" field=f obj=page.content /}
+  {:else}
+    <div class="form-group">
+      <input type="text" class="form-control form-control-lg" id="title" name="title" placeholder="Titre" value="{page.title}" />
+    </div>
 
-  <div class="form-group">
-    <textarea id="cms-plugin-redactor" name="body" data-adminpath={options.adminpath} >
-      {page.body}
-    </textarea>
-  </div>
-{/fields}
+    <div class="form-group">
+      <textarea id="cms-plugin-redactor" name="body" data-adminpath={options.adminpath} >
+        {page.body}
+      </textarea>
+    </div>
+  {/fields}
+</div>

@@ -1,0 +1,13 @@
+<div class="item">
+  <div class="row">
+    <div class="col-3">
+      <b>N° <span class="item-i"></span></b>
+      <a href="#" class="delete-item ml-2"><i class="fa fa-trash"></i></a>
+    </div>
+    <div class="col-9">
+      {#field.fields it="f"}
+        {> "{dirname}/views/admin/pages/types/_{field.type}" obj=item field=f /}
+      {/field.fields}
+    </div>
+  </div>
+</div>

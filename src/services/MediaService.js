@@ -11,8 +11,13 @@ const { config, cache, logger } = plugin.igo;
 
 const FORMATS = _.merge({
   thumbnail: {
-    width:  200,
-    height: 200,
+    width:  300,
+    height: 300,
+    background: 'white'
+  },
+  large: {
+    width:  800,
+    height: 800,
     background: 'white'
   },
 }, plugin.options.formats || {});;

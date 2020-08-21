@@ -7,11 +7,17 @@ $(function() {
       const repeater  = $(this);
       const attr      = repeater.data('attr');
       let i = 0;
+
+      // save model if needed
+      if (!repeater.data('model')) {
+        const model = repeater.find('.model');
+        model.remove();
+        model.removeClass('d-none');
+        repeater.data('model', model);
+      }
+
       repeater.find('.item').each(function() {
         const item = $(this);
-        if (!repeater.data('item')) {
-          repeater.data('item', item.clone());
-        }
         item.find('.item-i').html(i+1);
         item.find('input, textarea').each(function() {
           const element = $(this);
@@ -29,6 +35,7 @@ $(function() {
         });
         i++;
       });
+      repeater.find('.item-count').html(i);
     });
   };
   repeat();
@@ -37,7 +44,7 @@ $(function() {
   $('.repeater').on('click', '.add-item', function(e) {
     e.preventDefault();
     const repeater = $(this).closest('.repeater');
-    repeater.data('item').clone().appendTo(repeater.find('.items'));
+    repeater.data('model').clone().appendTo(repeater.find('.items'));
     repeat();
   });
 
