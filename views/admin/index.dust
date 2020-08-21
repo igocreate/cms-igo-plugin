@@ -1,5 +1,6 @@
 
 {> "{options.adminlayout}" /}
+{<title}Admin CMS{/title}
 
 {<content}
 
@@ -8,11 +9,25 @@
     <li class="breadcrumb-item active">CMS</li>
   </ol>
 
-  <h1>CMS plugin</h1>
-  <ul>
-    <li><a href="{options.adminpath}/cms/pages">Pages</a></li>
-    <li><a href="{options.adminpath}/cms/posts">Posts</a></li>
-    <li><a href="{options.adminpath}/cms/faq">FAQ</a></li>
-    <li><a href="{options.adminpath}/cms/medias">Medias</a></li>
-  </ul>
+  <div class="cms-igo-plugin">
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <i class="fa fa-file-o mr-3"></i>
+        <a href="{options.adminpath}/cms/pages">Pages</a>
+      </li>
+      <li class="list-group-item">
+        <i class="fa fa-rss mr-3"></i>
+        <a href="{options.adminpath}/cms/posts">Posts</a>
+      </li>
+      <li class="list-group-item">
+        <i class="fa fa-info mr-3"></i>
+        <a href="{options.adminpath}/cms/faq">FAQ</a>
+      </li>
+      <li class="list-group-item">
+        <i class="fa fa-image mr-3"></i>
+        <a href="{options.adminpath}/cms/medias">Medias</a>
+      </li>
+    </ul>
+  </div>
 {/content}

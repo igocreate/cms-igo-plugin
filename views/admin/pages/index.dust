@@ -1,6 +1,6 @@
 
 {> "{options.adminlayout}" /}
-
+{<title}Pages CMS{/title}
 {<content}
 
   <div class="row">
@@ -36,7 +36,7 @@
         <div class="nav-tabs-body">
 
           {?pages}
-          {> "{dirname}/views/admin/pages/_table" /}
+            {> "{dirname}/views/admin/pages/_table" /}
           {:else}
             <div class="alert alert-light text-center mt-5" role="alert">
               Aucune page

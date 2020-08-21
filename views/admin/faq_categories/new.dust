@@ -1,5 +1,6 @@
 
 {> "{options.adminlayout}" /}
+{<title}Nouvelle catégorie FAQ{/title}
 
 {<content}
 
@@ -7,7 +8,7 @@
     <li class="breadcrumb-item"><a href="{options.adminpath}">Admin</a></li>
     <li class="breadcrumb-item"><a href="{options.adminpath}/cms">CMS</a></li>
     <li class="breadcrumb-item"><a href="{options.adminpath}/cms/faq">FAQ</a></li>
-    <li class="breadcrumb-item active">Nouvelle FAQ</li>
+    <li class="breadcrumb-item active">Nouvelle catégorie FAQ</li>
   </ol>
 
   <div class="cms-igo-plugin">

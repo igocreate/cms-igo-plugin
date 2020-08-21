@@ -1,6 +1,6 @@
 
 {> "{options.adminlayout}" /}
-
+{<title}{page.title}{/title}
 {<content}
 
   <ol class="breadcrumb">
@@ -17,13 +17,6 @@
       <div class="row">
         <div class="col-sm-8">
           {> "{dirname}/views/admin/pages/_form.dust" /}
-
-          <div class="mt-5">
-            <hr/>
-            {?page.children}
-              {> "{dirname}/views/admin/pages/_table" pages=page.children /}
-            {/page.children}
-          </div>
         </div>
         <div class="col-sm-4">
           {> "{dirname}/views/admin/pages/_sidebar.dust" /}

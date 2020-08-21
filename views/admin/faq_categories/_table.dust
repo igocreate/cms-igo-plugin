@@ -1,0 +1,31 @@
+<div class="table-responsive">
+  <table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th class="th-page-title">Catégorie</th>
+        <th class="">Questions</th>
+        <th class="th-page-updated-at">Dernière modification</th>
+        <th class="th-page-actions" width="110"></th>
+      </tr>
+    </thead>
+    {#pages}
+      <tr>
+        <td class="td-page-title td-level-{.level}">
+          <a href="{options.adminpath}/cms/faq/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
+          <br/>
+          <span class="slug">{.slug} </span>
+          <span class="badge badge-info">{.category}</span>
+        </td>
+        <td><a href="{options.adminpath}/cms/faq/{.id}" >{.faqs.length} question{@gt key=.faqs.length value=1}s{/gt} </a></td>
+        <td class="td-page-date">{@dateformat date=.updated_at /}</td>
+        <td class="actions text-right">
+          <a href="{options.adminpath}/cms/faq/{.id}" class="btn btn-sm btn-info" ><i class="fa fa-eye"></i></a>
+          &nbsp;<a href="{options.adminpath}/cms/faq/{.id}/edit" class="btn btn-sm btn-dark" ><i class="fa fa-edit"></i></a>
+          {@ne key=.status value="trashed"}
+            &nbsp;<a href="{options.adminpath}/cms/faq/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>
+          {/ne}
+        </td>
+      </tr>
+    {/pages}
+  </table>
+</div>

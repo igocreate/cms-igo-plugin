@@ -1,5 +1,6 @@
 
 {> "{options.adminlayout}" /}
+{<title}Nouveau Post CMS{/title}
 
 {<content}
 

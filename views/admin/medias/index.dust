@@ -1,6 +1,6 @@
 
 {> "{options.adminlayout}" /}
-
+{<title}Medias CMS{/title}
 {<content}
 
   <ol class="breadcrumb">

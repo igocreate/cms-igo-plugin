@@ -1,7 +1,6 @@
 
 {> "{options.adminlayout}" /}
-
-{<title}Nouvelle Page{/title}
+{<title}Nouvelle Page CMS{/title}
 
 {<content}
 
