@@ -28,6 +28,7 @@ $(function() {
         text:   object.name
       }));
     });
+    $('#object_id').val($('#object_id').data('value'));
 
   }
   setObjectSelect();
