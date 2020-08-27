@@ -13,7 +13,7 @@
 
     <ul class="list-group">
       <li class="list-group-item">
-        <i class="fa fa-file-o mr-3"></i>
+        <i class="fa fa-file mr-3"></i>
         <a href="{options.adminpath}/cms/pages">Pages</a>
       </li>
       <li class="list-group-item">

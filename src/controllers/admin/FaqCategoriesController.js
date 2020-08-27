@@ -5,7 +5,6 @@ const Faq           = require('../../models/Faq');
 const FaqCategory   = require('../../models/FaqCategory');
 const plugin        = require('../../../plugin');
 
-const StringUtils     = require('../../utils/StringUtils');
 const ControllerUtils = require('./ControllerUtils');
 
 module.exports.faq = (req, res, next) => {
@@ -67,15 +66,7 @@ module.exports.edit = function(req, res) {
       return res.redirect(plugin.options.adminpath + '/cms/faq');
     }
     res.locals.page = res.locals.flash.page || faq_category;
-    const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
-    filter.status = 'published';
-    ControllerUtils.showTree(FaqCategory, filter, function(err, pages) {
-      ControllerUtils.getObjectTypes(function(err, objectTypes) {
-        res.locals.objectTypes  = objectTypes;
-        res.locals.pageTypes    = plugin.options.pageTypes;
-        res.render(plugin.dirname + '/views/admin/faq_categories/edit.dust', { pages });
-      });
-    });
+    res.render(plugin.dirname + '/views/admin/faq_categories/edit.dust');
   });
 };
 

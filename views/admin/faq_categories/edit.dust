@@ -19,7 +19,7 @@
           {> "{dirname}/views/admin/pages/_form.dust" /}
         </div>
         <div class="col-sm-4">
-          {> "{dirname}/views/admin/pages/_sidebar.dust" hideparent="true" /}
+          {> "{dirname}/views/admin/pages/_sidebar.dust" hideparent="true" hidepagetype="true" /}
         </div>
       </div>
     </form>

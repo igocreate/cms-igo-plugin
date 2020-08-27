@@ -45,14 +45,6 @@ const getParams = (req, res) => {
     params.lang = res.locals[plugin.options.detect_lang];
   }
 
-  // do not allow change site and lang if no options
-  // if (!plugin.options.sites) {
-  //   delete req.body.site;
-  // }
-  // if (!plugin.options.langs) {
-  //   delete req.body.lang;
-  // }
-
   params.meta_title     = params.meta_title || req.body.title;
   params.page_type      = params.page_type || 'page';
   params.slug           = params.slug || StringUtils.slugify(params.title);
@@ -92,7 +84,10 @@ const getCmsfilter = module.exports.getCmsfilter = function(req, res) {
   res.locals.cmsfilter    = cmsfilter;
   req.session.cmsfilter   = cmsfilter;
 
-  res.locals.pageTypes    = plugin.options.pageTypes;
+  // filter by site
+  res.locals.pageTypes = _.filter(plugin.options.pageTypes, pageType => {
+    return !pageType.sites || pageType.sites.indexOf(cmsfilter.site) >= 0;
+  });
 
   return cmsfilter;
 }

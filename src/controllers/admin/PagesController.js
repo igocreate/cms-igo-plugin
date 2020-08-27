@@ -24,7 +24,6 @@ module.exports.new = function(req, res) {
     filter.status = 'published';
     ControllerUtils.showTree(Page, filter, (err, pages) => {
       ControllerUtils.getObjectTypes((err, objectTypes) => {
-        res.locals.pageTypes   = plugin.options.pageTypes;
         res.render(plugin.dirname + '/views/admin/pages/new', { pages, objectTypes, fields });
       });
     });
@@ -64,7 +63,6 @@ module.exports.edit = function(req, res) {
     filter.status = 'published';
     ControllerUtils.showTree(Page, filter, (err, pages) => {
       ControllerUtils.getObjectTypes((err, objectTypes) => {
-        res.locals.pageTypes    = plugin.options.pageTypes;
         res.render(plugin.dirname + '/views/admin/pages/edit', { pages, objectTypes, fields });
       });
     });

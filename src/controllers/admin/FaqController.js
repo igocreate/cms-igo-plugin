@@ -51,15 +51,7 @@ module.exports.edit = function(req, res) {
     }
 
     res.locals.page = res.locals.flash.page || faq;
-    const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
-    filter.status = 'published';
-    ControllerUtils.showTree(Faq, filter, function(err, pages) {
-      ControllerUtils.getObjectTypes(function(err, objectTypes) {
-        res.locals.objectTypes  = objectTypes;
-        res.locals.pageTypes    = plugin.options.pageTypes;
-        res.render(plugin.dirname + '/views/admin/faq/edit.dust', { pages });
-      });
-    });
+    res.render(plugin.dirname + '/views/admin/faq/edit.dust');
   });
 };
 

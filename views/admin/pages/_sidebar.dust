@@ -20,6 +20,15 @@
     </div>
   {/langs}
 
+  <div class="form-group">
+    <label for="status">Statut</label>
+    <select class="form-control" id="status" name="status" >
+      <option value="published" {@eq key=page.status value="published" }selected{/eq}>Publié</option>
+      <option value="draft" {@eq key=page.status value="draft" }selected{/eq}>Brouillon</option>
+      <option value="trashed" {@eq key=page.status value="trashed" }selected{/eq}>Supprimé</option>
+    </select>
+  </div>
+
   {^hidepagetype}
     {?pageTypes}
       <div class="form-group">
@@ -32,15 +41,6 @@
       </div>
     {/pageTypes}
   {/hidepagetype}
-
-  <div class="form-group">
-    <label for="status">Statut</label>
-    <select class="form-control" id="status" name="status" >
-      <option value="published" {@eq key=page.status value="published" }selected{/eq}>Publié</option>
-      <option value="draft" {@eq key=page.status value="draft" }selected{/eq}>Brouillon</option>
-      <option value="trashed" {@eq key=page.status value="trashed" }selected{/eq}>Supprimé</option>
-    </select>
-  </div>
 
   <div class="form-group">
     <label for="slug">
