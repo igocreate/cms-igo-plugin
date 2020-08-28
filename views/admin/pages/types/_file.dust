@@ -1,0 +1,4 @@
+<div class="form-group field">
+  <label for="{field.attr}">{field.label}</label>
+  <input type="text" class="form-control" id="{field.attr}" name="{field.attr}" placeholder="{field.title}" value="{obj[field.attr]}" />
+</div>

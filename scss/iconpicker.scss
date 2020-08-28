@@ -1,0 +1,22 @@
+
+.iconpicker-popover {
+  max-height: 260px;
+  overflow-y: scroll;
+
+  .icons a {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    padding: 2px;
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+    border-radius: 4px;
+    &:hover {
+      background-color: #eee;
+    }
+    i {
+      
+    }
+  }
+}

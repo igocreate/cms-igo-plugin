@@ -5,6 +5,7 @@ window.Dropzone = require('dropzone');
 require('./redactor.js');
 require('./images.js');
 require('./repeater.js');
+require('./iconpicker.js');
 
 require('./object-types.js');
 
@@ -30,5 +31,7 @@ $(function() {
     $(this).next('.custom-file-label').text(label);
   };
   $('.custom-file-input').on('change', setFileInputLabel);
+
+  $('.iconpicker').iconpicker({});
 
 });

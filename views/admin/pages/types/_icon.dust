@@ -1,0 +1,9 @@
+<div class="form-group field">
+  <label for="{field.attr}">{field.label}</label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="selected {obj[field.attr]}"></i></span>
+    </div>
+    <input type="text" class="form-control iconpicker" id="{field.attr}" name="{field.attr}" placeholder="{field.title}" value="{obj[field.attr]}" />
+  </div>
+</div>
