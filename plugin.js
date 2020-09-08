@@ -4,6 +4,7 @@ const plugin = {
   options: {
     adminpath:    '/admin',
     adminlayout:  'layouts/main',
+    pageTypes:  [],
     templates: {
       dir:        'cms',
       cms_show:   __dirname + '/views/templates/page.dust',

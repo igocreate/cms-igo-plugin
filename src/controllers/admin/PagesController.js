@@ -17,7 +17,7 @@ module.exports.index = function(req, res) {
 //
 module.exports.new = function(req, res) {
   const page_type = _.find(plugin.options.pageTypes, { type: req.query.page_type }) || plugin.options.pageTypes[0];
-  const fields    = page_type.structure;
+  const fields    = page_type && page_type.structure;
 
   ControllerUtils.new(Page, req, res, function() {
     const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
@@ -56,7 +56,7 @@ module.exports.edit = function(req, res) {
       page.page_type = req.query.page_type;
     }
     const page_type = _.find(plugin.options.pageTypes, { type: page.page_type }) || plugin.options.pageTypes[0];
-    const fields    = page_type.structure;
+    const fields    = page_type && page_type.structure;
     
     res.locals.page = res.locals.flash.page || page;
     const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
