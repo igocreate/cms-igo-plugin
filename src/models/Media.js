@@ -17,7 +17,7 @@ const schema = {
     'size',
     'container',
     'fullpath',
-    'is_deleted',
+    {name: 'is_deleted', type: 'boolean'},
     'deleted_at',
     'deleted_by',
     'created_at'
@@ -30,11 +30,6 @@ const schema = {
 };
 
 class Media extends Model(schema) {
-
-  constructor(values) {
-    super(values);
-    this.is_deleted = !!this.is_deleted;
-  }
 
   beforeCreate(callback) {
     this.uuid = uuidV4();

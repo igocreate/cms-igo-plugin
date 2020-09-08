@@ -21,7 +21,7 @@ const schema = {
     'meta_description',
     'excerpt',
     'body',
-    'content_json',
+    {name: 'content_json', type: 'json', attr: 'content'},
     'category',
     'category_slug',
     'tags',
