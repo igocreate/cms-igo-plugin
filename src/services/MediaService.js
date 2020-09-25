@@ -1,4 +1,7 @@
 
+// DEV ONLY
+const DISABLE_CACHE = true;
+
 const _       = require('lodash');
 const gm      = require('gm').subClass({ imageMagick: true });
 
@@ -8,17 +11,16 @@ const OVH     = require('./OVH');
 
 const { config, cache, logger } = plugin.igo;
 
+const DEFAULT_QUALITY = 90;
 
 const FORMATS = _.merge({
   thumbnail: {
     width:  300,
-    height: 300,
-    background: 'white'
+    height: 300
   },
   large: {
     width:  800,
-    height: 800,
-    background: 'white'
+    height: 800
   },
 }, plugin.options.formats || {});;
 
@@ -28,28 +30,26 @@ module.exports.resize = function(srcData, format, callback) {
     return callback(null, srcData);
   }
   format = FORMATS[format];
-  var file = gm(srcData);
+  const file = gm(srcData);
 
+  // console.log(`Resize image ${format.width}x${format.height}`);
   file.size((err, size) => {
     if (err) {
       return callback(err);
     }
-    const ratio = format.height / format.width;
-    const fileRatio = size.height / size.width;
+    const ratio     = format.width / format.height;
+    const fileRatio = size.width / size.height;
 
     if (ratio > fileRatio) {
-      const w = size.height * format.width / format.height;
-      file.crop(w, size.height, (size.width - w) / 2, 0);
+      file.resize(format.width, Math.round(format.width / fileRatio));
+    } else {
+      file.resize(Math.round(format.height * fileRatio), format.height);
     }
-
-    file.resize(format.width, format.height)
-      .background(format.background || 'white')
-      .setFormat('jpeg')
-      .gravity('Center')
-      .extent(format.width, format.height)
-      .toBuffer((err, buffer) => {
-        callback(err, buffer);
-      });
+    
+    file.gravity('Center')
+      .crop(format.width, format.height)
+      .quality(format.quality || DEFAULT_QUALITY)
+      .setFormat('jpeg').toBuffer(callback);
   });
 };
 
@@ -70,10 +70,18 @@ module.exports.download = function(user, options, callback) {
     if (!media) {
       return callback('notfound');
     }
+
+    // skip cache (DEV ONLY)
+    if (config.env !== 'production' && DISABLE_CACHE) {
+      return module.exports.forcedownload(media, options, (err, data) => {
+        callback(err, data, media);
+      });
+    }
+
     const key = [ options.uuid, options.format, options.site ].join('-');
     cache.fetch('mediaservice', key, function(key, callback) {
       module.exports.forcedownload(media, options, callback);
-    }, function(err, data) {
+    }, (err, data) => {
       callback(err, data, media);
     });
   });
