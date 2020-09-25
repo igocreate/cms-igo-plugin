@@ -23,9 +23,7 @@ const schema = {
     'created_at'
   ],
   scopes: {
-    default: function(query) {
-      query.where({ is_deleted: false });
-    }
+    default: q => q.where({ is_deleted: false })
   }
 };
 

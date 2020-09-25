@@ -97,7 +97,7 @@ module.exports.upload = function(user, file, options, callback) {
   options = options || {};
 
   const container   = config.ovh_storage.container;
-  const title       = '/media-' + Date.now();
+  const title       = `/media-${Date.now()}`;
   const user_id     = user ? user.id : null;
 
   const media = {
@@ -108,7 +108,8 @@ module.exports.upload = function(user, file, options, callback) {
     type:       file.type,
     size:       file.size,
     container:  container,
-    fullpath:   '/' + container + title
+    fullpath:   `/${container}${title}`,
+    is_deleted: false
   };
 
   logger.info('Media upload: ' + media.fullpath + ' by user #' + user_id);

@@ -24,7 +24,6 @@
           <thead>
             <tr>
               <th>Media</th>
-              <th>Utilisateur</th>
               <th>Container</th>
               <th class="text-right">Enregistré le</th>
               <th></th>
@@ -33,7 +32,6 @@
           {#medias}
             <tr>
               <td>{.filename}</td>
-              <td>{.user_id}</td>
               <td>{.container}</td>
               <td class="td-page-date">{@dateformat date=.created_at /}</td>
               <td class="actions">

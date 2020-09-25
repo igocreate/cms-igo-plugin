@@ -17,7 +17,7 @@ module.exports.index = function(req, res) {
     status: is_deleted ? 'deleted' : 'published'
   };
 
-  const query = Media.unscoped().where({is_deleted: is_deleted});
+  const query = Media.unscoped().where({is_deleted});
 
   const cmsfilter = ControllerUtils.getCmsfilter(req, res);
   if (cmsfilter.site) {
@@ -39,8 +39,9 @@ module.exports.new = function(req, res) {
 //
 module.exports.create = function(req, res) {
   igo.Admin.AdminUtils.handleParams(Media, req.body);
-  const cmsfilter = ControllerUtils.getCmsfilter(req, res);
-  req.body.site = cmsfilter.site;
+  const cmsfilter     = ControllerUtils.getCmsfilter(req, res);
+  req.body.site       = cmsfilter.site;
+  req.body.is_deleted = false;
   Media.create(req.body, function(err, page) {
     res.redirect(plugin.options.adminpath + '/cms/pages/' + page.id + '/edit');
   });
