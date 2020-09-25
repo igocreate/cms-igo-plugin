@@ -1,6 +1,6 @@
 
 // DEV ONLY
-const DISABLE_CACHE = true;
+const DISABLE_CACHE = false;
 
 const _       = require('lodash');
 const gm      = require('gm').subClass({ imageMagick: true });

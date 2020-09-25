@@ -22,6 +22,7 @@ module.exports.show = function(req, res) {
     if (err) {
       return res.status(404).send('Not found');
     }
+    res.set('cache-control', 'public, max-age=31536000'); // 365days
     res.send(data);
   });
 };
