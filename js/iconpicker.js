@@ -1,5 +1,3 @@
-const { select } = require("async");
-
 
 $.fn.iconpicker = function() {
   const element = $(this);

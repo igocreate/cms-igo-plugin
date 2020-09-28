@@ -1,7 +1,7 @@
 
 $(function() {
 
-  if ($('#page_type').length < 1 || (typeof objectTypes === 'undefined')) {
+  if (!$('#page_type').length || typeof objectTypes === 'undefined') {
     return ;
   }
 
@@ -32,7 +32,7 @@ $(function() {
 
   }
   setObjectSelect();
-  $('#page_type').change(setObjectSelect);
+  $('#page_type').on('change', setObjectSelect);
 
 
 });

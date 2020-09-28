@@ -12,14 +12,14 @@ require('./object-types.js');
 
 $(function() {
 
-  $('.fa-caret-right').click(function() {
+  $('.fa-caret-right').on('click', function() {
     const target = $(this).data('target');
     $(target).toggle();
     $(this).toggleClass('fa-caret-right');
     $(this).toggleClass('fa-caret-down');
   })
 
-  $('select#page_type').change(function() {
+  $('select#page_type').on('change', function() {
     const page_type = $('select#page_type option:selected').val();
     window.location.href = `?page_type=${page_type}`;
   });
@@ -32,6 +32,7 @@ $(function() {
   };
   $('.custom-file-input').on('change', setFileInputLabel);
 
+  // internal iconpicker
   $('.iconpicker').iconpicker({});
 
 });

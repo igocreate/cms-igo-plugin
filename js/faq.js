@@ -2,7 +2,7 @@
 
 
 $(function() {
-  $('.faq-faq').click(function() {
+  $('.faq-faq').on('click', function() {
     const el    = $(this);
     const open  = el.hasClass('open');
 
