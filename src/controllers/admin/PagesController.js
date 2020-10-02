@@ -16,12 +16,15 @@ module.exports.index = function(req, res) {
 
 //
 module.exports.new = function(req, res) {
-  const page_type = _.find(plugin.options.pageTypes, { type: req.query.page_type }) || plugin.options.pageTypes[0];
-  const fields    = page_type && page_type.structure;
-
   ControllerUtils.new(Page, req, res, function() {
     const filter  = _.pick(res.locals.cmsfilter, ['site', 'lang'])
     filter.status = 'published';
+
+    const { page }  = res.locals;
+    const type      = page ? page.page_type : req.query.page_type;
+    const page_type = _.find(plugin.options.pageTypes, { type }) || plugin.options.pageTypes[0];
+    const fields    = page_type && page_type.structure;
+
     ControllerUtils.showTree(Page, filter, (err, pages) => {
       ControllerUtils.getObjectTypes((err, objectTypes) => {
         res.render(plugin.dirname + '/views/admin/pages/new', { pages, objectTypes, fields });
