@@ -2,7 +2,7 @@
 
 $(function() {
 
-  const repeat = () => {
+  const repeat = function() {
     $('.repeater').each(function() {
       const repeater  = $(this);
       const attr      = repeater.data('attr');

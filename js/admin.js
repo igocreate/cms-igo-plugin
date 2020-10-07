@@ -27,7 +27,7 @@ $(function() {
   // bootstrap custom file input
   const setFileInputLabel = function() {
     const files = $(this).prop('files')
-    const label = $.map(files, val => val.name).join(', ');
+    const label = $.map(files, function(val) { return val.name }).join(', ');
     $(this).next('.custom-file-label').text(label);
   };
   $('.custom-file-input').on('change', setFileInputLabel);

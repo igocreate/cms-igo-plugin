@@ -7,7 +7,7 @@ $.fn.iconpicker = function() {
     element.popover('show');
   });
 
-  element.parent().on('blur', 'input', () => {
+  element.parent().on('blur', 'input', function() {
     setTimeout(function() {
       const focus = $(':focus');
       if (!focus.closest('.iconpicker-popover').length && 
@@ -22,7 +22,7 @@ $.fn.iconpicker = function() {
     let html = '<div class="iconpicker-popover">';
     html += '<div class="filter"><input type="text" class="form-control" name="q" autocomplete="off" /><i class="fas fa-search"></i></div>';
     html += '<div class="icons">';
-    ICONS.forEach(icon => {
+    ICONS.forEach(function(icon) {
       html += `<a href="#" title="${icon}"><i class="${icon}"></i></a>`;
     });
     html += '</div></div>';

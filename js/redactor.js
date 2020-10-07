@@ -1,4 +1,5 @@
-$(() => {
+
+$(function() {
 
   if ($('#cms-plugin-redactor').length < 1) {
     return ;

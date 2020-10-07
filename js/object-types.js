@@ -6,7 +6,7 @@ $(function() {
   }
 
   // link pages types to objects types
-  const setObjectSelect = () => {
+  const setObjectSelect = function() {
     const option = $('#page_type').find('option:selected');
     const objectType = objectTypes.find(function(objectType) {
       return objectType.type === option.data('object-type');
@@ -22,7 +22,7 @@ $(function() {
     $('#object_type').val(objectType.type);
     $('label[for="object_id"]').text(objectType.label);
     $('#object_id').empty();
-    objectType.list.forEach(object => {
+    objectType.list.forEach(function(object) {
       $('#object_id').append($('<option>', {
         value:  object.id,
         text:   object.name
