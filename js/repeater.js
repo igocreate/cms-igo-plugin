@@ -25,13 +25,13 @@ $(function() {
             let firstname = element.attr('name');
             let k = firstname.indexOf('[');
             if (k > -1) {
-              firstname = `[${firstname.substring(0, k)}]${firstname.substring(k)}`
+              firstname = '[' + firstname.substring(0, k) + ']' + firstname.substring(k);
             } else {
-              firstname = `[${firstname}]`;
+              firstname = '[' + firstname + ']';
             }
             element.data('firstname', firstname);
           }
-          element.attr('name', `${attr}[${i}]${element.data('firstname')}`);
+          element.attr('name', attr + '[' + i + ']' + element.data('firstname'));
         });
         i++;
       });

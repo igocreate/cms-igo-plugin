@@ -21,7 +21,7 @@ $(function() {
 
   $('select#page_type').on('change', function() {
     const page_type = $('select#page_type option:selected').val();
-    window.location.href = `?page_type=${page_type}`;
+    window.location.href = '?page_type=' + page_type;
   });
   
   // bootstrap custom file input

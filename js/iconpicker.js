@@ -23,7 +23,7 @@ $.fn.iconpicker = function() {
     html += '<div class="filter"><input type="text" class="form-control" name="q" autocomplete="off" /><i class="fas fa-search"></i></div>';
     html += '<div class="icons">';
     ICONS.forEach(function(icon) {
-      html += `<a href="#" title="${icon}"><i class="${icon}"></i></a>`;
+      html += '<a href="#" title="' + icon + '"><i class=" ' + icon + '"></i></a>';
     });
     html += '</div></div>';
     return html;
