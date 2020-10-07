@@ -28,7 +28,7 @@ $(function() {
       $('#select-image-modal .images').html(html);
       $('#select-image-modal .images img').click(function() {
         const target  = $('#select-image-modal').data('target');
-        ['id', 'uuid', 'filename'].forEach(attr => {
+        ['id', 'uuid', 'filename'].forEach(function(attr) {
           target.find(`input[type=hidden].image-${attr}`).val($(this).data(attr));
         })
         target.find('img.image').attr('src', $(this).attr('src'));
