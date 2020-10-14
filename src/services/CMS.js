@@ -18,7 +18,7 @@ module.exports.loadPage = function(filter, callback) {
   Page.includes([{parent: {parent: 'parent'}}, {children: {children: 'children'}}])
       .where(filter)
       .where({ status: 'published'})
-      .order(options.order || '`published_at` DESC')
+      .order('`published_at` DESC')
       .first(callback);
 };
 
