@@ -26,12 +26,13 @@ $(function() {
     const adminpath = $('#cms-plugin-redactor').data('adminpath');
     $.get(adminpath + '/cms/medias/modal', function(html) {
       $('#select-image-modal .images').html(html);
-      $('#select-image-modal .images img').click(function() {
+      $('#select-image-modal .images img').on('click', function() {
+        const element = $(this);
         const target  = $('#select-image-modal').data('target');
         ['id', 'uuid', 'filename'].forEach(function(attr) {
-          target.find('input[type=hidden].image-' + attr).val($(this).data(attr));
+          target.find('input[type=hidden].image-' + attr).val(element.data(attr));
         })
-        target.find('img.image').attr('src', $(this).attr('src'));
+        target.find('img.image').attr('src', element.attr('src'));
         target.find('.delete-image').show();
         $('#select-image-modal').modal('hide');
       });
