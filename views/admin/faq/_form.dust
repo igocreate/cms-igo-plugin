@@ -7,7 +7,7 @@
 <p class="mt-4"><strong>Question</strong></p>
 
 <div class="form-group">
-  <textarea name="question" data-adminpath="{options.adminpath}" >
+  <textarea name="question" class="form-control" data-adminpath="{options.adminpath}" >
     {page.question}
   </textarea>
 </div>

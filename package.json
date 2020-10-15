@@ -1,6 +1,6 @@
 {
   "name": "cms-igo-plugin",
-  "version": "0.5.11",
+  "version": "0.5.12",
   "description": "CMS plugin for Igo",
   "main": "plugin.js",
   "scripts": {
@@ -19,6 +19,6 @@
     "lodash": "^4.17.20",
     "node-ovh-storage": "^0.2.0",
     "string-to-stream": "^3.0.1",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.1"
   }
 }
