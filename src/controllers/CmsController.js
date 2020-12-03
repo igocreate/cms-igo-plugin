@@ -11,10 +11,9 @@ const FilterUtils = require('../utils/FilterUtils');
 //
 module.exports.loadMenu = (menu_id) => {
   return (req, res, next) => {
-    const filter = {
-      lang: res.locals.lang,
-      site: res.locals.site
-    }
+    const filter = {};
+    FilterUtils.getSiteFilter(req, res, filter);
+    FilterUtils.getLangFilter(req, res, filter);
     CMS.loadMenu(menu_id, filter, (err, menu) => {
       _.each(menu, function(page) {
         page.active = req.path.endsWith(page.slug);
