@@ -1,0 +1,6 @@
+<div class="form-group field">
+  <label for="{field.attr}">{field.label}</label>
+  <textarea class="form-control" name="{field.attr}">
+    {obj[field.attr]}
+  </textarea>
+</div>
