@@ -2,6 +2,7 @@
 // DEV ONLY
 const DISABLE_CACHE = false;
 
+const uuidV4  = require('uuid').v4;
 const _       = require('lodash');
 const gm      = require('gm').subClass({ imageMagick: true });
 
@@ -96,19 +97,21 @@ module.exports.upload = function(user, file, options, callback) {
 
   options = options || {};
 
+  const uuid        = uuidV4();
   const container   = config.ovh_storage.container;
-  const title       = `/media-${Date.now()}`;
+  const fullpath    = `/${container}/media-${uuid}`;
   const user_id     = user ? user.id : null;
 
   const media = {
     user_id:    user_id,
+    uuid:       uuid,
     site:       options.site,
     name:       file.name,
     filename:   file.name,
     type:       file.type,
     size:       file.size,
     container:  container,
-    fullpath:   `/${container}${title}`,
+    fullpath:   fullpath,
     is_deleted: false
   };
 

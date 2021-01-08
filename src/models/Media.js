@@ -1,6 +1,4 @@
 
-const uuidV4    = require('uuid').v4;
-
 const Model     = require('../../plugin').igo.Model;
 
 const schema = {
@@ -27,12 +25,6 @@ const schema = {
   }
 };
 
-class Media extends Model(schema) {
-
-  beforeCreate(callback) {
-    this.uuid = uuidV4();
-    callback();
-  }
-}
+class Media extends Model(schema) {}
 
 module.exports = Media;
