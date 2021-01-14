@@ -8,10 +8,12 @@ const MediasController  = require('../controllers/MediasController');
 // medias
 router.get ('/medias/:uuid/:format?/:filename',  MediasController.show);
 
+// FAQ
+router.get ('/faq',         CmsController.faqIndex);
+router.get ('/faq/:slug',   CmsController.faq);
+
 // Cms pages
 router.get ('/:slug?',      CmsController.page);
 
-router.get ('/faq',         CmsController.faqIndex);
-router.get ('/faq/:slug',   CmsController.faq);
 
 module.exports = router;

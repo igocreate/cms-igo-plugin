@@ -1,6 +1,6 @@
 <div class="form-group field">
   <label for="{field.attr}">{field.label}</label>
-  <textarea class="form-control" name="{field.attr}">
+  <textarea class="form-control" name="{field.attr}" rows="4">
     {obj[field.attr]}
   </textarea>
 </div>
