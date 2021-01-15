@@ -13,7 +13,8 @@ router.get ('/faq',         CmsController.faqIndex);
 router.get ('/faq/:slug',   CmsController.faq);
 
 // Cms pages
-router.get ('/:slug?',      CmsController.page);
+router.get ('/:slug?',                  CmsController.page);
+router.get ('/:parent/:slug',           CmsController.page);
 
 
 module.exports = router;

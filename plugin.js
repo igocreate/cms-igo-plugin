@@ -10,7 +10,7 @@ const plugin = {
       cms_show:   __dirname + '/views/templates/page.dust',
       faq_index:  __dirname + '/views/faq/index.dust'
     },
-    url: (page) => `/${page.slug}`
+    url: (page) => `${page.parent ? page.parent.url : ''}/${page.slug}`
   },
   dirname: __dirname
 };

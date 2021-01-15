@@ -33,7 +33,28 @@ module.exports.page = function(req, res, next) {
     if (!page) {
       return next();
     }
-    res.render(`${options.templates.dir}/${page.page_type}.dust`, { page });
+    // check url
+    if (page.parent && page.parent.slug !== req.params.parent) {
+      return res.redirect(page.url);
+    }
+    if (!page.parent && req.params.parent) {
+      return res.redirect(page.url);
+    }
+    
+    const onLoad = (callback) => {
+      if (!page.page_type) {
+        return callback();
+      }
+      const pageType = _.find(options.pageTypes, { type: page.page_type});
+      if (!pageType || !pageType.onLoad) {
+        return callback();
+      }
+      pageType.onLoad(page, req, res, callback);
+    }
+
+    onLoad(() => {
+      res.render(`${options.templates.dir}/${page.page_type}.dust`, { page });
+    });    
   });
 
 };
