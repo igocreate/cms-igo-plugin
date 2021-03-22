@@ -1,6 +1,6 @@
 
 
-window.Dropzone = require('dropzone');
+window.Dropzone = window.Dropzone || require('dropzone');
 
 require('./redactor.js');
 require('./images.js');
