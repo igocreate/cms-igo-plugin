@@ -1,8 +1,7 @@
+require('dropzone');
 
 $(function() {
   
-  window.Dropzone.options.cmsPluginMediaUpload = false;
-
   $('body').on('click', '.select-image', function(e) {
     e.preventDefault();
     $('#select-image-modal').data('target', $(this).closest('.form-image'));

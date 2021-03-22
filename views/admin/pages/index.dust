@@ -12,7 +12,7 @@
       </ol>
     </div>
     <div class="col-md-4 text-right">
-      <a href="{options.adminpath}/cms/pages/new?page_type={cmsfilter.page_type}" class="btn btn-secondary" ><i class="fas fa-edit"></i> Nouvelle Page</a>
+      <a href="{options.adminpath}/cms/pages/new?page_type={cmsfilter.page_type}" class="btn btn-secondary" ><i class="far fa-edit"></i> Nouvelle Page</a>
     </div>
   </div>
 

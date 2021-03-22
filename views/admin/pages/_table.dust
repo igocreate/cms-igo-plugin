@@ -10,20 +10,20 @@
     {#pages}
       <tr class="{?showtree}{?.parent_id}has-parent parent-{.parent_id}{/.parent_id}{/showtree}">
         <td class="td-page-title {?showtree}td-level-{.level}{/showtree}">
-          {?.hasChildren}<i class="fas fa-caret-right" data-target=".parent-{.id}"></i>{/.hasChildren}
+          {?.hasChildren}<i class="far fa-caret-right" data-target=".parent-{.id}"></i>{/.hasChildren}
           <a href="{options.adminpath}/cms/pages/{.id}/edit">{?.title}{.title}{:else}Sans titre{/.title}</a>
           {@eq key=.status value="published"}
-            <small><a href="{.url}" target="_blank"><i class="fas fa-external-link"></i></a></small>
+            <small><a href="{.url}" target="_blank"><i class="far fa-external-link"></i></a></small>
           {/eq}
           {?.page_type}<br/><span class="badge badge-light">{pageTypesByType[.page_type].label}</span>&nbsp;{/.page_type}
           {?.category}<span class="badge badge-light">{.category}</span>{/.category}
         </td>
         <td class="td-page-date">{@dateformat date=.updated_at /}</td>
         <td class="actions text-right">
-          <a href="{options.adminpath}/cms/pages/{.id}/edit" class="btn btn-sm btn-dark" ><i class="fas fa-edit"></i></a>
-          &nbsp;<a href="{options.adminpath}/cms/pages/new?copy={.id}" class="btn btn-sm btn-dark" ><i class="fas fa-copy"></i></a>
+          <a href="{options.adminpath}/cms/pages/{.id}/edit" class="btn btn-sm btn-dark" ><i class="far fa-edit"></i></a>
+          &nbsp;<a href="{options.adminpath}/cms/pages/new?copy={.id}" class="btn btn-sm btn-dark" ><i class="far fa-copy"></i></a>
           {@ne key=.status value="trashed"}
-            &nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-sm btn-danger" ><i class="fas fa-trash"></i></a>
+            &nbsp;<a href="{options.adminpath}/cms/pages/{.id}/trash" onclick="return window.confirm('Supprimer ?');" class="btn btn-sm btn-danger" ><i class="far fa-trash"></i></a>
           {/ne}
         </td>
       </tr>

@@ -13,7 +13,7 @@
       </ol>
     </div>
     <div class="col-md-4 text-right">
-      <a href="{options.adminpath}/cms/posts/new" class="btn btn-secondary" ><i class="fas fa-edit" ></i> Nouveau Post</a>
+      <a href="{options.adminpath}/cms/posts/new" class="btn btn-secondary" ><i class="far fa-edit" ></i> Nouveau Post</a>
     </div>
   </div>
 

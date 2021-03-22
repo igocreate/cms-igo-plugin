@@ -41,5 +41,5 @@
     <input type="text" class="form-control" name="category" id="category" value="{cmsfilter.category}" />
   </div>
 
-  <button type="submit" class="btn btn-outline-secondary btn-block"><i class="fas fa-filter"></i> Filtrer</button>
+  <button type="submit" class="btn btn-outline-secondary btn-block"><i class="far fa-filter"></i> Filtrer</button>
 </form>

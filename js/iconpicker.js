@@ -20,7 +20,7 @@ $.fn.iconpicker = function() {
 
   const createPopover = function() {
     let html = '<div class="iconpicker-popover">';
-    html += '<div class="filter"><input type="text" class="form-control" name="q" autocomplete="off" /><i class="fas fa-search"></i></div>';
+    html += '<div class="filter"><input type="text" class="form-control" name="q" autocomplete="off" /><i class="far fa-search"></i></div>';
     html += '<div class="icons">';
     ICONS.forEach(function(icon) {
       html += '<a href="#" title="' + icon + '"><i class=" ' + icon + '"></i></a>';

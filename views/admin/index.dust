@@ -13,19 +13,19 @@
 
     <ul class="list-group">
       <li class="list-group-item">
-        <i class="fas fa-file mr-3"></i>
+        <i class="far fa-file mr-3"></i>
         <a href="{options.adminpath}/cms/pages">Pages</a>
       </li>
       <li class="list-group-item">
-        <i class="fas fa-rss mr-3"></i>
+        <i class="far fa-rss mr-3"></i>
         <a href="{options.adminpath}/cms/posts">Posts</a>
       </li>
       <li class="list-group-item">
-        <i class="fas fa-info mr-3"></i>
+        <i class="far fa-info mr-3"></i>
         <a href="{options.adminpath}/cms/faq">FAQ</a>
       </li>
       <li class="list-group-item">
-        <i class="fas fa-image mr-3"></i>
+        <i class="far fa-image mr-3"></i>
         <a href="{options.adminpath}/cms/medias">Medias</a>
       </li>
     </ul>

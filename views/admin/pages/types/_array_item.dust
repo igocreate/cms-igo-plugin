@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-3">
       <b>N° <span class="item-i"></span></b>
-      <a href="#" class="delete-item ml-2"><i class="fas fa-trash"></i></a>
+      <a href="#" class="delete-item ml-2"><i class="far fa-trash"></i></a>
     </div>
     <div class="col-9">
       {#field.fields it="f"}

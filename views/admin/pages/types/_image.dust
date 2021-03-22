@@ -1,6 +1,6 @@
 <div class="form-group form-image field">
   <label for="{field.attr}">{field.label}</label>
-  <a href="#" class="delete-image ml-2" data-target="image" {^obj[field.attr].id}style="display:none;"{/obj[field.attr].id}><i class="fas fa-trash"></i></a>
+  <a href="#" class="delete-image ml-2" data-target="image" {^obj[field.attr].id}style="display:none;"{/obj[field.attr].id}><i class="far fa-trash"></i></a>
   <div class="pb-2">
     <img {?obj[field.attr].id}src="/medias/{obj[field.attr].uuid}/thumbnail/{obj[field.attr].filename|u}"{:else}src="/cms/empty.png"{/obj[field.attr].id} class="img-fluid image select-image" id="{field.attr}" />
   </div>
