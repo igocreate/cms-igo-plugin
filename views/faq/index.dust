@@ -18,7 +18,7 @@
     {#faq_categories}
       <div class="faq-category">
         <a href="/faq/{.slug}">
-          <i class="fa fa-chevron-right pull-right"></i>
+          <i class="fas fa-chevron-right pull-right"></i>
           {.title}
         </a>
       </div>
@@ -27,7 +27,7 @@
     {#faq_category.faqs}
       <div class="faq-faq">
         <div class="faq-question">
-          <i class="fa fa-chevron-right pull-right"></i>
+          <i class="fas fa-chevron-right pull-right"></i>
           {.question|s}
         </div>
         <div class="faq-answer" style="display: none;">

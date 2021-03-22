@@ -13,7 +13,7 @@
       </ol>
     </div>
     <div class="col-md-5 text-right">
-      <a href="{options.adminpath}/cms/faq/new" class="btn btn-secondary" ><i class="fa fa-edit" ></i> Nouvelle catégorie FAQ</a>
+      <a href="{options.adminpath}/cms/faq/new" class="btn btn-secondary" ><i class="fas fa-edit" ></i> Nouvelle catégorie FAQ</a>
     </div>
   </div>
 
