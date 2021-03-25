@@ -1,4 +1,6 @@
+
 require('dropzone');
+Dropzone.autoDiscover = false;
 
 $(function() {
   
