@@ -2,27 +2,19 @@
 const MediaService  = require('../services/MediaService');
 
 //
-module.exports.show = function(req, res) {
+module.exports.show = async (req, res) => {
   const user    = res.locals.current_user;
   const options = {
     uuid:     req.params.uuid,
     format:   req.params.format,
     site:     res.locals.site
   };
-  MediaService.download(user, options, function(err, data, media) {
-    if (err) {
-      return res.status(404).send('Not found');
-    }
-    if (media.type) {
-      res.setHeader('Content-type', media.type);
-    }
-    if (media.size) {
-      res.setHeader('Content-Length', media.size);
-    }
-    if (err) {
-      return res.status(404).send('Not found');
-    }
-    res.set('cache-control', 'public, max-age=31536000'); // 365days
-    res.send(data);
-  });
+  const { err, data, media } = await MediaService.download(user, options);
+  if (err || !media) {
+    return res.status(404).send('Not found');
+  }
+  res.setHeader('Content-type', media.type || 'image/jpeg');
+  res.setHeader('Content-Length', data.length);
+  res.setHeader('Cache-Control', 'public, max-age=31536000'); // 365days
+  res.send(data);
 };

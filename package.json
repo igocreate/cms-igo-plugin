@@ -1,6 +1,6 @@
 {
   "name": "cms-igo-plugin",
-  "version": "0.5.20",
+  "version": "0.5.25",
   "description": "CMS plugin for Igo",
   "main": "plugin.js",
   "scripts": {
@@ -13,12 +13,12 @@
     "url": "git@github.com:igocreate/cms-igo-plugin.git"
   },
   "dependencies": {
-    "async": "^3.2.0",
-    "dropzone": "^5.7.2",
-    "gm": "^1.23.1",
-    "lodash": "^4.17.20",
-    "node-ovh-storage": "^0.3.0",
+    "async": "^3.2.4",
+    "dropzone": "^5.9.3",
+    "gm": "^1.25.0",
+    "lodash": "^4.17.21",
+    "node-ovh-storage": "^0.3.2",
     "string-to-stream": "^3.0.1",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.0"
   }
 }
