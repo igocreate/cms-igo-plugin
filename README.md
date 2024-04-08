@@ -1,3 +1,8 @@
+**DEPRECATED**
+
+**This project is deprecated**
+
+
 
 # CMS Igo Plugin
 
